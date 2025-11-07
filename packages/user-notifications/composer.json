@@ -1,0 +1,17 @@
+{
+    "name": "behin/user-notifications",
+    "description": "User and admin messaging module for internal notifications.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "UserNotifications\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "UserNotifications\\Providers\\UserNotificationsServiceProvider"
+            ]
+        }
+    }
+}
