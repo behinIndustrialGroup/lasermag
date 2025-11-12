@@ -50,11 +50,11 @@ class RegisterUserController extends Controller
                 'password' => Hash::make($request->password),
                 'role_id' => 3
             ]);
-            BotController::send("کاربر جدید ثبت نام کرد: {$user->name}");
+            // BotController::send("کاربر جدید ثبت نام کرد: {$user->name}");
         } catch (\Throwable $e) {
-            BotController::send("خطایی در ثبت نام رخ داده است: {$e->getMessage()}
-            شماره کاربر: {$request->email}");
-            return back()->withErrors(['register' => 'خطایی در ثبت نام رخ داده است.'])->withInput();
+            // BotController::send("خطایی در ثبت نام رخ داده است: {$e->getMessage()}
+            // شماره کاربر: {$request->email}");
+            return back()->withErrors(['register' => 'خطایی در ثبت نام رخ داده است.' . $e->getMessage()])->withInput();
         }
 
         event(new Registered($user));
