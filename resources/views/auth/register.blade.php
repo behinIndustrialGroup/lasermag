@@ -67,12 +67,32 @@
     <div class="card register-card p-4" style="max-width: 420px; width: 100%;">
         <!-- لوگو -->
         <div class="text-center mb-4">
-            <img src="{{ url('behin/logo.png') . '?' . config('app.version')}}" class="img-fluid" style="max-height: 70px" alt="Logo">
+            <img src="{{ url('behin/logo.webp') . '?' . config('app.version')}}" class="img-fluid" style="max-height: 70px" alt="Logo">
         </div>
 
         <h4 class="text-center mb-4 fw-bold text-dark">ثبت نام</h4>
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+            
 
-        <form id="register-form" method="POST" action="javascript:void(0)">
+        <form id="register-form" method="POST" action="{{ route('register') }}">
             @csrf
 
             <!-- نام و نام خانوادگی -->
@@ -98,7 +118,7 @@
             </div>
 
             <!-- دکمه ثبت نام -->
-            <button type="submit" onclick="submitRegister()" class="btn btn-gradient w-100 py-3">
+            <button type="submit" class="btn btn-gradient w-100 py-3">
                 ثبت نام
             </button>
         </form>
@@ -117,22 +137,4 @@
 @endsection
 
 @section('script')
-<script>
-    function submitRegister() {
-        send_ajax_request(
-            "{{ route('register') }}",
-            $('#register-form').serialize(),
-            function(response) {
-                show_message("ثبت نام شما با موفقیت انجام شد");
-                show_message("به صفحه داشبورد منتقل می‌شوید");
-                window.location = "{{ url('admin') }}";
-            },
-            function(response) {
-                console.log(response);
-                show_error(response);
-                hide_loading();
-            }
-        )
-    }
-</script>
 @endsection
