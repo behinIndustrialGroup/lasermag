@@ -97,23 +97,22 @@
 
             <!-- نام و نام خانوادگی -->
             <div class="mb-4 position-relative">
-                <input type="text" name="name" class="form-control" id="inputName" placeholder=" " required>
+                <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="inputName" placeholder=" " required>
                 <label for="inputName" class="floating-label"><i class="fa fa-user me-1"></i> نام و نام خانوادگی</label>
             </div>
 
             <!-- موبایل -->
             <div class="mb-4 position-relative">
-                <input type="text" name="email" class="form-control"
+                <input type="text" name="email" value="{{ old('email') }}" class="form-control"
                  id="inputMobile" 
                  placeholder=" "
-                 value="{{ request()->get('mobile') }}"
                  required>
                 <label for="inputMobile" class="floating-label"><i class="fa fa-phone me-1"></i> موبایل</label>
             </div>
 
             <!-- رمز عبور -->
             <div class="mb-4 position-relative">
-                <input type="password" name="password" class="form-control" id="inputPassword" placeholder=" " required>
+                <input type="password" name="password" value="{{ old('password') }}" class="form-control" id="inputPassword" placeholder=" " required>
                 <label for="inputPassword" class="floating-label"><i class="fa fa-lock me-1"></i> رمز عبور</label>
             </div>
 
