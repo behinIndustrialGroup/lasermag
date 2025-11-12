@@ -17,7 +17,7 @@
             background: radial-gradient(circle at top left, var(--color-secondary) 0%, transparent 45%),
                 radial-gradient(circle at bottom right, var(--color-primary) 0%, transparent 50%),
                 var(--color-dark);
-            font-family: 'IRANSans', sans-serif;
+            font-family: 'Vazir', sans-serif;
             direction: rtl;
         }
 
@@ -269,7 +269,7 @@
     <div class="login-wrapper">
         <section class="login-card">
             <div class="login-logo">
-                <img src="{{ url('behin/logo.png') . '?' . config('app.version') }}" alt="LaserMag Logo">
+                <img src="{{ url('behin/logo.webp') . '?' . config('app.version') }}" alt="LaserMag Logo">
             </div>
 
             <h2 class="login-title">ورود به لیزر مگ</h2>
