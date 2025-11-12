@@ -59,11 +59,11 @@ $notificationsUrl = Route::has('notifications.index')
             </a>
         </li>
 
-        <li class="mr-2">
+        {{-- <li class="mr-2">
             <a href="tel:+982191307571" type="button" class="btn btn-sm btn-outline-dark" style="color: black !important">
                 پشتیبانی: 02191307571 <i class="material-icons" style="font-size: 13px">phone</i>
             </a>
-        </li>
+        </li> --}}
 
         <!-- Home -->
         {{-- <li class="mr-2">
