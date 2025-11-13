@@ -11,16 +11,16 @@ return [
                 'dashboard' => [ 'fa_name' => 'داشبرد', 'route-name' => '', 'route-url' => 'admin' ],
             ]
         ],
-        'workflow-inbox' => [
-            'icon' => 'inbox',
-            'fa_name' => 'درخواست های تکمیل نشده',
-            'route-name' => 'simpleWorkflow.inbox.index',
-            'submenu' => [
-                'new-process' => [ 'fa_name' => 'فرایند جدید', 'route-name' => 'simpleWorkflow.process.startListView' ],
-                'inbox' => [ 'fa_name' => 'کارتابل', 'route-name' => 'simpleWorkflow.inbox.index' ],
-                'done-inbox' => [ 'fa_name' => 'انجام شده ها', 'route-name' => 'simpleWorkflow.inbox.done' ],
-            ]
-        ],
+        // 'workflow-inbox' => [
+        //     'icon' => 'inbox',
+        //     'fa_name' => 'درخواست های تکمیل نشده',
+        //     'route-name' => 'simpleWorkflow.inbox.index',
+        //     'submenu' => [
+        //         'new-process' => [ 'fa_name' => 'فرایند جدید', 'route-name' => 'simpleWorkflow.process.startListView' ],
+        //         'inbox' => [ 'fa_name' => 'کارتابل', 'route-name' => 'simpleWorkflow.inbox.index' ],
+        //         'done-inbox' => [ 'fa_name' => 'انجام شده ها', 'route-name' => 'simpleWorkflow.inbox.done' ],
+        //     ]
+        // ],
         'categorized-inbox' => [
             'icon' => 'inbox',
             'fa_name' => 'کارتابل',
@@ -30,16 +30,16 @@ return [
                 'done-inbox' => [ 'fa_name' => 'انجام شده ها', 'route-name' => 'simpleWorkflow.inbox.done' ],
             ]
         ],
-        'my-request' => [
-            'icon' => 'inbox',
-            'fa_name' => 'درخواست های من',
-            'route-name' => 'simpleWorkflowReport.my-request.index',
-            'submenu' => [
-                'new-process' => [ 'fa_name' => 'فرایند جدید', 'route-name' => 'simpleWorkflow.process.startListView' ],
-                'inbox' => [ 'fa_name' => 'کارتابل', 'route-name' => 'simpleWorkflow.inbox.index' ],
-                'done-inbox' => [ 'fa_name' => 'انجام شده ها', 'route-name' => 'simpleWorkflow.inbox.done' ],
-            ]
-        ],
+        // 'my-request' => [
+        //     'icon' => 'inbox',
+        //     'fa_name' => 'درخواست های من',
+        //     'route-name' => 'simpleWorkflowReport.my-request.index',
+        //     'submenu' => [
+        //         'new-process' => [ 'fa_name' => 'فرایند جدید', 'route-name' => 'simpleWorkflow.process.startListView' ],
+        //         'inbox' => [ 'fa_name' => 'کارتابل', 'route-name' => 'simpleWorkflow.inbox.index' ],
+        //         'done-inbox' => [ 'fa_name' => 'انجام شده ها', 'route-name' => 'simpleWorkflow.inbox.done' ],
+        //     ]
+        // ],
         'workflow-report' => [
             'icon' => 'report',
             'fa_name' => 'گزارشات',
@@ -67,15 +67,15 @@ return [
                 'all-inbox' => [ 'fa_name' => 'کارتابل همه', 'route-name' => 'simpleWorkflow.inbox.cases.list' ],
             ]
         ],
-        'voip' => [
-            'icon' => 'phone',
-            'fa_name' => 'تلفن',
-            'route-name' => 'simpleWorkflowReport.index',
-            'submenu' => [
-                'settings' => [ 'fa_name' => 'تنظیمات', 'route-name' => 'ami.settings' ],
-                'ext-status' => [ 'fa_name' => 'وضعیت داخلی ها', 'route-name' => 'ami.status' ],
-            ]
-        ],
+        // 'voip' => [
+        //     'icon' => 'phone',
+        //     'fa_name' => 'تلفن',
+        //     'route-name' => 'simpleWorkflowReport.index',
+        //     'submenu' => [
+        //         'settings' => [ 'fa_name' => 'تنظیمات', 'route-name' => 'ami.settings' ],
+        //         'ext-status' => [ 'fa_name' => 'وضعیت داخلی ها', 'route-name' => 'ami.status' ],
+        //     ]
+        // ],
         'translations' => [
             'icon' => 'language',
             'fa_name' => 'ترجمه',
