@@ -1,0 +1,32 @@
+[
+  {
+    "name": "products",
+    "description": "Entity definition for managing catalog products, prices, and stock thresholds.",
+    "columns": "name,string,no\nsku,string,yes\nunit,string,no\ncategory_id,string,yes\npurchase_price,decimal,no\nsale_price,decimal,no\nstock,decimal,no\nmin_stock,decimal,no",
+    "uses": "use Behin\\SimpleWorkflow\\Controllers\\Core\\VariableController;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Support\\Str;\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;",
+    "class_contents": "",
+    "model_name": "Products",
+    "namespace": "Behin\\SimpleWorkflow\\Models\\Entities",
+    "db_table_name": "wf_entity_products"
+  },
+  {
+    "name": "warehouses",
+    "description": "Entity definition describing warehouse locations and managers.",
+    "columns": "name,string,no\nlocation,string,no\nmanager_id,string,yes",
+    "uses": "use Behin\\SimpleWorkflow\\Controllers\\Core\\VariableController;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Support\\Str;\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;",
+    "class_contents": "",
+    "model_name": "Warehouses",
+    "namespace": "Behin\\SimpleWorkflow\\Models\\Entities",
+    "db_table_name": "wf_entity_warehouses"
+  },
+  {
+    "name": "inventory_transactions",
+    "description": "Entity definition tracking product movements per warehouse, including reference metadata.",
+    "columns": "product_id,bigInteger,no\nwarehouse_id,bigInteger,no\ntype,string,no\nquantity,decimal,no\nreference_type,string,no\nreference_id,bigInteger,no\nnote,text,yes",
+    "uses": "use Behin\\SimpleWorkflow\\Controllers\\Core\\VariableController;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Support\\Str;\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;",
+    "class_contents": "",
+    "model_name": "Inventory_transactions",
+    "namespace": "Behin\\SimpleWorkflow\\Models\\Entities",
+    "db_table_name": "wf_entity_inventory_transactions"
+  }
+]
