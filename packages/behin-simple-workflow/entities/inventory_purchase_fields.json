@@ -1,0 +1,302 @@
+[
+  {
+    "id": "eb942a79-cc5b-46b7-a0a6-600981eabcfe",
+    "name": "name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "53e6e60e-690f-4b49-b715-7334c8ab85fc",
+    "name": "sku",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "278f0fd8-9fae-48f8-8e5e-da9a32613dbf",
+    "name": "unit",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "2cc7056a-2f70-4ef5-ad23-11a0a5cbdf75",
+    "name": "category_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "fee2e9d9-eda8-4f9a-a395-904361b655b6",
+    "name": "purchase_price",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "033aad32-2a93-4cd2-91e5-833e6c95df8d",
+    "name": "sale_price",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "2e761bd1-042b-4dde-b7b8-6da2aa06dd02",
+    "name": "stock",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "71e8c129-510f-44e9-b7cf-fcb4de402efc",
+    "name": "min_stock",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "ecbd7cc7-1758-494b-9988-92e2544d9581",
+    "name": "name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "3f7ef225-83b4-49cd-a463-0104bd6edae5",
+    "name": "location",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "744942a3-3c25-4dc8-ab80-4e103adf8418",
+    "name": "manager_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "ec7d2272-9e7d-4078-b1a3-c9f673b6b2eb",
+    "name": "product_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "e93db857-d079-4445-aba1-ecd62b936e79",
+    "name": "warehouse_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "8fc75f25-c98b-4354-bb68-26e73c8615ec",
+    "name": "type",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "3306477d-41d7-41d1-9d5e-3548f62cdac9",
+    "name": "quantity",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "c8354794-cf13-4bbc-8f77-b2bf5e15c5f4",
+    "name": "reference_type",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "15003c9c-7c9b-43a3-8b36-c9bbed8b1e27",
+    "name": "reference_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "b54d1870-e422-44d2-85f3-39abeb3d46f8",
+    "name": "note",
+    "type": "text",
+    "attributes": null
+  },
+  {
+    "id": "0f4e4d19-61eb-4942-be2d-f3e992ebafce",
+    "name": "supplier_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "00c3f9ca-7356-426a-96a8-2c0366fb745f",
+    "name": "purchase_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "ddcf2d6e-12c2-4f8b-8a97-ea26799f7ae8",
+    "name": "invoice_no",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "99c4480f-b2f0-49c7-8db2-98da2c99ec27",
+    "name": "total_amount",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "8ead6cb4-f041-49c9-ae0c-552203426a4c",
+    "name": "status",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "fe666da1-f9d9-4d82-849b-48b02925afe9",
+    "name": "purchase_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "27bd145f-9bdd-463f-aa63-16ae973b4949",
+    "name": "product_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "a5571140-1544-4d86-975a-3612c3bd4bd9",
+    "name": "quantity",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "1c61028e-cfdc-4f03-9e38-099a508ff607",
+    "name": "unit_price",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "565fab6f-ae13-4c98-8cd6-ace2f8fc3d21",
+    "name": "total",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "631e2b27-3b0d-4324-a3a2-480ecdca00cb",
+    "name": "customer_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "a5242f1e-4c3c-4d7a-aabc-654274c2dac6",
+    "name": "sale_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "34b8260a-a4df-41b8-9958-0a53b01062ec",
+    "name": "invoice_no",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "356fe79b-976b-4d08-a353-811407ac575c",
+    "name": "total_amount",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "a661b7da-404b-4b95-bcbb-ef9eeff0f294",
+    "name": "status",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "883a033a-d40c-415b-855f-48af0c3a0646",
+    "name": "sale_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "1e0f4b7a-ec31-4182-b3de-bf6f725e6a0b",
+    "name": "product_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "49286c68-3fb6-4b3d-9ee9-968d5bf957b9",
+    "name": "quantity",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "8600afd7-b7f9-4447-b052-ad5e9a648e96",
+    "name": "unit_price",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "00281dea-95b8-4263-9295-b9f6af2aaaa9",
+    "name": "total",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "cd2490c0-e7c0-48ee-b8a9-e75f0e59fb95",
+    "name": "name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "46408fed-4a09-43ce-a518-834e310e3750",
+    "name": "phone",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "604ad1c8-7c65-4fd5-b503-d2a9aa9de32b",
+    "name": "email",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "9823ffba-453f-4d5e-bdfe-4887aee5ddc5",
+    "name": "address",
+    "type": "text",
+    "attributes": null
+  },
+  {
+    "id": "f7e9bd41-601d-40b6-9c57-61b046abdfa8",
+    "name": "balance",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "224b9b2f-0e0b-4940-b80a-adcbf4a973cf",
+    "name": "type",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "e0dde00f-629b-4061-a902-38413ddf2880",
+    "name": "reference_type",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "77c8c927-18e8-4448-a3b9-48988c88e615",
+    "name": "reference_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "100ce1ef-217a-4096-a7a5-59f08fb9eaa2",
+    "name": "amount",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "50b5ff58-2207-465b-a527-d2410e3a7c26",
+    "name": "account_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "5df918be-27b3-4ea5-87b3-7e425ac1d7f1",
+    "name": "date",
+    "type": "datetime",
+    "attributes": null
+  },
+  {
+    "id": "d6fa561a-0334-4104-9dc3-cb9e061606b4",
+    "name": "description",
+    "type": "text",
+    "attributes": null
+  }
+]
