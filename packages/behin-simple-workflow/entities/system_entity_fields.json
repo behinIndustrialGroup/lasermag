@@ -1,0 +1,848 @@
+[
+  {
+    "id": "ac070013-0477-5620-8253-16945ea0e99d",
+    "name": "account_name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "74084304-d891-5c4f-b51e-4521e6cac19e",
+    "name": "account_number",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "1b594582-b4db-59f2-94df-20d4283f3d83",
+    "name": "address",
+    "type": "text",
+    "attributes": null
+  },
+  {
+    "id": "532c832b-affa-5e0d-97d8-0da4a155a430",
+    "name": "amount",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "4d0590d9-f791-5712-83a0-a55a39bf8650",
+    "name": "approved",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "4f24723c-23cf-5615-9836-35cbc72be4b7",
+    "name": "bank_name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "cd3e2ef6-5585-5827-adc0-d277843d48b2",
+    "name": "case_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "cf8eac46-d660-5896-a640-4a85969fce1e",
+    "name": "case_number",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "bfdbc78a-0d6f-5d5b-be26-225028809661",
+    "name": "certificate_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "ad6cce63-a73e-5614-91bd-7e690f91b2b1",
+    "name": "cheque_due_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "67ac82de-26b3-5305-b895-9d170ca2fba7",
+    "name": "cheque_number",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "0739f4f2-5780-5efb-bfbf-7c52ab74725b",
+    "name": "cheque_receiver",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "acb28384-310a-578d-9fcb-abf794b832c1",
+    "name": "city",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "aa6c5008-ec04-55c7-b64e-bb0d0705e8c6",
+    "name": "confirm_contract_by_contractor",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "a0fcb54f-2309-5e6c-b676-4293abd6ce32",
+    "name": "confirm_contract_by_customer",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "47702686-ce95-574b-89c9-36203455c480",
+    "name": "contractor_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "ba1c9d33-ec9d-5d58-817b-42002c8580ba",
+    "name": "control_system",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "d96a8e26-be37-5042-9606-99760bd2b044",
+    "name": "control_system_model",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "d94fe6be-385d-5734-a27e-c29e24777036",
+    "name": "cost",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "4ec329cb-62c1-5544-a566-3bc22cce38fa",
+    "name": "cost2",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "b1d98752-cfe0-5aac-bf34-4420c0ec5a29",
+    "name": "cost3",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "187e1b6c-dddc-5e3b-a99e-3fb500776ec2",
+    "name": "country_of_origin",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "32ac152d-4370-56eb-96e5-8047e79bfcb8",
+    "name": "creation_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "03acdabc-270a-5221-8bd8-d0c0c48488fb",
+    "name": "creator",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "0c0e9360-ebaa-516b-b142-25f33ecdcdb6",
+    "name": "current_at_max_power",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "81ae6900-eff8-5cb4-aab0-f8c030480b00",
+    "name": "customer_approval",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "e41db7d5-75b0-5f7d-9a3f-a8706972bcfd",
+    "name": "customer_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "3f18b8cf-1d57-5d61-8103-8ccf11854f2c",
+    "name": "customer_initial_description",
+    "type": "text",
+    "attributes": null
+  },
+  {
+    "id": "6ab5370d-3818-5b68-ad59-bbf5372a38aa",
+    "name": "customer_workshop_or_ceo_name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "0986f2f3-30a0-51d0-9900-c5f76946290b",
+    "name": "date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "7cfdf9f3-3055-58fc-b3b4-e8ed176a98f3",
+    "name": "description",
+    "type": "text",
+    "attributes": null
+  },
+  {
+    "id": "a391868b-cd9f-5358-a79e-aeca721219aa",
+    "name": "destination_account",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "cad09da3-9253-52b9-b300-6023cedff84d",
+    "name": "destination_account_2",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "6efa15b3-fd1a-53b4-8cb1-5dd54d3bbe13",
+    "name": "destination_account_3",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "b478cba2-a05d-5e28-8ae1-d76bec2a48f8",
+    "name": "destination_account_name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "6d590c8a-7cda-5a61-bcf7-54a2a714390b",
+    "name": "destination_account_name_2",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "a72a4a04-6c18-56a9-aa66-2c47e6a73662",
+    "name": "destination_account_name_3",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "30509952-9860-54bf-af3d-341b3b82a615",
+    "name": "device",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "d33b6862-3e1f-5f66-906e-eedd5968fe10",
+    "name": "device_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "5d5da014-87de-577b-9d7b-d51a1de0cdf9",
+    "name": "dispatched_expert_needed",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "dba15b42-ab60-50a7-a54a-fba9ebc23ba5",
+    "name": "duration",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "3f55da2b-04cb-5844-ad94-8240695e3494",
+    "name": "efficiency",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "7785def3-00b1-5112-be7c-dd095fd04a53",
+    "name": "end_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "cd644547-bffc-5696-bfdf-3108e4756680",
+    "name": "end_day",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "487f9373-d487-5fb3-af66-7ec79479ec6b",
+    "name": "end_month",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "b3c45a10-69ca-5b82-a985-eb24fa2a4a89",
+    "name": "end_time",
+    "type": "time",
+    "attributes": null
+  },
+  {
+    "id": "a9536f6a-f3ac-553e-bb18-9716855591fc",
+    "name": "end_year",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "7f455ead-d773-54a3-92a2-815e39b25528",
+    "name": "final_price",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "8e33dff4-4195-5a86-9bc9-23d5d023fb5b",
+    "name": "final_price_confirmation_by_customer",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "d81078a8-edc5-5f52-b135-262e40a53209",
+    "name": "final_result",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "8622cf0a-5107-5d0a-b883-7063d480d453",
+    "name": "final_test_and_result",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "6382e409-90ce-5c75-8f99-de034ec96cee",
+    "name": "firstname",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "c4bacca5-9a29-530d-a843-b6d4a12ef222",
+    "name": "fix_cost_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "d30327e9-1882-5d36-80ed-c67fa8c4010c",
+    "name": "fix_cost_type",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "39640f95-2b8f-5c3d-8273-97def37765a3",
+    "name": "has_electrical_map",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "9298d5cb-6322-5d9c-99de-0efb82cc3b34",
+    "name": "inspector_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "249c622c-4dc6-5b43-ae65-1bc4f8c85f8b",
+    "name": "invertor_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "8a4bf286-8b20-5a45-aa8a-c316c8cc7aa0",
+    "name": "invoice_number",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "7bf265da-65c6-531a-a63d-174a7071423b",
+    "name": "is_passed",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "c1628aff-9436-520b-af52-ff3d42673449",
+    "name": "job_rank",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "a3cc3fc6-76f2-5948-8d2f-6fa1a716e917",
+    "name": "last_evaluation_result",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "ab8d89b4-a173-5657-b6a8-c44efabed087",
+    "name": "lastname",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "7f1e2260-1fc1-5a10-b8bf-2e35882f7deb",
+    "name": "lat1",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "a62e8bfe-7bd0-5024-bab5-4fb7e6ace301",
+    "name": "lat2",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "dfb0822d-62bd-576c-95b2-511335847495",
+    "name": "lat3",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "1ce23382-f70b-56fb-a840-1947dc5b2de1",
+    "name": "lat4",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "8aadd93b-3196-56bd-9329-75cc8464dba4",
+    "name": "legal_name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "ff639259-e48a-57b7-b3ff-435a3cf119ae",
+    "name": "legal_national_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "50fd3f73-c2e3-5daa-8ffa-26ce1249f158",
+    "name": "legal_register_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "ab1f13f2-b814-51be-9372-9a5ede7812db",
+    "name": "legal_register_number",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "77925a56-a7e9-5efd-b2c7-1d34f511f4da",
+    "name": "length",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "7b691dbc-b1cd-5477-b32c-d5c6ac4e3ee7",
+    "name": "lng1",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "f420191d-ed43-595f-8317-1feaaba81c25",
+    "name": "lng2",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "d0814565-2b92-5bcd-9a86-5891ffee8a4f",
+    "name": "lng3",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "45458388-1619-5ec5-8f11-1865d7cde021",
+    "name": "lng4",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "78960a68-c153-5e87-aa91-9eacc9ba83ef",
+    "name": "manufacturer",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "a6d511cd-dd4d-5833-aa58-67955aa38fb9",
+    "name": "mapa_expert",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "da0e94a5-6f45-5b87-a2ee-0d0504127ec5",
+    "name": "mapa_expert_head",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "91a8177b-b46f-52a3-9b06-063f93a03b90",
+    "name": "mapa_serial",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "fc613803-5ef9-5481-9707-54831cfe2e69",
+    "name": "max_power_output",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "7a528cd3-d767-538e-b0f2-a3e048badbe7",
+    "name": "max_price",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "d2b72557-c672-5daf-ba99-5eade5f05d75",
+    "name": "min_price",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "4468de6f-e5eb-53bc-8c2b-e41f8a41d1a5",
+    "name": "mobile",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "a56c8927-692f-5431-a376-0eada8512fb1",
+    "name": "model",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "367f7f5c-1c17-5022-9425-96f45701b55a",
+    "name": "model_number",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "16ed5ecc-b2de-5864-b590-fbd0f52c5de4",
+    "name": "name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "10780f15-4c26-5849-b3cd-ff7db40fabd3",
+    "name": "national_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "70bc9a54-bea7-58c8-9cfb-a5ef3420031e",
+    "name": "number",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "4334b395-882d-5898-abf3-2d0fe22a9efe",
+    "name": "number_of_used_panel",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "d050f8d2-f058-5ce0-874c-04f46a1b5cce",
+    "name": "other_parts",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "15f008e6-a24a-56c9-9269-a75516b6c963",
+    "name": "panel_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "479debf7-1636-5927-8314-ee25885b53ce",
+    "name": "payment",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "7412727e-109b-5c5e-abca-10d021fae537",
+    "name": "payment_after_completion",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "3261e89f-a2ba-5e42-a610-e68057585146",
+    "name": "payment_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "c45a13a0-4c49-5af5-b0af-079ba79a023d",
+    "name": "payment_method",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "2917edb7-bc2c-53cd-8bbf-fe0b115dd41d",
+    "name": "payment_type",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "d0d6bb93-dcab-5c28-833b-5bc61bba2ce3",
+    "name": "pmax_temperature_coefficient",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "2cfd1a44-9620-5f7f-a8e4-8bd2867322ba",
+    "name": "postal_code",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "f104eae7-f670-5bd6-af96-5e17573db2ba",
+    "name": "power",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "33c878b1-d269-5071-b181-43cda41bc1e6",
+    "name": "powerhouse_place_info_id",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "2dbdeff9-9652-567c-8dd6-cce010e90300",
+    "name": "process",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "c3a4b968-cac0-54cc-be8d-48933ab2bf43",
+    "name": "process_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "51d60a68-386b-57e5-bada-9d0fb53f3904",
+    "name": "process_name",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "67393a9a-f999-5160-ae93-1fbe80ef4f26",
+    "name": "production_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "0022daaa-febb-51b9-b2c6-7500e04a4eee",
+    "name": "province",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "ca63d8bd-4005-5830-b3b6-01e9065e4796",
+    "name": "refferal_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "bfb906f5-1ad4-540f-bdf4-3c51e8168955",
+    "name": "refferal_time",
+    "type": "time",
+    "attributes": null
+  },
+  {
+    "id": "24b2964f-b058-5aad-8b3a-797eabffc69c",
+    "name": "repair_is_approved",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "4c5a7416-01dc-5cda-a9be-c251b6bae08c",
+    "name": "report",
+    "type": "text",
+    "attributes": null
+  },
+  {
+    "id": "4e5c680c-3be4-55e3-b6e7-4ced87fece1a",
+    "name": "request_day",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "8e96b008-1451-5dc2-873b-4627c0e2db1d",
+    "name": "request_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "fba413ad-c921-5714-a0d1-151b8939453a",
+    "name": "request_month",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "fd595535-fe0d-5acd-913e-5991324dd1b1",
+    "name": "request_year",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "9be8583c-da05-5f60-818a-a89b1a30b266",
+    "name": "see_the_problem",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "3e7668f0-6d60-5ced-9804-51930b56ec61",
+    "name": "serial",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "7ba13a0f-dbc6-5eaf-82dc-062d1e6fd308",
+    "name": "serial_number",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "07c545c2-7ee9-5ae2-8684-95676ec3c509",
+    "name": "signature",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "b455e091-3cb2-5aab-9d3a-661154c8061c",
+    "name": "special_parts",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "94898655-7023-53a0-b142-3e53dd267765",
+    "name": "start_date",
+    "type": "date",
+    "attributes": null
+  },
+  {
+    "id": "e1e7ab38-3454-5f7c-a7ac-264230873891",
+    "name": "start_day",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "6aaf5ef9-ad3e-5f9f-b0f2-c0cad46af6a0",
+    "name": "start_month",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "fab9107d-ea5f-5b32-85cd-93d1c38afe12",
+    "name": "start_time",
+    "type": "time",
+    "attributes": null
+  },
+  {
+    "id": "11d663ac-6eea-51b2-96a6-70b8eb0b096f",
+    "name": "start_year",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "1d5cf14f-8f43-5d28-be4d-fcfcba722893",
+    "name": "state",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "39c257b8-e467-5602-aed0-e2d4f4145fe8",
+    "name": "status",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "06d57591-fc36-58a8-b225-cc70e4e860a2",
+    "name": "subsidy_status",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "04ec265a-e5aa-5788-a3ec-930f92c3bb3d",
+    "name": "technician_head_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "4953d02f-0c76-5629-a09c-0c81d43d4e88",
+    "name": "technician_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "b2375d58-ced8-550b-93e8-7c465c967b9a",
+    "name": "test_in_another_place",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "2aa15061-e1ab-5a2a-b4f8-4724fc2a829f",
+    "name": "test_possibility",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "a3bdd4f6-7acd-5b82-8b90-06b6a872ad46",
+    "name": "thickness",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "24a56f40-fd71-58be-8854-7cf6938c7192",
+    "name": "tracking_code",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "3c6d383b-41d7-5dfd-af09-0bc4e6049148",
+    "name": "type",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "ce611f6d-2042-5a55-8c27-ab08a3aaad22",
+    "name": "uesd_in",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "6002c549-5b39-521f-8853-040d3b50174d",
+    "name": "uniqueId",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "9b94154f-8453-5090-a2e6-3ed5800ef6ec",
+    "name": "user",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "239b3b33-1a71-5dbf-80de-839892111133",
+    "name": "user_id",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "248c45c4-4e30-571e-af82-73eec0623cd2",
+    "name": "voltage_at_max_power",
+    "type": "number",
+    "attributes": null
+  },
+  {
+    "id": "ec9ede71-9817-5521-b0d7-516847288f89",
+    "name": "washing",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "6a5c1918-ba26-5473-a66a-2ae857d34ee2",
+    "name": "weight",
+    "type": "string",
+    "attributes": null
+  },
+  {
+    "id": "52934155-4f18-5079-9899-344b246be307",
+    "name": "width",
+    "type": "string",
+    "attributes": null
+  }
+]
