@@ -1,0 +1,62 @@
+[
+  {
+    "name": "purchases",
+    "description": "Entity capturing supplier purchase orders, invoice metadata, and payment status.",
+    "columns": "supplier_id,bigInteger,no\npurchase_date,date,no\ninvoice_no,string,no\ntotal_amount,decimal,no\nstatus,string,no",
+    "uses": "use Behin\\SimpleWorkflow\\Controllers\\Core\\VariableController;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Support\\Str;\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;",
+    "class_contents": "",
+    "model_name": "Purchases",
+    "namespace": "Behin\\SimpleWorkflow\\Models\\Entities",
+    "db_table_name": "wf_entity_purchases"
+  },
+  {
+    "name": "purchase_items",
+    "description": "Entity listing the line items per purchase, tracking product, quantity, and pricing totals.",
+    "columns": "purchase_id,bigInteger,no\nproduct_id,bigInteger,no\nquantity,decimal,no\nunit_price,decimal,no\ntotal,decimal,no",
+    "uses": "use Behin\\SimpleWorkflow\\Controllers\\Core\\VariableController;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Support\\Str;\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;",
+    "class_contents": "",
+    "model_name": "Purchase_items",
+    "namespace": "Behin\\SimpleWorkflow\\Models\\Entities",
+    "db_table_name": "wf_entity_purchase_items"
+  },
+  {
+    "name": "sales",
+    "description": "Entity describing customer sales invoices, totals, and fulfillment status.",
+    "columns": "customer_id,bigInteger,no\nsale_date,date,no\ninvoice_no,string,no\ntotal_amount,decimal,no\nstatus,string,no",
+    "uses": "use Behin\\SimpleWorkflow\\Controllers\\Core\\VariableController;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Support\\Str;\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;",
+    "class_contents": "",
+    "model_name": "Sales",
+    "namespace": "Behin\\SimpleWorkflow\\Models\\Entities",
+    "db_table_name": "wf_entity_sales"
+  },
+  {
+    "name": "sale_items",
+    "description": "Entity capturing each product sold within a sale, including quantities and pricing.",
+    "columns": "sale_id,bigInteger,no\nproduct_id,bigInteger,no\nquantity,decimal,no\nunit_price,decimal,no\ntotal,decimal,no",
+    "uses": "use Behin\\SimpleWorkflow\\Controllers\\Core\\VariableController;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Support\\Str;\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;",
+    "class_contents": "",
+    "model_name": "Sale_items",
+    "namespace": "Behin\\SimpleWorkflow\\Models\\Entities",
+    "db_table_name": "wf_entity_sale_items"
+  },
+  {
+    "name": "customers",
+    "description": "Entity storing customer contact information, optional details, and running balance.",
+    "columns": "name,string,no\nphone,string,no\nemail,string,yes\naddress,text,yes\nbalance,decimal,no",
+    "uses": "use Behin\\SimpleWorkflow\\Controllers\\Core\\VariableController;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Support\\Str;\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;",
+    "class_contents": "",
+    "model_name": "Customers",
+    "namespace": "Behin\\SimpleWorkflow\\Models\\Entities",
+    "db_table_name": "wf_entity_customers"
+  },
+  {
+    "name": "transactions",
+    "description": "Entity logging financial transactions linked to references, accounts, and descriptive notes.",
+    "columns": "type,string,no\nreference_type,string,no\nreference_id,bigInteger,no\namount,decimal,no\naccount_id,bigInteger,no\ndate,datetime,no\ndescription,text,yes",
+    "uses": "use Behin\\SimpleWorkflow\\Controllers\\Core\\VariableController;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Support\\Str;\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;",
+    "class_contents": "",
+    "model_name": "Transactions",
+    "namespace": "Behin\\SimpleWorkflow\\Models\\Entities",
+    "db_table_name": "wf_entity_transactions"
+  }
+]
