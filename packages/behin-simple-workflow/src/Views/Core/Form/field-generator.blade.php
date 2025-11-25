@@ -151,6 +151,22 @@
         'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
     ]) !!}
 @endif
+@if ($fieldDetails->type == 'searchable-input')
+    {!! Form::searchableInput($fieldId, [
+        'value' => $fieldValue,
+        'endpoint' => is_string($fieldAttributes?->endpoint) ? $fieldAttributes?->endpoint : null,
+        'minChars' => isset($fieldAttributes?->minChars) ? $fieldAttributes?->minChars : null,
+        'limit' => isset($fieldAttributes?->limit) ? $fieldAttributes?->limit : null,
+        'initial_label' => $fieldAttributes?->initial_label ?? $fieldAttributes?->initialLabel ?? null,
+        'class' => 'form-control',
+        'id' => $fieldId,
+        'placeholder' => $fieldAttributes?->placeholder,
+        'required' => $required,
+        'readonly' => $readOnly,
+        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
+        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+    ]) !!}
+@endif
 @if ($fieldDetails->type == 'select-multiple')
     {!! Form::selectMultiple($fieldId, is_string($fieldAttributes?->options) ? $fieldAttributes?->options : null, [
         'value' => json_decode($fieldValue),
