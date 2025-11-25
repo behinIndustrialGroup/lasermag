@@ -1,18 +1,19 @@
 @php
     $fieldLabel = trans('SimpleWorkflowLang::fields.' . $fieldName);
     $fieldDetails = getFieldDetailsByName($fieldName);
-    $fieldAttributes = $fieldDetails ? json_decode($fieldDetails->attributes) : null;
 
-    $fieldStyle = isset($fieldAttributes->style) ? $fieldAttributes->style : null;
-    $fieldScript = isset($fieldAttributes->script) ? $fieldAttributes->script : null;
-    $fieldPlaceholder = isset($fieldAttributes->placeholder) ? $fieldAttributes->placeholder : null;
-    $fieldOptions = isset($fieldAttributes->options) ? $fieldAttributes->options : null;
-    $fieldQuery = isset($fieldAttributes->query) ? $fieldAttributes->query : null;
-    $fieldDatalist = isset($fieldAttributes->datalist_from_database)
-        ? $fieldAttributes->datalist_from_database
-        : null;
+    $fieldAttributes = $fieldDetails ? json_decode($fieldDetails->attributes) : null;
+    $fieldAttributes = is_object($fieldAttributes) ? $fieldAttributes : new stdClass();
+
+    $fieldType = $fieldDetails->type ?? null;
+    $fieldStyle = $fieldAttributes->style ?? null;
+    $fieldScript = $fieldAttributes->script ?? null;
+    $fieldPlaceholder = $fieldAttributes->placeholder ?? null;
+    $fieldOptions = $fieldAttributes->options ?? null;
+    $fieldQuery = $fieldAttributes->query ?? null;
+    $fieldDatalist = $fieldAttributes->datalist_from_database ?? null;
 @endphp
-@if ($fieldDetails->type == 'title')
+@if ($fieldType === 'title')
     {!! Form::title($fieldId, [
         'value' => $fieldValue,
         'class' => '',
@@ -21,7 +22,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'hidden')
+@if ($fieldType === 'hidden')
     {!! Form::hidden($fieldId, [
         'value' => $fieldValue,
         'class' => '',
@@ -30,7 +31,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'help')
+@if ($fieldType === 'help')
     {!! Form::help($fieldId, [
         'options' => $fieldOptions,
         'class' => '',
@@ -39,14 +40,14 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'location')
+@if ($fieldType === 'location')
     @php
         $defaultLat = null;
         $defaultLng = null;
 
         if (isset($variables)) {
-            $defaultLat = optional($variables->where('key', $field->fieldName . '_lat')->first())->value;
-            $defaultLng = optional($variables->where('key', $field->fieldName . '_lng')->first())->value;
+            $defaultLat = optional($variables->where('key', $fieldName . '_lat')->first())->value;
+            $defaultLng = optional($variables->where('key', $fieldName . '_lng')->first())->value;
         }
     @endphp
     {!! Form::location($fieldId, [
@@ -62,7 +63,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'string')
+@if ($fieldType === 'string')
     {!! Form::text($fieldId, [
         'value' => $fieldValue,
         'class' => 'form-control',
@@ -75,7 +76,7 @@
         'datalist_from_database' => $fieldDatalist,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'checkbox')
+@if ($fieldType === 'checkbox')
     {!! Form::checkbox($fieldId, [
         'value' => $fieldValue,
         'class' => '',
@@ -87,7 +88,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'text')
+@if ($fieldType === 'text')
     {!! Form::textarea($fieldId, [
         'value' => $fieldValue,
         'class' => 'form-control',
@@ -99,7 +100,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'date')
+@if ($fieldType === 'date')
     {!! Form::date($fieldId, [
         'value' => $fieldValue,
         'class' => 'form-control',
@@ -111,7 +112,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'time')
+@if ($fieldType === 'time')
     {!! Form::time($fieldId, [
         'value' => $fieldValue,
         'class' => 'form-control timepicker',
@@ -123,7 +124,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'datetime')
+@if ($fieldType === 'datetime')
     {!! Form::datetime($fieldId, [
         'value' => $fieldValue,
         'class' => 'form-control',
@@ -135,7 +136,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'select')
+@if ($fieldType === 'select')
     {!! Form::select($fieldId, is_string($fieldOptions) ? $fieldOptions : null, [
         'value' => $fieldValue,
         'query' => is_string($fieldQuery) ? $fieldQuery : null,
@@ -148,7 +149,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'select-simple')
+@if ($fieldType === 'select-simple')
     {!! Form::selectSimple($fieldId, is_string($fieldOptions) ? $fieldOptions : null, [
         'value' => $fieldValue,
         'query' => is_string($fieldQuery) ? $fieldQuery : null,
@@ -161,7 +162,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'searchable-input')
+@if ($fieldType === 'searchable-input')
     {!! Form::searchableInput($fieldId, [
         'value' => $fieldValue,
         'endpoint' => isset($fieldAttributes->endpoint) && is_string($fieldAttributes->endpoint)
@@ -179,23 +180,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'searchable-input')
-    {!! Form::searchableInput($fieldId, [
-        'value' => $fieldValue,
-        'endpoint' => is_string($fieldAttributes?->endpoint) ? $fieldAttributes?->endpoint : null,
-        'minChars' => isset($fieldAttributes?->minChars) ? $fieldAttributes?->minChars : null,
-        'limit' => isset($fieldAttributes?->limit) ? $fieldAttributes?->limit : null,
-        'initial_label' => $fieldAttributes?->initial_label ?? $fieldAttributes?->initialLabel ?? null,
-        'class' => 'form-control',
-        'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
-        'required' => $required,
-        'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
-    ]) !!}
-@endif
-@if ($fieldDetails->type == 'select-multiple')
+@if ($fieldType === 'select-multiple')
     {!! Form::selectMultiple($fieldId, is_string($fieldOptions) ? $fieldOptions : null, [
         'value' => json_decode($fieldValue),
         'query' => is_string($fieldQuery) ? $fieldQuery : null,
@@ -208,7 +193,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'file')
+@if ($fieldType === 'file')
     {{-- @php
         $fieldValues = isset($variables) ? $variables->where('key', $field->fieldName)->pluck('value') : [];
     @endphp --}}
@@ -223,7 +208,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'signature')
+@if ($fieldType === 'signature')
     {!! Form::signature($fieldId, [
         'value' => $fieldValue,
         'class' => 'form-control',
@@ -236,7 +221,7 @@
         'datalist_from_database' => $fieldDatalist,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'entity')
+@if ($fieldType === 'entity')
     {!! Form::entity($fieldId, [
         'columns' => isset($fieldAttributes->columns) && is_string($fieldAttributes->columns) ? $fieldAttributes->columns : null,
         'query' => is_string($fieldQuery) ? $fieldQuery : null,
@@ -248,7 +233,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'button')
+@if ($fieldType === 'button')
     {!! Form::button($fieldName, [
         'class' => $fieldClass,
         'id' => $fieldAttributes->id ?? $fieldName,
@@ -256,7 +241,7 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldDetails->type == 'view-model')
+@if ($fieldType === 'view-model')
     {!! Form::viewModel($fieldId, [
         'class' => $fieldClass,
         'id' => $fieldId,
@@ -265,7 +250,7 @@
     ]) !!}
 @endif
 
-@if ($fieldDetails->type == 'formatted-digit')
+@if ($fieldType === 'formatted-digit')
     {!! Form::formattedDigit($fieldId, [
         'value' => $fieldValue,
         'class' => 'form-control',
