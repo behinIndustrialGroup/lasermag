@@ -2,16 +2,18 @@
     $fieldLabel = trans('SimpleWorkflowLang::fields.' . $fieldName);
     $fieldDetails = getFieldDetailsByName($fieldName);
 
-    $fieldAttributes = $fieldDetails ? json_decode($fieldDetails->attributes) : null;
-    $fieldAttributes = is_object($fieldAttributes) ? $fieldAttributes : new stdClass();
+    $rawAttributes = $fieldDetails ? $fieldDetails->attributes : null;
+    $decodedAttributes = $rawAttributes ? json_decode($rawAttributes) : null;
+    $fieldAttributes = is_object($decodedAttributes) ? $decodedAttributes : new stdClass();
 
-    $fieldType = $fieldDetails->type ?? null;
-    $fieldStyle = $fieldAttributes->style ?? null;
-    $fieldScript = $fieldAttributes->script ?? null;
-    $fieldPlaceholder = $fieldAttributes->placeholder ?? null;
-    $fieldOptions = $fieldAttributes->options ?? null;
-    $fieldQuery = $fieldAttributes->query ?? null;
-    $fieldDatalist = $fieldAttributes->datalist_from_database ?? null;
+    $fieldType = isset($fieldDetails->type) ? $fieldDetails->type : null;
+    $fieldStyle = isset($fieldAttributes->style) ? $fieldAttributes->style : null;
+    $fieldScript = isset($fieldAttributes->script) ? $fieldAttributes->script : null;
+    $fieldPlaceholder = isset($fieldAttributes->placeholder) ? $fieldAttributes->placeholder : null;
+    $fieldOptions = isset($fieldAttributes->options) ? $fieldAttributes->options : null;
+    $fieldQuery = isset($fieldAttributes->query) ? $fieldAttributes->query : null;
+    $fieldDatalist = isset($fieldAttributes->datalist_from_database) ? $fieldAttributes->datalist_from_database : null;
+    $fieldClass = isset($fieldAttributes->class) ? $fieldAttributes->class : 'form-control';
 @endphp
 @if ($fieldType === 'title')
     {!! Form::title($fieldId, [
@@ -40,16 +42,19 @@
         'script' => $fieldScript,
     ]) !!}
 @endif
-@if ($fieldType === 'location')
-    @php
-        $defaultLat = null;
-        $defaultLng = null;
+    @if ($fieldType === 'location')
+        @php
+            $defaultLat = null;
+            $defaultLng = null;
 
-        if (isset($variables)) {
-            $defaultLat = optional($variables->where('key', $fieldName . '_lat')->first())->value;
-            $defaultLng = optional($variables->where('key', $fieldName . '_lng')->first())->value;
-        }
-    @endphp
+            if (isset($variables)) {
+                $latVariable = $variables->where('key', $fieldName . '_lat')->first();
+                $lngVariable = $variables->where('key', $fieldName . '_lng')->first();
+
+                $defaultLat = $latVariable ? $latVariable->value : null;
+                $defaultLng = $lngVariable ? $lngVariable->value : null;
+            }
+        @endphp
     {!! Form::location($fieldId, [
         'value' => $fieldValue,
         'class' => '',
