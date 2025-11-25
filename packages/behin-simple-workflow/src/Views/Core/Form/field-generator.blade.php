@@ -1,17 +1,24 @@
 @php
     $fieldLabel = trans('SimpleWorkflowLang::fields.' . $fieldName);
     $fieldDetails = getFieldDetailsByName($fieldName);
-    if ($fieldDetails) {
-        $fieldAttributes = json_decode($fieldDetails->attributes);
-    }
+    $fieldAttributes = $fieldDetails ? json_decode($fieldDetails->attributes) : null;
+
+    $fieldStyle = isset($fieldAttributes->style) ? $fieldAttributes->style : null;
+    $fieldScript = isset($fieldAttributes->script) ? $fieldAttributes->script : null;
+    $fieldPlaceholder = isset($fieldAttributes->placeholder) ? $fieldAttributes->placeholder : null;
+    $fieldOptions = isset($fieldAttributes->options) ? $fieldAttributes->options : null;
+    $fieldQuery = isset($fieldAttributes->query) ? $fieldAttributes->query : null;
+    $fieldDatalist = isset($fieldAttributes->datalist_from_database)
+        ? $fieldAttributes->datalist_from_database
+        : null;
 @endphp
 @if ($fieldDetails->type == 'title')
     {!! Form::title($fieldId, [
         'value' => $fieldValue,
         'class' => '',
         'id' => $fieldId,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'hidden')
@@ -19,23 +26,28 @@
         'value' => $fieldValue,
         'class' => '',
         'id' => $fieldId,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'help')
     {!! Form::help($fieldId, [
-        'options' => isset($fieldAttributes?->options) ? $fieldAttributes?->options : null,
+        'options' => $fieldOptions,
         'class' => '',
         'id' => $fieldDetails->id ?? $fieldId,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'location')
     @php
-        $defaultLat = isset($variables) ? $variables->where('key', $field->fieldName . '_lat')->first()?->value : null;
-        $defaultLng = isset($variables) ? $variables->where('key', $field->fieldName . '_lng')->first()?->value : null;
+        $defaultLat = null;
+        $defaultLng = null;
+
+        if (isset($variables)) {
+            $defaultLat = optional($variables->where('key', $field->fieldName . '_lat')->first())->value;
+            $defaultLng = optional($variables->where('key', $field->fieldName . '_lng')->first())->value;
+        }
     @endphp
     {!! Form::location($fieldId, [
         'value' => $fieldValue,
@@ -46,8 +58,8 @@
         'defaultZoom' => 13,
         'defaultLat' => $defaultLat,
         'defaultLng' => $defaultLng,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'string')
@@ -55,14 +67,12 @@
         'value' => $fieldValue,
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
-        'datalist_from_database' => isset($fieldAttributes?->datalist_from_database)
-            ? $fieldAttributes?->datalist_from_database
-            : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
+        'datalist_from_database' => $fieldDatalist,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'checkbox')
@@ -70,11 +80,11 @@
         'value' => $fieldValue,
         'class' => '',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'text')
@@ -82,11 +92,11 @@
         'value' => $fieldValue,
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'date')
@@ -94,11 +104,11 @@
         'value' => $fieldValue,
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'time')
@@ -106,11 +116,11 @@
         'value' => $fieldValue,
         'class' => 'form-control timepicker',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'datetime')
@@ -118,50 +128,68 @@
         'value' => $fieldValue,
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'select')
-    {!! Form::select($fieldId, is_string($fieldAttributes?->options) ? $fieldAttributes?->options : null, [
+    {!! Form::select($fieldId, is_string($fieldOptions) ? $fieldOptions : null, [
         'value' => $fieldValue,
-        'query' => is_string($fieldAttributes?->query) ? $fieldAttributes?->query : null,
+        'query' => is_string($fieldQuery) ? $fieldQuery : null,
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'select-simple')
-    {!! Form::selectSimple($fieldId, is_string($fieldAttributes?->options) ? $fieldAttributes?->options : null, [
+    {!! Form::selectSimple($fieldId, is_string($fieldOptions) ? $fieldOptions : null, [
         'value' => $fieldValue,
-        'query' => is_string($fieldAttributes?->query) ? $fieldAttributes?->query : null,
+        'query' => is_string($fieldQuery) ? $fieldQuery : null,
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
+    ]) !!}
+@endif
+@if ($fieldDetails->type == 'searchable-input')
+    {!! Form::searchableInput($fieldId, [
+        'value' => $fieldValue,
+        'endpoint' => isset($fieldAttributes->endpoint) && is_string($fieldAttributes->endpoint)
+            ? $fieldAttributes->endpoint
+            : null,
+        'minChars' => isset($fieldAttributes->minChars) ? $fieldAttributes->minChars : null,
+        'limit' => isset($fieldAttributes->limit) ? $fieldAttributes->limit : null,
+        'initial_label' => $fieldAttributes->initial_label ?? ($fieldAttributes->initialLabel ?? null),
+        'class' => 'form-control',
+        'id' => $fieldId,
+        'placeholder' => $fieldPlaceholder,
+        'required' => $required,
+        'readonly' => $readOnly,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'select-multiple')
-    {!! Form::selectMultiple($fieldId, is_string($fieldAttributes?->options) ? $fieldAttributes?->options : null, [
+    {!! Form::selectMultiple($fieldId, is_string($fieldOptions) ? $fieldOptions : null, [
         'value' => json_decode($fieldValue),
-        'query' => is_string($fieldAttributes?->query) ? $fieldAttributes?->query : null,
+        'query' => is_string($fieldQuery) ? $fieldQuery : null,
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'file')
@@ -172,11 +200,11 @@
         'value' => $fieldValue ?? [],
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'signature')
@@ -184,42 +212,40 @@
         'value' => $fieldValue,
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
-        'datalist_from_database' => isset($fieldAttributes?->datalist_from_database)
-            ? $fieldAttributes?->datalist_from_database
-            : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
+        'datalist_from_database' => $fieldDatalist,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'entity')
     {!! Form::entity($fieldId, [
-        'columns' => is_string($fieldAttributes?->columns) ? $fieldAttributes?->columns : null,
-        'query' => is_string($fieldAttributes?->query) ? $fieldAttributes?->query : null,
+        'columns' => isset($fieldAttributes->columns) && is_string($fieldAttributes->columns) ? $fieldAttributes->columns : null,
+        'query' => is_string($fieldQuery) ? $fieldQuery : null,
         'class' => 'form-control',
-        'id' => $fieldAttributes?->id,
+        'id' => $fieldAttributes->id ?? null,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'button')
     {!! Form::button($fieldName, [
         'class' => $fieldClass,
-        'id' => $fieldAttributes?->id ?? $fieldName,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
+        'id' => $fieldAttributes->id ?? $fieldName,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
     ]) !!}
 @endif
 @if ($fieldDetails->type == 'view-model')
     {!! Form::viewModel($fieldId, [
         'class' => $fieldClass,
         'id' => $fieldId,
-        'view_model_id' => $fieldAttributes?->view_model_id,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
+        'view_model_id' => $fieldAttributes->view_model_id ?? null,
+        'style' => $fieldStyle,
     ]) !!}
 @endif
 
@@ -228,13 +254,11 @@
         'value' => $fieldValue,
         'class' => 'form-control',
         'id' => $fieldId,
-        'placeholder' => $fieldAttributes?->placeholder,
+        'placeholder' => $fieldPlaceholder,
         'required' => $required,
         'readonly' => $readOnly,
-        'style' => isset($fieldAttributes?->style) ? $fieldAttributes?->style : null,
-        'script' => isset($fieldAttributes?->script) ? $fieldAttributes?->script : null,
-        'datalist_from_database' => isset($fieldAttributes?->datalist_from_database)
-            ? $fieldAttributes?->datalist_from_database
-            : null,
+        'style' => $fieldStyle,
+        'script' => $fieldScript,
+        'datalist_from_database' => $fieldDatalist,
     ]) !!}
 @endif
