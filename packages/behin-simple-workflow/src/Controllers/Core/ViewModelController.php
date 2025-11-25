@@ -27,7 +27,8 @@ class ViewModelController extends Controller
     {
         $entities = EntityController::getAll();
         $forms = FormController::getAll();
-        return view('SimpleWorkflowView::Core.ViewModel.create', compact('entities', 'forms'));
+        $scripts = ScriptController::getAll();
+        return view('SimpleWorkflowView::Core.ViewModel.create', compact('entities', 'forms', 'scripts'));
     }
 
     public function store(Request $request)
@@ -222,12 +223,12 @@ class ViewModelController extends Controller
 
         if ($viewModel->allow_read_row) {
             if ($viewModel->show_rows_based_on == 'case_id') {
-                $rows = $model::where('case_id', $case->id);
+                $rows = $model::where('case_id', $case->id)->whereNull('deleted_at');
             }
             elseif ($viewModel->show_rows_based_on == 'case_number') {
-                $rows = $model::where('case_number', $case->number);
+                $rows = $model::where('case_number', $case->number)->whereNull('deleted_at');
             }else{
-                $rows = $model::query();
+                $rows = $model::query()->whereNull('deleted_at');
             }
 
             $rows = $rows->where(function ($query) use ($readCondition) {
@@ -400,10 +401,20 @@ class ViewModelController extends Controller
 
             $row->save();
 
-            if ($viewModel->script_after_create) {
+            if ($isNew && $viewModel->script_after_create) {
                 $request->merge(['rowId' => $row->id]);
 
                 $result = ScriptController::runFromView($request, $viewModel->script_after_create);
+
+                if ($result) {
+                    return $result;
+                }
+            }
+
+            if (!$isNew && $viewModel->script_after_update) {
+                $request->merge(['rowId' => $row->id]);
+
+                $result = ScriptController::runFromView($request, $viewModel->script_after_update);
 
                 if ($result) {
                     return $result;
