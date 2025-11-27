@@ -101,7 +101,7 @@
         document.querySelectorAll('.formatted-digit').forEach(function(el) {
             let an = AutoNumeric.getAutoNumericElement(el);
             if (an) {
-                an.unformat();
+                el.value = an.getNumber();
             }
         });
 
