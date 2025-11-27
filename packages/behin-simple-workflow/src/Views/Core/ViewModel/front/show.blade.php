@@ -93,9 +93,7 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
         initial_view()
-    });
 
     function updateViewModelRecord(row_id) {
 
