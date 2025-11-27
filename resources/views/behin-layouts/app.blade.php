@@ -18,8 +18,7 @@
     <!-- Ionicons -->
     {{-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> --}}
     <!-- Theme style -->
-    <link rel="stylesheet"
-        href="{{ url('behin/behin-dist/dist/css/adminlte.min.css') . '?' . config('app.version') }}">
+    <link rel="stylesheet" href="{{ url('behin/behin-dist/dist/css/adminlte.min.css') . '?' . config('app.version') }}">
     <!-- Date Picker -->
     <link rel="stylesheet"
         href="{{ url('behin/behin-dist/plugins/datepicker/datepicker3.css') . '?' . config('app.version') }}">
@@ -37,8 +36,7 @@
     <!-- template rtl version -->
     <link rel="stylesheet"
         href="{{ url('behin/behin-dist/dist/css/custom-style.css') . '?' . config('app.version') }}">
-    <link rel="stylesheet"
-        href="{{ url('behin/behin-dist/dist/css/custom.css') . '?' . config('app.version') }}">
+    <link rel="stylesheet" href="{{ url('behin/behin-dist/dist/css/custom.css') . '?' . config('app.version') }}">
 
     {{-- <link rel="stylesheet" href="{{ url('behin/behin-dist/dist/css/custom.css')  . '?' . config('app.version') }}"> --}}
     <link rel="stylesheet" type="text/css"
@@ -128,16 +126,12 @@
     @yield('style')
 
     <script src="{{ url('behin/behin-dist/plugins/jquery/jquery.min.js') . '?' . config('app.version') }}"></script>
-    <script
-        src="{{ url('behin/behin-dist/plugins/datatables/jquery.dataTables.js') . '?' . config('app.version') }}">
+    <script src="{{ url('behin/behin-dist/plugins/datatables/jquery.dataTables.js') . '?' . config('app.version') }}">
     </script>
-    <script
-        src="{{ url('behin/behin-dist/plugins/datatables/dataTables.bootstrap4.js') . '?' . config('app.version') }}">
+    <script src="{{ url('behin/behin-dist/plugins/datatables/dataTables.bootstrap4.js') . '?' . config('app.version') }}">
     </script>
-    <script src="{{ url('behin/behin-dist/persian-date-picker/persian-date.js') . '?' . config('app.version') }}">
-    </script>
-    <script
-        src="{{ url('behin/behin-dist/persian-date-picker/persian-datepicker.js') . '?' . config('app.version') }}">
+    <script src="{{ url('behin/behin-dist/persian-date-picker/persian-date.js') . '?' . config('app.version') }}"></script>
+    <script src="{{ url('behin/behin-dist/persian-date-picker/persian-datepicker.js') . '?' . config('app.version') }}">
     </script>
 
 
@@ -150,8 +144,7 @@
     <script src="{{ url('behin/behin-js/dataTable.js') . '?' . config('app.version') }}"></script>
     <script src="{{ url('behin/behin-js/dropzone.js') . '?' . config('app.version') }}"></script>
     <script src="{{ url('behin/behin-dist/plugins/timepicker/jquery.timepicker.min.js') }}"></script>
-    <script
-        src="{{ url('behin/behin-dist/plugins/autonumeric/autoNumeric.min.js') . '?' . config('app.version') }}">
+    <script src="{{ url('behin/behin-dist/plugins/autonumeric/autoNumeric.min.js') . '?' . config('app.version') }}">
     </script>
 
 
@@ -181,7 +174,7 @@
                             </div>
                         </div>
                     @endisset
-                </div>
+            </div>
             <div class="container-fluid p-2">
                 @yield('content')
             </div>
@@ -191,7 +184,7 @@
 
 
     <footer class="main-footer">
-    @include('behin-layouts.mobile-navigation')
+        @include('behin-layouts.mobile-navigation')
 
         {{-- <strong> &copy; 2018 <a href="http://github.com/hesammousavi/">حسام موسوی</a>.</strong> --}}
     </footer>
@@ -200,16 +193,13 @@
     </aside>
 </div>
 
-<script
-    src="{{ url('behin/behin-dist/plugins/bootstrap/js/bootstrap.bundle.min.js') . '?' . config('app.version') }}">
+<script src="{{ url('behin/behin-dist/plugins/bootstrap/js/bootstrap.bundle.min.js') . '?' . config('app.version') }}">
 </script>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> --}}
 <script src="{{ url('behin/behin-dist/plugins/knob/jquery.knob.js') . '?' . config('app.version') }}"></script>
-<script
-    src="{{ url('behin/behin-dist/plugins/daterangepicker/daterangepicker.js') . '?' . config('app.version') }}">
+<script src="{{ url('behin/behin-dist/plugins/daterangepicker/daterangepicker.js') . '?' . config('app.version') }}">
 </script>
-<script
-    src="{{ url('behin/behin-dist/plugins/datepicker/bootstrap-datepicker.js') . '?' . config('app.version') }}">
+<script src="{{ url('behin/behin-dist/plugins/datepicker/bootstrap-datepicker.js') . '?' . config('app.version') }}">
 </script>
 <script
     src="{{ url('behin/behin-dist/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') . '?' . config('app.version') }}">
@@ -231,7 +221,9 @@
 
 
 <script>
-    initial_view()
+    document.addEventListener('DOMContentLoaded', function() {
+        initial_view()
+    });
 
     function initial_view() {
         $('.select2').select2();
@@ -271,12 +263,13 @@
             let textOnly = $cell.text().trim();
 
             // اگر شامل دکمه یا اسپن بود، هیچی تغییر نده
-            if (originalHtml.includes('button') || originalHtml.includes('span') || originalHtml.includes('a')) {
+            if (originalHtml.includes('button') || originalHtml.includes('span') || originalHtml.includes(
+                'a')) {
                 return;
             }
 
             if (textOnly.length > 25) {
-                let shortText = textOnly.substr(0, 25) ;
+                let shortText = textOnly.substr(0, 25);
 
                 $cell.html(`
             <span class="short-text">${shortText}</span>
