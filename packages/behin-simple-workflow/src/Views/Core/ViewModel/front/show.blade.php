@@ -97,7 +97,7 @@
 
     function updateViewModelRecord(row_id) {
         $('.formatted-digit').each(function(){
-            $(this).val(console.log($(this).val().replace(/\D/g, '')))
+            $(this).val($(this).val().replace(/\D/g, ''))
         })
 
         var fd = new FormData($(`#modal-form-${row_id}`)[0]);
