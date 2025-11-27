@@ -98,12 +98,6 @@
     });
 
     function updateViewModelRecord(row_id) {
-        document.querySelectorAll('.formatted-digit').forEach(function(el) {
-            let an = AutoNumeric.getAutoNumericElement(el);
-            if (an) {
-                el.value = an.getNumber();
-            }
-        });
 
         var fd = new FormData($(`#modal-form-${row_id}`)[0]);
         let obj = {};
