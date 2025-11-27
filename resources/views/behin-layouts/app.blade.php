@@ -223,6 +223,10 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         initial_view()
+        $('form').on('submit', function() {
+            AutoNumeric.getAutoNumericElement('.formatted-digit').unformat();
+        });
+
     });
 
     function initial_view() {
@@ -264,7 +268,7 @@
 
             // اگر شامل دکمه یا اسپن بود، هیچی تغییر نده
             if (originalHtml.includes('button') || originalHtml.includes('span') || originalHtml.includes(
-                'a')) {
+                    'a')) {
                 return;
             }
 
