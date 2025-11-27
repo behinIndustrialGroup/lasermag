@@ -29,12 +29,14 @@
         </div>
     @endif
     <div class="card-body">
-        <form action="javascript:void(0)" method="POST" id="modal-form-{{ $row->id ?? '' }}" enctype="multipart/form-data">
+        <form action="javascript:void(0)" method="POST" id="modal-form-{{ $row->id ?? '' }}"
+            enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="inboxId" id="inboxId" value="{{ $inbox->id ?? '' }}">
             <input type="hidden" name="caseId" id="caseId" value="{{ $case->id }}">
             <input type="hidden" name="viewModelId" id="viewModelId" value="{{ $viewModel->id }}">
-            <input type="hidden" name="{{ $viewModel->entity->name }}_id" id="{{ $viewModel->entity->name }}_id" value="{{ $row->id ?? '' }}">
+            <input type="hidden" name="{{ $viewModel->entity->name }}_id" id="{{ $viewModel->entity->name }}_id"
+                value="{{ $row->id ?? '' }}">
             <input type="hidden" name="rowId" id="rowId" value="{{ $row->id ?? '' }}">
             <input type="hidden" name="api_key" id="api_key" value="{{ $viewModel->api_key }}">
             @if (View::exists('SimpleWorkflowView::Custom.Form.' . $form->id))
@@ -57,7 +59,10 @@
                                 $fieldAttributes = json_decode($fieldDetails->attributes);
                                 $fieldValue = $row->$fieldName ?? '';
                                 $fieldNameAlt = $fieldName . '_alt';
-                                $fieldValueAlt = (isset($case) and $fieldDetails->type == 'datetime' and isset($row)) ? $row->$fieldNameAlt : null;
+                                $fieldValueAlt =
+                                    (isset($case) and $fieldDetails->type == 'datetime' and isset($row))
+                                        ? $row->$fieldNameAlt
+                                        : null;
                             } else {
                                 if ($field->fieldName != $form->id) {
                                     $childForm = getFormInformation($field->fieldName);
@@ -93,6 +98,13 @@
     });
 
     function updateViewModelRecord(row_id) {
+        document.querySelectorAll('.formatted-digit').forEach(function(el) {
+            let an = AutoNumeric.getAutoNumericElement(el);
+            if (an) {
+                an.unformat();
+            }
+        });
+
         var fd = new FormData($(`#modal-form-${row_id}`)[0]);
         var url = "{{ route('simpleWorkflow.view-model.update-record') }}"
         send_ajax_formdata_request(url, fd, function(response) {
