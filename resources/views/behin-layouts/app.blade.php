@@ -253,6 +253,7 @@
             digitGroupSeparator: ',',
             decimalCharacter: '.',
             decimalPlaces: 0,
+            unformatOnSubmit: true
         });
 
         $('table tbody td').each(function() {
