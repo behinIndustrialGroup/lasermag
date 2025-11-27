@@ -88,7 +88,9 @@
     </div>
 </div>
 <script>
-    initial_view()
+    document.addEventListener('DOMContentLoaded', function() {
+        initial_view()
+    });
 
     function updateViewModelRecord(row_id) {
         var fd = new FormData($(`#modal-form-${row_id}`)[0]);

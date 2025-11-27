@@ -223,10 +223,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         initial_view()
-        $('form').on('submit', function() {
-            AutoNumeric.getAutoNumericElement('.formatted-digit').unformat();
-        });
-
     });
 
     function initial_view() {
