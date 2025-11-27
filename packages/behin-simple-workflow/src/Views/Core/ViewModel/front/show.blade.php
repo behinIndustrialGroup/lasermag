@@ -93,9 +93,15 @@
     </div>
 </div>
 <script>
-        initial_view()
+    initial_view()
 
     function updateViewModelRecord(row_id) {
+        document.querySelectorAll('.formatted-digit').forEach(function(el) {
+            el.addEventListener('input', function() {
+                let clean = el.value.replace(/\D/g, '');
+                el.value = new Intl.NumberFormat().format(clean);
+            });
+        });
 
         var fd = new FormData($(`#modal-form-${row_id}`)[0]);
         let obj = {};
