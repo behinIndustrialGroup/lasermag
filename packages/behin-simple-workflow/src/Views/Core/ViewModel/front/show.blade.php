@@ -96,12 +96,9 @@
     initial_view()
 
     function updateViewModelRecord(row_id) {
-        document.querySelectorAll('.formatted-digit').forEach(function(el) {
-            el.addEventListener('input', function() {
-                let clean = el.value.replace(/\D/g, '');
-                el.value = new Intl.NumberFormat().format(clean);
-            });
-        });
+        $('.formatted-digit').each(function(){
+            console.log($(this).val().replace(/\D/g, ''))
+        })
 
         var fd = new FormData($(`#modal-form-${row_id}`)[0]);
         let obj = {};
