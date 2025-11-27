@@ -330,6 +330,7 @@ class ViewModelController extends Controller
 
     public function updateRecord(Request $request)
     {
+        Log::info($request->all());
         try {
             $case = CaseController::getById($request->caseId);
             $viewModel = self::getById($request->viewModelId);
