@@ -117,7 +117,7 @@
             show_message(response)
             console.log(response)
             get_view_model_rows('{{ $viewModel->id }}', '{{ $viewModel->api_key }}')
-            close_admin_modal()
+            // close_admin_modal()
         })
     }
 </script>
