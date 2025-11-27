@@ -106,6 +106,12 @@
         });
 
         var fd = new FormData($(`#modal-form-${row_id}`)[0]);
+        let obj = {};
+        fd.forEach((value, key) => {
+            obj[key] = value;
+        });
+
+        console.log(obj);
         var url = "{{ route('simpleWorkflow.view-model.update-record') }}"
         send_ajax_formdata_request(url, fd, function(response) {
             show_message(response)
