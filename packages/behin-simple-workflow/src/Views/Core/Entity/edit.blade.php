@@ -65,7 +65,7 @@
             </table>
             <button class="btn btn-secondary" type="button" id="add_field">Add Field</button>
             <textarea name="columns" id="columns" class="form-control" style="display:none">{{ $entity->columns }}</textarea>
-            
+
             <label for="class_uses">{{ trans('fields.Class Uses') }}</label>
             <div id="use_editor" style="height: 200px; width: 100%;">{{ $entity->uses }}</div>
             <textarea name="uses" id="class_uses" class="form-control"
@@ -76,16 +76,17 @@
             <textarea name="class_contents" id="class_contents" class="form-control"
                 style="display: none;text-align: left; white-space: pre; font-family: Monospace " dir="ltr">{{ $entity->class_contents }}</textarea>
             <button class="btn btn-primary">{{ trans('fields.Submit') }}</button>
-            <a class="btn btn-danger" style="float: left" href="{{ route('simpleWorkflow.entities.createTable', $entity->id) }}"
-                >{{ trans('fields.Create Table') }}</a>
+            <a class="btn btn-danger" style="float: left"
+                href="{{ route('simpleWorkflow.entities.createTable', $entity->id) }}">{{ trans('fields.Create Table') }}</a>
         </form>
-        
+
     </div>
 @endsection
 
 @section('script')
     <script>
         let tables = @json($tables);
+
         function addRow(name = '', type = 'string', nullable = 'no', table = '') {
             let options = tables.map(t => `<option value="${t}" ${table === t ? 'selected' : ''}>${t}</option>`).join('');
             let row = `<tr>
@@ -110,7 +111,9 @@
             </tr>`;
             $('#columns_table tbody').append(row);
         }
-        $('#add_field').on('click', function() { addRow(); });
+        $('#add_field').on('click', function() {
+            addRow();
+        });
         $(document).on('change', '.field-type', function() {
             if ($(this).val() === 'entity') {
                 $(this).siblings('.entity-table').removeClass('d-none');
@@ -121,6 +124,7 @@
         $(document).on('click', '.remove-row', function() {
             $(this).closest('tr').remove();
         });
+
         function loadExisting() {
             let lines = $('#columns').val().trim().split(/\r?\n/);
             lines.forEach(function(line) {
@@ -157,7 +161,12 @@
         use_editor.setTheme("ace/theme/monokai"); // انتخاب تم
         use_editor.session.setMode("ace/mode/php"); // تنظیم زبان PHP
 
+        use_editor.session.$modeId = "ace/mode/php";
 
+        use_editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true
+        });
 
         // غیرفعال کردن تحلیلگر پیش‌فرض Ace
         use_editor.getSession().setUseWorker(false);
@@ -173,8 +182,13 @@
         const editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai"); // انتخاب تم
         editor.session.setMode("ace/mode/php"); // تنظیم زبان PHP
+        // غیرفعال کردن چک کردن نوع خودکار
+        editor.session.$modeId = "ace/mode/php";
 
-
+        editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true
+        });
 
         // غیرفعال کردن تحلیلگر پیش‌فرض Ace
         editor.getSession().setUseWorker(false);

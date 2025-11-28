@@ -127,34 +127,45 @@
         </div>
 
         @if ($task->show_reminder_button)
-            <div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="reminderModalLabel" aria-hidden="true">
+            <div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="reminderModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="reminderModalLabel">{{ trans('fields.Add Reminder') }}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('fields.Close') }}">
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-label="{{ trans('fields.Close') }}">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form id="reminderForm" action="{{ route('simpleWorkflow.inbox.reminders.store', $inbox->id) }}" method="POST">
+                        <form id="reminderForm" action="{{ route('simpleWorkflow.inbox.reminders.store', $inbox->id) }}"
+                            method="POST">
                             @csrf
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="reminder-title" class="col-form-label">{{ trans('fields.Reminder Title') }}</label>
-                                    <input type="text" class="form-control" id="reminder-title" name="title" maxlength="255" required>
+                                    <label for="reminder-title"
+                                        class="col-form-label">{{ trans('fields.Reminder Title') }}</label>
+                                    <input type="text" class="form-control" id="reminder-title" name="title"
+                                        maxlength="255" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reminder-message" class="col-form-label">{{ trans('fields.Reminder Message') }}</label>
+                                    <label for="reminder-message"
+                                        class="col-form-label">{{ trans('fields.Reminder Message') }}</label>
                                     <textarea class="form-control" id="reminder-message" name="message" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reminder-at" class="col-form-label">{{ trans('fields.Reminder At') }}</label>
-                                    <input type="datetime-local" class="form-control" id="reminder-at" name="remind_at" required min="{{ now()->format('Y-m-d\TH:i') }}" value="{{ now()->addMinutes(5)->format('Y-m-d\TH:i') }}">
+                                    <label for="reminder-at"
+                                        class="col-form-label">{{ trans('fields.Reminder At') }}</label>
+                                    <input type="datetime-local" class="form-control" id="reminder-at" name="remind_at"
+                                        required min="{{ now()->format('Y-m-d\TH:i') }}"
+                                        value="{{ now()->addMinutes(5)->format('Y-m-d\TH:i') }}">
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{ trans('fields.Cancel') }}</button>
-                                <button type="submit" class="btn btn-primary">{{ trans('fields.Send Reminder') }}</button>
+                                <button type="button" class="btn btn-outline-secondary"
+                                    data-dismiss="modal">{{ trans('fields.Cancel') }}</button>
+                                <button type="submit"
+                                    class="btn btn-primary">{{ trans('fields.Send Reminder') }}</button>
                             </div>
                         </form>
                     </div>
@@ -225,18 +236,18 @@
             }
 
             .action-buttons {
-                    position: relative;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    padding: 10px;
-                    display: flex;
-                    justify-content: space-around;
-                    background: #fff;
-                    border-top: 1px solid #ddd;
-                    z-index: 1000;
-                    border-radius: 10px;
-                }
+                position: relative;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 10px;
+                display: flex;
+                justify-content: space-around;
+                background: #fff;
+                border-top: 1px solid #ddd;
+                z-index: 1000;
+                border-radius: 10px;
+            }
 
             /* موبایل: ثابت پایین صفحه */
             @media (max-width: 768px) {
@@ -336,6 +347,9 @@
         }
 
         function saveForm() {
+            $('.formatted-digit').each(function() {
+                $(this).val($(this).val().replace(/\D/g, ''))
+            })
             if ($('.view-model-update-btn').length > 0) {
                 $('.view-model-update-btn').click()
             }
@@ -357,6 +371,9 @@
         }
 
         function saveAndNextForm() {
+            $('.formatted-digit').each(function() {
+                $(this).val($(this).val().replace(/\D/g, ''))
+            })
             if ($('.view-model-update-btn').length > 0) {
                 $('.view-model-update-btn').click()
             }
@@ -369,9 +386,9 @@
                     console.log(response);
                     if (response.status == 200) {
                         if (response.url) {
-                            if(response.msg){
+                            if (response.msg) {
                                 window.location.href = response.url + '?msg=' + response.msg;
-                            }else{
+                            } else {
                                 window.location.href = response.url;
                             }
                         } else {
