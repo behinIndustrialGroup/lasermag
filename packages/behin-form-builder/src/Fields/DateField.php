@@ -32,22 +32,9 @@ class DateField extends AbstractField
             }
         }
         $s .= '>';
-        $s .= "<input type='hidden' name='". $this->name ."_alt' id='". $this->name ."_alt'>";
+        $s .= "<input type='hidden' name='". $this->name ."_alt' id='". $this->name ."_alt' value='". $this->attributes['altValue'] ."'>";
         $s .= <<<SCRIPT
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    let input = document.getElementById("$name");
-    let alt = document.getElementById("{$name}_alt");
-
-    // اگر مقدار اولیه وجود دارد، تبدیل کن به timestamp یا تاریخ میلادی
-    if ($value) {
-        try {
-            let p = new persianDate().parse($value);
-            alt.value = p.toDate().getTime(); // ☑ timestamp
-        } catch (e) {
-            console.warn("Invalid Persian date:", input.value);
-        }
-    }
 
     $('#$name').persianDatepicker({
         viewMode: 'day',
@@ -62,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     });
-});
 </script>
 SCRIPT;
         $s .= '</div>';
