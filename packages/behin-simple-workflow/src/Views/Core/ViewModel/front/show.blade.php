@@ -60,8 +60,9 @@
                                 $fieldValue = $row->$fieldName ?? '';
                                 $fieldNameAlt = $fieldName . '_alt';
                                 $fieldValueAlt =
-                                    $fieldValueAlt = (isset($case) and in_array($fieldDetails->type, ['datetime', 'date'])) ? $case->getVariable($field->fieldName . '_alt') : null;
-
+                                    (isset($case) and in_array($fieldDetails->type, ['datetime', 'date']) and isset($row))
+                                        ? $row->$fieldNameAlt
+                                        : null;
                             } else {
                                 if ($field->fieldName != $form->id) {
                                     $childForm = getFormInformation($field->fieldName);
@@ -78,7 +79,7 @@
                                     'readOnly' => $readOnly,
                                     'required' => $required,
                                     'fieldValue' => $fieldValue,
-                                    'fieldValueAlt' => $fieldValueAlt ?? 'asd',
+                                    'fieldValueAlt' => $fieldValueAlt ?? '',
                                 ])
                             </div>
                         @endif
