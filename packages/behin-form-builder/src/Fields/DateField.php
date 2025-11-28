@@ -7,6 +7,7 @@ class DateField extends AbstractField
     public function render(): string
     {
         $name = $this->name;
+        $value = $this->attributes['value'] ?? '';
         $s = '<div class="form-group">';
         $s .= '<label>';
         $s .= trans('fields.' . $this->name);
@@ -39,9 +40,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let alt = document.getElementById("{$name}_alt");
 
     // اگر مقدار اولیه وجود دارد، تبدیل کن به timestamp یا تاریخ میلادی
-    if (input.value) {
+    if ($value) {
         try {
-            let p = new persianDate().parse(input.value);
+            let p = new persianDate().parse($value);
             alt.value = p.toDate().getTime(); // ☑ timestamp
         } catch (e) {
             console.warn("Invalid Persian date:", input.value);
