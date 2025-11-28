@@ -108,6 +108,7 @@
 @if ($fieldType === 'date')
     {!! Form::date($fieldId, [
         'value' => $fieldValue,
+        'altValue' =>   $fieldValueAlt,
         'class' => 'form-control',
         'id' => $fieldId,
         'placeholder' => $fieldPlaceholder,
