@@ -65,7 +65,17 @@ class SearchableInputField extends AbstractField
         $s .= 'function clearResults(){resultsBox.innerHTML="";}';
         $s .= 'function selectItem(item){hiddenInput.value=item.id ?? "";searchInput.value=item.label ?? "";clearResults();}';
         $s .= 'function buildUrl(params){try{const url=new URL(config.endpoint, window.location.origin);Object.keys(params).forEach(function(key){if(params[key]!==undefined && params[key]!==null && params[key]!=="" ){url.searchParams.set(key, params[key]);}});if(config.limit && params.term){url.searchParams.set("limit", config.limit);}return url.toString();}catch(e){return null;}}';
-        $s .= 'function fetchResults(params, isInitial){const url=buildUrl(params);if(!url){return;}if(state.controller){state.controller.abort();}state.controller=new AbortController();fetch(url,{headers:{"Accept":"application/json"},signal:state.controller.signal}).then(function(response){return response.json ? response.json() : [];}).then(function(data){if(!Array.isArray(data)){return;}if(isInitial){if(data.length){selectItem(data[0]);}return;}const items=config.limit?data.slice(0, config.limit):data;renderResults(items);}).catch(function(error){if(error.name!=="AbortError"){console.error(error);}});};';
+        $s .= 'function fetchResults(params, isInitial){const url=buildUrl(params);if(!url){return;}if(state.controller){state.controller.abort();}state.controller=new AbortController();fetch(url,{headers:{"Accept":"application/json"},signal:state.controller.signal}).then(function(response){return response.json ? response.json() : [];}).then(function(data){if(!Array.isArray(data)){return;}
+        if (isInitial) {
+            if (Array.isArray(data) && hiddenInput.value) {
+                const exact = data.find(item => item.id == hiddenInput.value);
+                if (exact) {
+                    selectItem(exact);
+                }
+            }
+            return;
+        }
+        const items=config.limit?data.slice(0, config.limit):data;renderResults(items);}).catch(function(error){if(error.name!=="AbortError"){console.error(error);}});};';
         $s .= 'function renderResults(items){clearResults();if(!items.length){return;}items.forEach(function(item){const option=document.createElement("button");option.setAttribute("type","button");option.className="list-group-item list-group-item-action";option.textContent=item.label ?? item.id;option.addEventListener("click",function(){selectItem(item);});resultsBox.appendChild(option);});}';
         $s .= 'function handleInput(){const term=searchInput.value.trim();if(term.length < config.minChars){clearResults();return;}if(state.timer){clearTimeout(state.timer);}state.timer=setTimeout(function(){fetchResults({term:term});},300);}';
         $s .= 'searchInput.addEventListener("input", handleInput);';
