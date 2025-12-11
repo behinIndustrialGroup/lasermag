@@ -26,7 +26,8 @@ return [
             'fa_name' => 'کارتابل',
             'route-name' => 'simpleWorkflow.inbox.categorized',
             'submenu' => [
-                'inbox' => [ 'fa_name' => 'کارتابل', 'route-name' => 'simpleWorkflow.inbox.index' ],
+                'inbox' => [ 'fa_name' => 'کارتابل', 'route-name' => 'simpleWorkflow.inbox.categorized' ],
+                'start' => [ 'fa_name' => 'فرایند جدید', 'route-name' => 'simpleWorkflow.process.startListView' ],
                 'done-inbox' => [ 'fa_name' => 'انجام شده ها', 'route-name' => 'simpleWorkflow.inbox.done' ],
             ]
         ],
