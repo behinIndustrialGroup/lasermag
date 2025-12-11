@@ -24,7 +24,7 @@ return [
         'categorized-inbox' => [
             'icon' => 'inbox',
             'fa_name' => 'کارتابل',
-            'route-name' => 'simpleWorkflow.inbox.categorized',
+            'route-name' => '',
             'submenu' => [
                 'inbox' => [ 'fa_name' => 'کارتابل', 'route-name' => 'simpleWorkflow.inbox.categorized' ],
                 'start' => [ 'fa_name' => 'فرایند جدید', 'route-name' => 'simpleWorkflow.process.startListView' ],
