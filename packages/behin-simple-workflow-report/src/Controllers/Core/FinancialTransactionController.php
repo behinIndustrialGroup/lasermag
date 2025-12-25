@@ -44,7 +44,7 @@ class FinancialTransactionController extends Controller
             END)";
 
         $creditorsQuery = Transactions::select(
-            'counterparty',
+            'account_id',
             DB::raw("{$totalAmountExpression} as total_amount"),
         )
             ->when($caseNumber !== null && $caseNumber !== '', function ($query) use ($caseNumber) {
@@ -52,13 +52,13 @@ class FinancialTransactionController extends Controller
             })
             ->when($onlyAssignedUsers, function ($query) {
                 $assignCounterParties = Customers::whereNotNull('user_id')->pluck('id');
-                $query->whereIn('counterparty', $assignCounterParties);
+                $query->whereIn('account_id', $assignCounterParties);
             }, function ($query) {
                 // وقتی onlyAssignedUsers = false
                 $unassignedCounterParties = Customers::whereNull('user_id')->pluck('id');
-                $query->whereIn('counterparty', $unassignedCounterParties);
+                $query->whereIn('account_id', $unassignedCounterParties);
             })
-            ->groupBy('counterparty');
+            ->groupBy('account_id');
 
         switch ($filter) {
             case 'positive':
@@ -80,11 +80,11 @@ class FinancialTransactionController extends Controller
         $caseNumber = $request->query('case_number');
         $onlyAssignedUsers = $request->boolean('only_assigned', false);
         $creditors = $this->prepareData($request);
-        $counterpartyDebit = $creditors->where('total_amount', '<', 0)->sum(function ($item) {
+        $account_idDebit = $creditors->where('total_amount', '<', 0)->sum(function ($item) {
             return abs($item->total_amount);
         });
-        $counterpartyCredit = $creditors->where('total_amount', '>', 0)->sum('total_amount');
-        $counterpartyBalance =  Transactions::select(
+        $account_idCredit = $creditors->where('total_amount', '>', 0)->sum('total_amount');
+        $account_idBalance =  Transactions::select(
             DB::raw("
             SUM(
                 CASE
@@ -111,13 +111,13 @@ class FinancialTransactionController extends Controller
             END
         ) AS balance
     ")
-        )->groupBy('counterparty')->get();
+        )->groupBy('account_id')->get();
 
-        $totalDebit = $counterpartyBalance
+        $totalDebit = $account_idBalance
             ->where('balance', '<', 0)
             ->sum(fn($item) => abs($item->balance));
 
-        $totalCredit = $counterpartyBalance
+        $totalCredit = $account_idBalance
             ->where('balance', '>', 0)
             ->sum('balance');
 
@@ -154,7 +154,7 @@ class FinancialTransactionController extends Controller
 
         return view(
             'SimpleWorkflowReportView::Core.FinancialTransaction.index',
-            compact('creditors', 'filter', 'caseNumber', 'balance', 'counterpartyDebit', 'counterpartyCredit', 'counterpartyBalance', 'totalDebit', 'totalCredit')
+            compact('creditors', 'filter', 'caseNumber', 'balance', 'account_idDebit', 'account_idCredit', 'account_idBalance', 'totalDebit', 'totalCredit')
         );
     }
 
@@ -173,10 +173,10 @@ class FinancialTransactionController extends Controller
         return view('SimpleWorkflowReportView::Core.UserFinancialTransaction.index', compact('creditors', 'filter', 'caseNumber', 'counterParties'));
     }
 
-    public function openUserSalaryAdvances($counterparty)
+    public function openUserSalaryAdvances($account_id)
     {
-        $counterparty = Customers::find($counterparty);
-        if (!$counterparty->user_id) {
+        $account_id = Customers::find($account_id);
+        if (!$account_id->user_id) {
             return "برای این طرف حساب نمیتوانید حساب مساعده باز کنید";
         }
 
@@ -187,7 +187,7 @@ class FinancialTransactionController extends Controller
         $creditors = $this->prepareData($request);
 
         // پیدا کردن رکورد این کاربر
-        $creditor = $creditors->where('counterparty', $counterparty->id)->first();
+        $creditor = $creditors->where('account_id', $account_id->id)->first();
         $totalAmount = $creditor ? $creditor->total_amount : 0;
 
         // اگر total_amount صفر نبود، عملیات انجام نشود
@@ -195,11 +195,11 @@ class FinancialTransactionController extends Controller
             return redirect()->back()->with('error', 'برای این کاربر به دلیل داشتن مانده حساب، امکان باز کردن مساعده وجود ندارد.');
         }
 
-        $userMaxAdvances = EmployeeSalaryReportController::userMaxAdvances($counterparty->user_id);
+        $userMaxAdvances = EmployeeSalaryReportController::userMaxAdvances($account_id->user_id);
         $request = new Request([
             'financial_method' => 'نقدی',
             'description' => 'بازکردن مساعده',
-            'counterparty' => $counterparty->id,
+            'account_id' => $account_id->id,
             'amount' => $userMaxAdvances
         ]);
         $this->addCredit($request);
@@ -226,23 +226,23 @@ class FinancialTransactionController extends Controller
     }
 
 
-    public function closeUserSalaryAdvances($counterparty)
+    public function closeUserSalaryAdvances($account_id)
     {
-        $counterparty = Customers::find($counterparty);
-        if (!$counterparty->user_id) {
+        $account_id = Customers::find($account_id);
+        if (!$account_id->user_id) {
             return "برای این طرف حساب نمیتوانید حساب مساعده باز کنید";
         }
         $request = new Request([
             'filter' => 'all'
         ]);
         $creditors = $this->prepareData($request);
-        $creditor = $creditors->where('counterparty', $counterparty->id);
+        $creditor = $creditors->where('account_id', $account_id->id);
         $totalAmount = $creditor->first() ? $creditor->first()->total_amount : 0;
         if ($totalAmount > 0) {
             $request = new Request([
                 'financial_method' => 'نقدی',
                 'description' => 'بستن مساعده',
-                'counterparty' => $counterparty->id,
+                'account_id' => $account_id->id,
                 'amount' => $totalAmount
             ]);
             $this->addDebit($request);
@@ -252,7 +252,7 @@ class FinancialTransactionController extends Controller
             $request = new Request([
                 'financial_method' => 'نقدی',
                 'description' => 'بستن مساعده',
-                'counterparty' => $counterparty->id,
+                'account_id' => $account_id->id,
                 'amount' => $totalAmount
             ]);
             $this->addCredit($request);
@@ -270,7 +270,7 @@ class FinancialTransactionController extends Controller
         $creditors = $this->prepareData($request);
         $data = [];
         foreach ($counterParties as $counterParty) {
-            $creditorInfo = $creditors->where('counterparty', $counterParty->id);
+            $creditorInfo = $creditors->where('account_id', $counterParty->id);
             $totalAmount = $creditorInfo->first() ? $creditorInfo->first()->total_amount : 0;
             $rest = $counterParty->user_max_advance - $totalAmount;
             $data[] = [
@@ -285,22 +285,22 @@ class FinancialTransactionController extends Controller
     }
 
 
-    public function show(Request $request, $counterparty)
+    public function show(Request $request, $account_id)
     {
         $showHeaderBtn = $request->input('showHeaderBtn', '1') == '1';
-        $creditors = Transactions::where('counterparty', $counterparty)->get();
+        $creditors = Transactions::where('account_id', $account_id)->get();
         return view('SimpleWorkflowReportView::Core.FinancialTransaction.show', compact('creditors', 'showHeaderBtn'));
     }
 
-    public function export($counterparty)
+    public function export($account_id)
     {
-        $counterparty = Customers::find($counterparty);
-        $creditors = Transactions::where('counterparty', $counterparty->id)->get();
+        $account_id = Customers::find($account_id);
+        $creditors = Transactions::where('account_id', $account_id->id)->get();
         $data = [];
         foreach ($creditors as $creditor) {
             $data[] = [
                 'type' => $creditor->type,
-                'counterparty' => $creditor->counterparty()->name,
+                'account_id' => $creditor->account_id()->name,
                 'amount' => $creditor->amount,
                 'case_number' => $creditor->case_number,
                 'financial_method' => $creditor->financial_method,
@@ -312,7 +312,7 @@ class FinancialTransactionController extends Controller
 
             ];
         }
-        return Excel::download(new CounterpartyFinancialTransactionExport(collect($data)), 'گزارش تراکنش های ' . $counterparty->name . '.xlsx');
+        return Excel::download(new CounterpartyFinancialTransactionExport(collect($data)), 'گزارش تراکنش های ' . $account_id->name . '.xlsx');
     }
 
     public function edit(Transactions $financialTransaction)
@@ -325,11 +325,11 @@ class FinancialTransactionController extends Controller
         );
     }
 
-    public function showAddCredit($counterparty = null)
+    public function showAddCredit($account_id = null)
     {
-        $counterparty = Customers::find($counterparty);
+        $account_id = Customers::find($account_id);
         $counterParties = Customers::all();
-        return view('SimpleWorkflowReportView::Core.FinancialTransaction.add-credit', compact('counterparty', 'counterParties'));
+        return view('SimpleWorkflowReportView::Core.FinancialTransaction.add-credit', compact('account_id', 'counterParties'));
     }
 
     public function addCredit(Request $request)
@@ -337,21 +337,21 @@ class FinancialTransactionController extends Controller
         if ($request->has_destination_account) {
             $validated = $request->validate([
                 'amount' => 'required',
-                'counterparty' => 'required|exists:wf_entity_counter_parties,id',
+                'account_id' => 'required|exists:wf_entity_counter_parties,id',
                 'destination_account_id' => 'required|exists:wf_entity_counter_parties,id',
             ], [
                 'amount.required' => 'مبلغ الزامی است',
-                'counterparty.required' => 'طرف حساب الزامی است',
+                'account_id.required' => 'طرف حساب الزامی است',
                 'destination_account_id.required' => 'طرف حساب مقصد الزامی است',
             ]);
             $destinationCounterparty = DB::table('wf_entity_counter_parties')->where('id', $request->destination_account_id)->first();
         } else {
             $validated = $request->validate([
                 'amount' => 'required',
-                'counterparty' => 'required|exists:wf_entity_counter_parties,id',
+                'account_id' => 'required|exists:wf_entity_counter_parties,id',
             ], [
                 'amount.required' => 'مبلغ الزامی است',
-                'counterparty.required' => 'طرف حساب الزامی است',
+                'account_id.required' => 'طرف حساب الزامی است',
             ]);
         }
 
@@ -360,23 +360,23 @@ class FinancialTransactionController extends Controller
                 'description' => 'required',
                 'amount' => 'required',
                 'transaction_or_cheque_due_date' => 'required',
-                'counterparty' => 'required|exists:wf_entity_counter_parties,id',
+                'account_id' => 'required|exists:wf_entity_counter_parties,id',
             ], [
                 'description.required' => 'توضیحات الزامی است',
                 'amount.required' => 'مبلغ الزامی است',
                 'transaction_or_cheque_due_date.required' => 'تاریخ تراکنش الزامی است',
-                'counterparty.required' => 'طرف حساب الزامی است',
+                'account_id.required' => 'طرف حساب الزامی است',
             ]);
         }
 
-        $counterParty = DB::table('wf_entity_counter_parties')->where('id', $request->counterparty)->first();
+        $counterParty = DB::table('wf_entity_counter_parties')->where('id', $request->account_id)->first();
         $amount = str_replace(',', '', $request->amount);
         $finTransaction = Transactions::create([
             'case_number' => $request->case_number,
             'type' => 'بستانکار',
             'financial_method' => $request->financial_method,
             'description' => $request->description,
-            'counterparty' => $request->counterparty,
+            'account_id' => $request->account_id,
             'amount' => (string)$amount,
             'invoice_or_cheque_number' => $request->invoice_or_cheque_number,
             'transaction_or_cheque_due_date' => $request->transaction_or_cheque_due_date,
@@ -391,7 +391,7 @@ class FinancialTransactionController extends Controller
                 'type' => 'بدهکار',
                 'financial_method' => $request->financial_method,
                 'description' => 'تراکنش خودکار. واریزی ' . $counterParty->name,
-                'counterparty' => $destinationCounterparty->id,
+                'account_id' => $destinationCounterparty->id,
                 'amount' => (string)$amount,
                 'invoice_or_cheque_number' => $request->invoice_or_cheque_number,
                 'transaction_or_cheque_due_date' => $request->transaction_or_cheque_due_date,
@@ -412,13 +412,13 @@ class FinancialTransactionController extends Controller
         return redirect()->back(); //->route('simpleWorkflowReport.financial-transactions.index');
     }
 
-    public function showAddDebit($counterparty = null, $onlyAssignedUsers = false)
+    public function showAddDebit($account_id = null, $onlyAssignedUsers = false)
     {
-        $counterparty = Customers::find($counterparty);
+        $account_id = Customers::find($account_id);
         $counterParties = Customers::when($onlyAssignedUsers, function ($query) {
             $query->whereNotNull('user_id');
         })->get();
-        return view('SimpleWorkflowReportView::Core.FinancialTransaction.add-debit', compact('counterparty', 'counterParties'));
+        return view('SimpleWorkflowReportView::Core.FinancialTransaction.add-debit', compact('account_id', 'counterParties'));
     }
 
     public function addDebit(Request $request)
@@ -429,7 +429,7 @@ class FinancialTransactionController extends Controller
             'type' => 'بدهکار',
             'financial_method' => $request->financial_method,
             'description' => $request->description,
-            'counterparty' => $request->counterparty,
+            'account_id' => $request->account_id,
             'amount' => (string)$amount,
             'invoice_or_cheque_number' => $request->invoice_or_cheque_number,
             'transaction_or_cheque_due_date' => $request->transaction_or_cheque_due_date,
@@ -444,7 +444,7 @@ class FinancialTransactionController extends Controller
     {
         $validated = $request->validate([
             'type' => ['required', Rule::in(['بدهکار', 'بستانکار'])],
-            'counterparty' => ['required'],
+            'account_id' => ['required'],
             'case_number' => ['nullable', 'string'],
             'amount' => ['required', 'string'],
             'financial_method' => ['nullable', 'string'],
@@ -470,7 +470,7 @@ class FinancialTransactionController extends Controller
 
         // $financialTransaction->update([
         //     'type' => $validated['type'],
-        //     'counterparty' => $validated['counterparty'],
+        //     'account_id' => $validated['account_id'],
         //     'case_number' => $validated['case_number'] ?? null,
         //     'amount' => (string) $amount,
         //     'financial_method' => $validated['financial_method'] ?? null,
@@ -484,7 +484,7 @@ class FinancialTransactionController extends Controller
 
         return redirect()
             ->back()
-            // ->route('simpleWorkflowReport.financial-transactions.show', $financialTransaction->counterparty)
+            // ->route('simpleWorkflowReport.financial-transactions.show', $financialTransaction->account_id)
             ->with('success', 'تراکنش با موفقیت ویرایش شد.');
     }
 
