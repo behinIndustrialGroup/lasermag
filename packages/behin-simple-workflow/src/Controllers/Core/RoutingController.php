@@ -195,7 +195,8 @@ class RoutingController extends Controller
             }
             return response()->json([
                 'status' => 200,
-                'msg' => trans('Saved')
+                'msg' => trans('Saved'),
+                'url' => route('simpleWorkflow.inbox.categorized', ['inboxId' => $newInbox->id])
             ]);
         } catch (Exception $th) {
             DB::rollBack();
