@@ -38,8 +38,8 @@ class FinancialTransactionController extends Controller
         $onlyAssignedUsers = $request->boolean('only_assigned', false);
 
         $totalAmountExpression = "SUM(CASE
-                WHEN financial_type = 'بدهکار' THEN -amount
-                WHEN financial_type = 'بستانکار' THEN amount
+                WHEN type = 'بدهکار' THEN -amount
+                WHEN type = 'بستانکار' THEN amount
                 ELSE 0
             END)";
 
@@ -88,7 +88,7 @@ class FinancialTransactionController extends Controller
             DB::raw("
             SUM(
                 CASE
-                    WHEN financial_type = 'بدهکار' THEN amount
+                    WHEN type = 'بدهکار' THEN amount
                     ELSE 0
                 END
             ) AS total_debit
@@ -97,7 +97,7 @@ class FinancialTransactionController extends Controller
             DB::raw("
             SUM(
                 CASE
-                    WHEN financial_type = 'بستانکار' THEN amount
+                    WHEN type = 'بستانکار' THEN amount
                     ELSE 0
                 END
             ) AS total_credit
@@ -106,7 +106,7 @@ class FinancialTransactionController extends Controller
             DB::raw("
         SUM(
             CASE
-                WHEN financial_type = 'بستانکار' THEN amount
+                WHEN type = 'بستانکار' THEN amount
                 ELSE -amount
             END
         ) AS balance
@@ -126,8 +126,8 @@ class FinancialTransactionController extends Controller
             DB::raw("
             SUM(
                 CASE
-                    WHEN financial_type = 'بدهکار' THEN -amount
-                    WHEN financial_type = 'بستانکار' THEN amount
+                    WHEN type = 'بدهکار' THEN -amount
+                    WHEN type = 'بستانکار' THEN amount
                     ELSE 0
                 END
             ) AS total_amount
@@ -136,7 +136,7 @@ class FinancialTransactionController extends Controller
             DB::raw("
             SUM(
                 CASE
-                    WHEN financial_type = 'بدهکار' THEN amount
+                    WHEN type = 'بدهکار' THEN amount
                     ELSE 0
                 END
             ) AS total_debit
@@ -145,7 +145,7 @@ class FinancialTransactionController extends Controller
             DB::raw("
             SUM(
                 CASE
-                    WHEN financial_type = 'بستانکار' THEN amount
+                    WHEN type = 'بستانکار' THEN amount
                     ELSE 0
                 END
             ) AS total_credit
@@ -299,7 +299,7 @@ class FinancialTransactionController extends Controller
         $data = [];
         foreach ($creditors as $creditor) {
             $data[] = [
-                'financial_type' => $creditor->financial_type,
+                'type' => $creditor->type,
                 'counterparty' => $creditor->counterparty()->name,
                 'amount' => $creditor->amount,
                 'case_number' => $creditor->case_number,
@@ -373,7 +373,7 @@ class FinancialTransactionController extends Controller
         $amount = str_replace(',', '', $request->amount);
         $finTransaction = Transactions::create([
             'case_number' => $request->case_number,
-            'financial_type' => 'بستانکار',
+            'type' => 'بستانکار',
             'financial_method' => $request->financial_method,
             'description' => $request->description,
             'counterparty' => $request->counterparty,
@@ -388,7 +388,7 @@ class FinancialTransactionController extends Controller
         if (isset($destinationCounterparty)) {
             $autoFinTransaction = Transactions::create([
                 'case_number' => $request->case_number,
-                'financial_type' => 'بدهکار',
+                'type' => 'بدهکار',
                 'financial_method' => $request->financial_method,
                 'description' => 'تراکنش خودکار. واریزی ' . $counterParty->name,
                 'counterparty' => $destinationCounterparty->id,
@@ -426,7 +426,7 @@ class FinancialTransactionController extends Controller
         $amount = str_replace(',', '', $request->amount);
         Transactions::create([
             'case_number' => $request->case_number,
-            'financial_type' => 'بدهکار',
+            'type' => 'بدهکار',
             'financial_method' => $request->financial_method,
             'description' => $request->description,
             'counterparty' => $request->counterparty,
@@ -443,7 +443,7 @@ class FinancialTransactionController extends Controller
     public function update(Request $request, Transactions $financialTransaction)
     {
         $validated = $request->validate([
-            'financial_type' => ['required', Rule::in(['بدهکار', 'بستانکار'])],
+            'type' => ['required', Rule::in(['بدهکار', 'بستانکار'])],
             'counterparty' => ['required'],
             'case_number' => ['nullable', 'string'],
             'amount' => ['required', 'string'],
@@ -462,14 +462,14 @@ class FinancialTransactionController extends Controller
         }
         $financialTransaction->delete();
 
-        if ($request->financial_type == 'بستانکار') {
+        if ($request->type == 'بستانکار') {
             $this->addCredit($request);
         } else {
             $this->addDebit($request);
         }
 
         // $financialTransaction->update([
-        //     'financial_type' => $validated['financial_type'],
+        //     'type' => $validated['type'],
         //     'counterparty' => $validated['counterparty'],
         //     'case_number' => $validated['case_number'] ?? null,
         //     'amount' => (string) $amount,
