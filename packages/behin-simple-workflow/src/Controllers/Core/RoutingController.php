@@ -128,7 +128,7 @@ class RoutingController extends Controller
                     DB::rollBack();
                     return $result;
                 }
-            } else {
+            } elseif(count($taskChildren)) {
                 $executedTaskIds = [];
                 foreach ($taskChildren as $childTask) {
                     // Log::info("Parent Task:" . $task->name . " Child Task:" . $childTask->name);
@@ -141,6 +141,11 @@ class RoutingController extends Controller
                         return $result;
                     }
                 }
+            }else{
+                return response()->json([
+                    'status' => 400,
+                    'msg' => 'تسک بعدی تعریف نشده است و امکان ارسال به مرحله بعد وجود ندارد'
+                ]);
             }
             if ($task->type == 'form') {
                 if ($task->assignment_type == 'normal') {
@@ -475,7 +480,7 @@ class RoutingController extends Controller
             }else{
                 return response()->json([
                     'status' => 400,
-                    'msg' => 'نوع تسک معتبر نیست یا تسک بعدی تعریف نشده است و امکان ارسال به مرحله بعد وجود ندارد'
+                    'msg' => 'نوع تسک معتبر نیست'
                 ]);
             }
         } catch (Exception $th) {
