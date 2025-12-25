@@ -137,7 +137,7 @@
 
         .table-modern {
             border-radius: 14px;
-            overflow: hidden;
+            overflow: scroll;
             background: #fff;
         }
 
