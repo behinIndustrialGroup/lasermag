@@ -51,9 +51,9 @@
             <button class="btn btn-sm btn-warning" onclick="showAddNewDebit()">افزودن
                 بدهکاری <br>(مدارپرداز از مشتری طلب دارد)
             </button>
-            <a href="{{ route('simpleWorkflowReport.counter-party.create') }}" class="btn btn-sm btn-primary">
+            {{-- <a href="{{ route('simpleWorkflowReport.counter-party.create') }}" class="btn btn-sm btn-primary">
                 افزودن طرف حساب جدید
-            </a>
+            </a> --}}
 
 
             {{-- <button class="btn btn-sm btn-primary"
