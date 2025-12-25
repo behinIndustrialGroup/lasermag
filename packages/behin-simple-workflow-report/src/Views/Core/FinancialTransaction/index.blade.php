@@ -131,13 +131,13 @@
                             <td dir="ltr">{{ number_format($creditor->total_amount) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-primary"
-                                    onclick="showDetails(`{{ $creditor->counterparty_id }}`)">جزئیات بیشتر</button>
+                                    onclick="showDetails(`{{ $creditor->account_id }}`)">جزئیات بیشتر</button>
                                 <button class="btn btn-sm btn-success"
-                                    onclick="showAddCredit(`{{ $creditor->counterparty_id }}`)">افزودن طلبکاری
+                                    onclick="showAddCredit(`{{ $creditor->account_id }}`)">افزودن طلبکاری
                                     <button class="btn btn-sm btn-warning"
-                                        onclick="showAddDebit(`{{ $creditor->counterparty_id }}`)">افزودن بدهکاری</button>
-                                    @if ($creditor->counterparty_id)
-                                        <a href="{{ route('simpleWorkflowReport.financial-transactions.export', $creditor->counterparty_id) }}"
+                                        onclick="showAddDebit(`{{ $creditor->account_id }}`)">افزودن بدهکاری</button>
+                                    @if ($creditor->account_id)
+                                        <a href="{{ route('simpleWorkflowReport.financial-transactions.export', $creditor->account_id) }}"
                                             class="btn btn-sm btn-info"
                                             download="گزارش تراکنش های {{ $creditor->counterparty()->name ?? '' }}.xlsx">اکسل</a>
                                     @endif
