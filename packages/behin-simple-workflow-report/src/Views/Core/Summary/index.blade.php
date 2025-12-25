@@ -171,125 +171,13 @@
                                             </tr>
                                         @endif
                                     @endforeach
-                                    @if (auth()->user()->access('امور جاری: گزارش فرایند های داخلی و خارجی'))
+                                     @if (auth()->user()->access('گزارش دفتر معین'))
                                         <tr>
                                             <td class="d-none"></td>
-                                            <td>امور جاری</td>
-                                            <td class="d-none">گزارش کامل فرایند های داخلی و خارجی</td>
+                                            <td>گزارش دفتر معین</td>
+                                            <td class="d-none">گزارش کامل دفتر معین</td>
                                             <td>
-                                                <a href="{{ route('simpleWorkflowReport.external-internal.index') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                    @if (auth()->user()->access('بایگانی: گزارش پرونده های بایگانی شده'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>بایگانی</td>
-                                            <td class="d-none">گزارش کامل پرونده های بایگانی شده</td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.external-internal-archive') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                    @if (auth()->user()->access('مپا سنتر: پرونده های پایان یافته'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>مپاسنتر: پرونده های پایان یافته</td>
-                                            <td class="d-none">گزارش کامل پرونده های پایان یافته مپاسنتر</td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.mapa-center-archive') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                    @if (auth()->user()->access('گزارش درآمد تقریبی'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>گزارش درآمد پرسنل</td>
-                                            <td class="d-none">گزارش درآمد </td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.fin.totalCost') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                    @if (auth()->user()->access('گزارش کل تعیین هزینه ها و دریافت هزینه ها'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>هزینه ها</td>
-                                            <td class="d-none">گزارش کامل تعیین هزینه ها و دریافت هزینه ها</td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.fin.allPayments') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-
-                                    @if (auth()->user()->access('گزارش چک ها'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>چک ها</td>
-                                            <td class="d-none">گزارش کامل چک ها و تاریخ سررسید آنها</td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.cheque-report.index') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                    @if (auth()->user()->access('گزارش حساب دفتری'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>حساب دفتری</td>
-                                            <td class="d-none">گزارش کامل حساب دفتری</td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.on-credit-report.index') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                    @if (auth()->user()->access('گزارش بدهکاران'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>بدهکاران</td>
-                                            <td class="d-none">گزارش کامل بدهکاران</td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.on-credit-report.showAll') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-
-                                    @if (auth()->user()->access('گزارش اقدامات پرسنل'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>اقدامات پرسنل</td>
-                                            <td class="d-none">گزارش کامل</td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.personel-activity.index') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                    @if (auth()->user()->access('گزارش روزانه'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>گزارش روزانه پرسنل</td>
-                                            <td class="d-none">گزارش کامل</td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.daily-report.index') }}"
-                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                    @if (auth()->user()->access('گزارش لیست طلبکاران'))
-                                        <tr>
-                                            <td class="d-none"></td>
-                                            <td>گزارش لیست طلبکاران</td>
-                                            <td class="d-none">گزارش کامل لیست طلبکاران</td>
-                                            <td>
-                                                <a href="{{ route('simpleWorkflowReport.creditor.index') }}"
+                                                <a href="{{ route('simpleWorkflowReport.financial-transactions.index') }}"
                                                     class="btn btn-primary btn-sm">مشاهده گزارش</a>
                                             </td>
                                         </tr>
