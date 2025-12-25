@@ -218,7 +218,7 @@
                         <h2 class="h4 fw-bold text-dark mb-1">{{ trans('fields.Categorized Inbox') }}</h2>
                         <p class="text-muted mb-0 small">{{ trans('fields.Categorized Inbox Hint') }}</p>
                     </div>
-                    
+
                 </div>
 
                 @if ($taskCategories->isNotEmpty())
@@ -239,9 +239,11 @@
                             @endforeach
                         </div>
                         <div class="task-category-select">
-                            <label for="task-filter" class="form-label text-muted small mb-1">{{ trans('fields.Switch Task') }}</label>
+                            <label for="task-filter"
+                                class="form-label text-muted small mb-1">{{ trans('fields.Switch Task') }}</label>
                             <select id="task-filter" class="form-select rounded-pill">
-                                <option value="" {{ $selectedTaskId === null ? 'selected' : '' }}>{{ trans('fields.All Tasks') }}</option>
+                                <option value="" {{ $selectedTaskId === null ? 'selected' : '' }}>
+                                    {{ trans('fields.All Tasks') }}</option>
                                 @foreach ($taskCategories as $category)
                                     <option value="{{ $category['id'] }}"
                                         {{ $selectedTaskId === $category['id'] ? 'selected' : '' }}>
@@ -256,8 +258,7 @@
                 @endif
 
                 <div class="advanced-filter-card mb-4">
-                    <div
-                        class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-3">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-3">
                         <div>
                             <h3 class="h6 fw-bold mb-1">{{ trans('fields.Advanced Filter') }}</h3>
                             <p class="text-muted small mb-0">{{ trans('fields.Advanced Filter Hint') }}</p>
@@ -291,8 +292,7 @@
                             <button type="button" class="btn btn-light btn-sm rounded-pill" id="clear-advanced-filter">
                                 {{ trans('fields.Clear Filter') }}
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm rounded-pill"
-                                id="apply-advanced-filter">
+                            <button type="button" class="btn btn-primary btn-sm rounded-pill" id="apply-advanced-filter">
                                 {{ trans('fields.Apply Filter') }}
                             </button>
                         </div>
@@ -317,7 +317,8 @@
                 @endif
 
                 @if ($rows->isEmpty())
-                    <div class="alert alert-light border text-muted">{{ trans('fields.You have no items in your inbox') }}</div>
+                    <div class="alert alert-light border text-muted">{{ trans('fields.You have no items in your inbox') }}
+                    </div>
                 @else
                     <div class="table-responsive table-modern">
                         <table class="table align-middle mb-0" id="categorized-inbox-table">
@@ -327,6 +328,8 @@
                                     <th>#</th>
                                     <th>{{ trans('fields.Case Title') }}</th>
                                     <th>{{ trans('fields.Process Title') }}</th>
+                                    <th>{{ trans('fields.Task Title') }}</th>
+
                                     <th>{{ trans('fields.Case Number') }}</th>
                                     <th>{{ trans('fields.Status') }}</th>
                                     <th>{{ trans('fields.Received At') }}</th>
@@ -338,10 +341,10 @@
                                         $rowVariables = $caseVariables[$row->case_id] ?? [];
                                     @endphp
                                     <tr ondblclick="window.location.href = '{{ route('simpleWorkflow.inbox.view', $row->id) }}'"
-                                        data-case-id="{{ $row->case_id }}"
-                                        data-variables='@json($rowVariables, JSON_UNESCAPED_UNICODE)'>
+                                        data-case-id="{{ $row->case_id }}" data-variables='@json($rowVariables, JSON_UNESCAPED_UNICODE)'>
                                         <td class="text-nowrap">
-                                            <a href="{{ route('simpleWorkflow.inbox.view', $row->id) }}" class="text-primary me-2">
+                                            <a href="{{ route('simpleWorkflow.inbox.view', $row->id) }}"
+                                                class="text-primary me-2">
                                                 <i class="material-icons">open_in_new</i>
                                             </a>
                                             @if ($row->task && $row->task->allow_cancel)
@@ -358,6 +361,7 @@
                                             <div class="fw-semibold text-dark">{{ $row->case_name ?? '-' }}</div>
                                         </td>
                                         <td>{{ optional($row->task->process ?? null)->name ?? '-' }}</td>
+                                        <td>{!! $row->task->styled_name !!}</td>
                                         <td>{{ optional($row->case ?? null)->number ?? '-' }}</td>
                                         <td>
                                             @php
@@ -366,18 +370,22 @@
                                             @if ($status === 'new')
                                                 <span class="status-badge status-new">{{ trans('fields.New') }}</span>
                                             @elseif($status === 'in_progress' || $status === 'inProgress')
-                                                <span class="status-badge status-in-progress">{{ trans('fields.In Progress') }}</span>
+                                                <span
+                                                    class="status-badge status-in-progress">{{ trans('fields.In Progress') }}</span>
                                             @elseif($status === 'draft')
                                                 <span class="status-badge status-draft">{{ trans('fields.Draft') }}</span>
                                             @elseif($status === 'canceled')
-                                                <span class="status-badge status-canceled">{{ trans('fields.Canceled') }}</span>
+                                                <span
+                                                    class="status-badge status-canceled">{{ trans('fields.Canceled') }}</span>
                                             @else
-                                                <span class="status-badge status-done">{{ trans('fields.Completed') }}</span>
+                                                <span
+                                                    class="status-badge status-done">{{ trans('fields.Completed') }}</span>
                                             @endif
                                         </td>
                                         <td dir="ltr" class="text-muted">
                                             {{ toJalali($row->created_at)->format('Y-m-d') }}
-                                            <span class="d-block small">{{ toJalali($row->created_at)->format('H:i') }}</span>
+                                            <span
+                                                class="d-block small">{{ toJalali($row->created_at)->format('H:i') }}</span>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -609,9 +617,9 @@
                 return;
             }
 
-            const modeText = advancedFilterState.mode === 'and'
-                ? '{{ trans('fields.Match All Conditions') }}'
-                : '{{ trans('fields.Match Any Conditions') }}';
+            const modeText = advancedFilterState.mode === 'and' ?
+                '{{ trans('fields.Match All Conditions') }}' :
+                '{{ trans('fields.Match Any Conditions') }}';
 
             const summary = advancedFilterState.conditions.map((condition) => {
                 const variable = variableOptions.find((option) => option.key === condition.field);
