@@ -10,8 +10,13 @@
         @csrf
         @foreach($columns as $column)
             <div class="mb-3">
-                <label class="form-label">{{ trans('fields.' . $column) }}</label>
-                <input type="text" name="{{ $column }}" class="form-control">
+                <label class="form-label">
+                    {{ trans('fields.' . $column['name']) }}
+                    @if(($column['nullable'] ?? 'yes') === 'no')
+                        <span class="text-danger">*</span>
+                    @endif
+                </label>
+                <input type="text" name="{{ $column['name'] }}" class="form-control">
             </div>
         @endforeach
         <button class="btn btn-primary">{{ trans('fields.Store') }}</button>
