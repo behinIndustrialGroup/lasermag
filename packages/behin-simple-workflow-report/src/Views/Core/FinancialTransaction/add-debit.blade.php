@@ -10,13 +10,13 @@
 
         <div class="col-sm-4">
             <div class="form-group"><label>طرف حساب</label>
-                @if (isset($counterparty))
-                    <input type="text" name="counterparty_name" value="{{ $counterparty->name }}" class="form-control"
+                @if (isset($account_id))
+                    <input type="text" name="account_name" value="{{ $account_id->name }}" class="form-control"
                         id="counterparty_name" readonly>
-                    <input type="hidden" name="counterparty_id" value="{{ $counterparty->id }}" class="form-control"
-                        id="counterparty" readonly>
+                    <input type="hidden" name="account_id" value="{{ $account_id->id }}" class="form-control"
+                        id="account_id" readonly>
                 @else
-                    <select name="account_id" class="form-control select2" id="counterparty">
+                    <select name="account_id" class="form-control select2" id="account_id">
                         <option value="">انتخاب کنید</option>
                         @foreach ($counterParties as $counterParty)
                             <option value="{{ $counterParty->id }}">{{ $counterParty->name }}</option>
