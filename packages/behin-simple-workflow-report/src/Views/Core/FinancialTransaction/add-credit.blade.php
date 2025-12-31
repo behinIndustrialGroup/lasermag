@@ -15,7 +15,7 @@
                     <input type="hidden" name="counterparty_id" value="{{ $counterparty->id }}" class="form-control"
                         id="counterparty" readonly>
                 @else
-                    <select name="counterparty_id" class="form-control select2" id="counterparty">
+                    <select name="account_id" class="form-control select2" id="counterparty">
                         <option value="">انتخاب کنید</option>
                         @foreach ($counterParties as $counterParty)
                             <option value="{{ $counterParty->id }}">{{ $counterParty->name }}</option>
