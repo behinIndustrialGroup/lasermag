@@ -337,21 +337,24 @@ class FinancialTransactionController extends Controller
         if ($request->has_destination_account) {
             $validated = $request->validate([
                 'amount' => 'required',
-                'account_id' => 'required|exists:wf_entity_counter_parties,id',
-                'destination_account_id' => 'required|exists:wf_entity_counter_parties,id',
+                'account_id' => 'required|exists:wf_entity_customers,id',
+                'destination_account_id' => 'required|exists:wf_entity_customers,id',
             ], [
                 'amount.required' => 'مبلغ الزامی است',
                 'account_id.required' => 'طرف حساب الزامی است',
+                'account_id.exists' => 'طرف حساب انتخاب شده معتبر نیست',
                 'destination_account_id.required' => 'طرف حساب مقصد الزامی است',
+                'destination_account_id.exists' => 'طرف حساب مقصد انتخاب شده معتبر نیست',
             ]);
-            $destinationCounterparty = DB::table('wf_entity_counter_parties')->where('id', $request->destination_account_id)->first();
+            $destinationCounterparty = DB::table('wf_entity_customers')->where('id', $request->destination_account_id)->first();
         } else {
             $validated = $request->validate([
                 'amount' => 'required',
-                'account_id' => 'required|exists:wf_entity_counter_parties,id',
+                'account_id' => 'required|exists:wf_entity_customers,id',
             ], [
                 'amount.required' => 'مبلغ الزامی است',
                 'account_id.required' => 'طرف حساب الزامی است',
+                'account_id.exists' => 'طرف حساب انتخاب شده معتبر نیست',
             ]);
         }
 
@@ -369,7 +372,7 @@ class FinancialTransactionController extends Controller
             ]);
         }
 
-        $counterParty = DB::table('wf_entity_counter_parties')->where('id', $request->account_id)->first();
+        $counterParty = DB::table('wf_entity_customers')->where('id', $request->account_id)->first();
         $amount = str_replace(',', '', $request->amount);
         $finTransaction = Transactions::create([
             'case_number' => $request->case_number,
@@ -378,12 +381,10 @@ class FinancialTransactionController extends Controller
             'description' => $request->description,
             'account_id' => $request->account_id,
             'amount' => (string)$amount,
-            'invoice_or_cheque_number' => $request->invoice_or_cheque_number,
-            'transaction_or_cheque_due_date' => $request->transaction_or_cheque_due_date,
-            'transaction_or_cheque_due_date_alt' => $request->transaction_or_cheque_due_date_alt,
+            'reference_id' => $request->reference_id,
+            'date' => $request->date,
+            'date_alt' => $request->date_alt,
             'destination_account_id' => $request->destination_account_id ?? null,
-            'destination_account_name' => $destinationCounterparty->name ?? null,
-            'destination_account_number' => $destinationCounterparty->account_number ?? null,
         ]);
         if (isset($destinationCounterparty)) {
             $autoFinTransaction = Transactions::create([
@@ -393,9 +394,9 @@ class FinancialTransactionController extends Controller
                 'description' => 'تراکنش خودکار. واریزی ' . $counterParty->name,
                 'account_id' => $destinationCounterparty->id,
                 'amount' => (string)$amount,
-                'invoice_or_cheque_number' => $request->invoice_or_cheque_number,
-                'transaction_or_cheque_due_date' => $request->transaction_or_cheque_due_date,
-                'transaction_or_cheque_due_date_alt' => $request->transaction_or_cheque_due_date_alt,
+                'reference_id' => $request->reference_id,
+                'date' => $request->date,
+                'date_alt' => $request->date_alt,
             ]);
             $finTransaction->auto_financial_transaction_id = $autoFinTransaction->id;
             $finTransaction->save();
@@ -431,11 +432,9 @@ class FinancialTransactionController extends Controller
             'description' => $request->description,
             'account_id' => $request->account_id,
             'amount' => (string)$amount,
-            'invoice_or_cheque_number' => $request->invoice_or_cheque_number,
-            'transaction_or_cheque_due_date' => $request->transaction_or_cheque_due_date,
-            'transaction_or_cheque_due_date_alt' => $request->transaction_or_cheque_due_date_alt,
-            'destination_account_name' => $request->destination_account_name,
-            'destination_account_number' => $request->destination_account_number,
+            'reference_id' => $request->reference_id,
+            'date' => $request->date,
+            'date_alt' => $request->date_alt,
         ]);
         return redirect()->back(); //->route('simpleWorkflowReport.financial-transactions.index');
     }
