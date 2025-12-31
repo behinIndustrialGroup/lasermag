@@ -348,7 +348,7 @@ class EntityController extends Controller
             return redirect()->back()->with('error', 'Entity table not found.');
         }
         $record = DB::table($entity->db_table_name)->where('id', $id)->first();
-        $columns = $this->getColumnNames($entity);
+        $columns = $this->getColumnDetails($entity);
         return view('SimpleWorkflowView::Core.Entity.edit-record', compact('entity', 'record', 'columns'));
     }
 
@@ -370,7 +370,7 @@ class EntityController extends Controller
         if (!$entity->db_table_name || !Schema::hasTable($entity->db_table_name)) {
             return redirect()->back()->with('error', 'Entity table not found.');
         }
-        $columns = $this->getColumnNames($entity);
+        $columns = $this->getColumnDetails($entity);
         return view('SimpleWorkflowView::Core.Entity.create-record', compact('entity', 'columns'));
     }
 
@@ -407,17 +407,27 @@ class EntityController extends Controller
         return redirect()->route('simpleWorkflow.entities.records', $entity->id)->with('success', 'Record deleted successfully.');
     }
 
-    private function getColumnNames(Entity $entity)
+    private function getColumnDetails(Entity $entity)
     {
         $columnsLines = preg_split('/\r\n|\n|\r/', trim($entity->columns));
-        $names = [];
+        $detailsCollection = [];
         foreach ($columnsLines as $line) {
             if (!$line) {
                 continue;
             }
             $details = explode(',', $line);
-            $names[] = $details[0];
+            $detailsCollection[] = [
+                'name' => $details[0],
+                'type' => $details[1] ?? 'string',
+                'nullable' => $details[2] ?? 'no',
+            ];
         }
-        return $names;
+        return $detailsCollection;
+    }
+
+    private function getColumnNames(Entity $entity)
+    {
+        $detailsCollection = $this->getColumnDetails($entity);
+        return array_map(fn($detail) => $detail['name'], $detailsCollection);
     }
 }
