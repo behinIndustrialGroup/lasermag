@@ -19,10 +19,9 @@
                     <th>مبلغ</th>
                     <th>بابت پرونده</th>
                     <th>نوع پرداختی</th>
-                    <th>{{ trans('fields.invoice_or_cheque_number') }}</th>
-                    <th>{{ trans('fields.transaction_or_cheque_due_date') }}</th>
+                    <th>{{ trans('fields.reference_id') }}</th>
+                    <th>{{ trans('fields.date') }}</th>
                     <th>{{ trans('fields.destination_account_name') }}</th>
-                    <th>{{ trans('fields.destination_account_number') }}</th>
                     <th>توضیحات</th>
                     <th>اقدامات</th>
                 </tr>
@@ -30,9 +29,9 @@
             <tbody>
                 @foreach ($creditors as $creditor)
                     <tr id="financial-transaction-row-{{ $creditor->id }}"
-                        @if ($creditor->financial_type == 'بدهکار') style="background: #f56c6c" @endif
-                        @if ($creditor->financial_type == 'بستانکار') class="bg-success" @endif>
-                        <td>{{ $creditor->financial_type }}</td>
+                        @if ($creditor->type == 'بدهکار') style="background: #f56c6c" @endif
+                        @if ($creditor->type == 'بستانکار') class="bg-success" @endif>
+                        <td>{{ $creditor->type }}</td>
                         <td>{{ $creditor->counterparty()->name ?? '' }}</td>
                         <td dir="ltr">
                             {{ str_contains($creditor->amount, ',') ? $creditor->amount : number_format((int) $creditor->amount) }}
@@ -47,15 +46,14 @@
                             {{ $creditor->case_number }}
                         </td>
                         <td>{{ $creditor->financial_method }}</td>
-                        <td>{{ $creditor->invoice_or_cheque_number }}</td>
-                        <td>{{ $creditor->transaction_or_cheque_due_date }}</td>
-                        <td>{{ $creditor->destination_account_name }}</td>
-                        <td>{{ $creditor->destination_account_number }}</td>
+                        <td>{{ $creditor->reference_id }}</td>
+                        <td>{{ $creditor->date }}</td>
+                        <td>{{ $creditor->destinationAccountName()?->name ?? '' }}</td>
                         <td>{{ $creditor->description }}</td>
                         <td>
                             @if (access('اصلاح یا حذف تراکنش مالی'))
                                 <button
-                                    class="btn btn-sm btn-{{ $creditor->financial_type == 'بستانکار' ? 'primary' : 'warning' }} mb-1"
+                                    class="btn btn-sm btn-{{ $creditor->type == 'بستانکار' ? 'primary' : 'warning' }} mb-1"
                                     onclick="editFinancialTransaction(`{{ $creditor->id }}`)">ویرایش</button>
                                 <button class="btn btn-sm btn-danger mb-1"
                                     onclick="deleteFinancialTransaction(`{{ $creditor->id }}`)">حذف</button>
