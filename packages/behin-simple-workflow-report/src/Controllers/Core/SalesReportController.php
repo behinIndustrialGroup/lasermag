@@ -69,7 +69,7 @@ class SalesReportController extends Controller
 
                 DB::raw(
                     'GROUP_CONCAT(
-                    CONCAT(pr.name, " (", pi.quantity, ")")
+                    CONCAT(pi.quantity , " * " , pr.name)
                     SEPARATOR "، "
                 ) as items_list'
                 )
