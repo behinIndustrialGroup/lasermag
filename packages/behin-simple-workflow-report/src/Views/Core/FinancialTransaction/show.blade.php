@@ -37,12 +37,12 @@
                             {{ str_contains($creditor->amount, ',') ? $creditor->amount : number_format((int) $creditor->amount) }}
                         </td>
                         <td>
-                            @if (!empty($creditor->case_number))
+                            {{-- @if (!empty($creditor->case_number))
                                 <a href="{{ route('simpleWorkflowReport.external-internal.show', ['external_internal' => $creditor->case_number]) }}"
                                     class="text-decoration-none me-1">
                                     <i class="fa fa-external-link text-primary"></i>
                                 </a>
-                            @endif
+                            @endif --}}
                             {{ $creditor->case_number }}
                         </td>
                         <td>{{ $creditor->financial_method }}</td>
