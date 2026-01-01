@@ -64,6 +64,7 @@ class SalesReportController extends Controller
                 'c.name as customer_name',
                 DB::raw('COALESCE(SUM(pi.quantity), 0) as total_quantity'),
                 DB::raw('COALESCE(SUM(pi.total), 0) as items_total'),
+                DB::raw('GROUP_CONCAT(CONCAT(pi.name, " (", pi.quantity, ")") SEPARATOR "، ") as items_list')
             ])
             ->whereNull('p.deleted_at')
             ->where(function ($query) {
