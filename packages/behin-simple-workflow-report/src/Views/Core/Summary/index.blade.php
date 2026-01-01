@@ -182,6 +182,15 @@
                                             </td>
                                         </tr>
                                     @endif
+                                    @if (auth()->user()->access('گزارش فروش'))
+                                        <tr>
+                                            <td>گزارش فروش</td>
+                                            <td>
+                                                <a href="{{ route('simpleWorkflowReport.sales-report.index') }}"
+                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
+                                            </td>
+                                        </tr>
+                                    @endif
 
                                 </tbody>
                             </table>
