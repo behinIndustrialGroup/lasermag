@@ -31,8 +31,5 @@
                 </tbody>
             </table>
         </div>
-        <div class="card-body">
-            {{ $rows->links() }}
-        </div>
     </div>
 @endsection
