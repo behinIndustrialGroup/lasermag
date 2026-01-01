@@ -16,6 +16,7 @@ use Behin\SimpleWorkflowReport\Controllers\Core\ExternalAndInternalReportControl
 use Behin\SimpleWorkflowReport\Controllers\Core\AllRequestsReportController;
 use Behin\SimpleWorkflowReport\Controllers\Core\FinancialTransactionController;
 use Behin\SimpleWorkflowReport\Controllers\Core\MyRequestController;
+use Behin\SimpleWorkflowReport\Controllers\Core\SalesReportController;
 use Behin\SimpleWorkflowReport\Controllers\Core\StageReportController;
 use Behin\SimpleWorkflowReport\Controllers\Core\RoleReportFormController;
 use Behin\SimpleWorkflowReport\Controllers\Core\SummaryReportController;
@@ -48,6 +49,8 @@ Route::name('simpleWorkflowReport.')->prefix('workflow-report')->middleware(['we
     Route::post('financial-transactions/add-credit', [FinancialTransactionController::class, 'addCredit'])->name('financial-transactions.addCredit')->middleware('access:گزارش دفتر معین');
     Route::get('financial-transactions/{counterparty}/show-add-debit/{onlyAssignedUsers?}', [FinancialTransactionController::class, 'showAddDebit'])->name('financial-transactions.showAddDebit')->middleware('access:گزارش دفتر معین');
     Route::post('financial-transactions/add-debit', [FinancialTransactionController::class, 'addDebit'])->name('financial-transactions.addDebit')->middleware('access:گزارش دفتر معین');
+
+    Route::get('sales-report', [SalesReportController::class, 'index'])->name('sales-report.index');
 
 
 });
