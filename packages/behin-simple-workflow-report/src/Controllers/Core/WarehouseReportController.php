@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Behin\SimpleWorkflow\Models\Entities\Products;
 use Behin\SimpleWorkflow\Models\Entities\Inventory_transactions;
-
+use Illuminate\Support\Facades\Log;
 
 class WarehouseReportController extends Controller
 {
@@ -24,6 +24,7 @@ class WarehouseReportController extends Controller
         $rows = $query->get()->each(function ($row) {
             // Process each row if needed
             $in = Inventory_transactions::where('product_id', $row->product_id)->where('inventory_transaction_type', 'افزایش')->sum('quantity');
+            Log::info($row->product_id . ': '. $in);
             $out = Inventory_transactions::where('product_id', $row->product_id)->where('inventory_transaction_type', 'کاهش')->sum('quantity');
             $row->stock = $in - $out;
             $row->save();
