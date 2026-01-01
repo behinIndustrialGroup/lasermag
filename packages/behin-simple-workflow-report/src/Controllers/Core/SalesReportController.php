@@ -52,6 +52,7 @@ class SalesReportController extends Controller
         return DB::table('wf_entity_purchases as p')
             ->leftJoin('wf_entity_customers as c', 'p.supplier_id', '=', 'c.id')
             ->leftJoin('wf_entity_purchase_items as pi', 'pi.case_number', '=', 'p.case_number')
+            ->leftJoin('wf_entity_products as pr', 'pr.id', '=', 'pi.product_id')
             ->select([
                 'p.id',
                 'p.invoice_no',
@@ -62,9 +63,16 @@ class SalesReportController extends Controller
                 'p.currency_unit',
                 'p.case_number',
                 'c.name as customer_name',
+
                 DB::raw('COALESCE(SUM(pi.quantity), 0) as total_quantity'),
                 DB::raw('COALESCE(SUM(pi.total), 0) as items_total'),
-                DB::raw('GROUP_CONCAT(CONCAT(pi.name, " (", pi.quantity, ")") SEPARATOR "، ") as items_list')
+
+                DB::raw(
+                    'GROUP_CONCAT(
+                    CONCAT(pr.name, " (", pi.quantity, ")")
+                    SEPARATOR "، "
+                ) as items_list'
+                )
             ])
             ->whereNull('p.deleted_at')
             ->where(function ($query) {
@@ -72,6 +80,7 @@ class SalesReportController extends Controller
                     ->orWhereNull('pi.id');
             });
     }
+
 
     protected function summaryQuery()
     {
