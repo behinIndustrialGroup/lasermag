@@ -23,8 +23,8 @@ class WarehouseReportController extends Controller
 
         $rows = $query->get()->each(function ($row) {
             // Process each row if needed
-            $in = Inventory_transactions::where('product_id', $row->product_id)->where('type', 'افزایش')->sum('quantity');
-            $out = Inventory_transactions::where('product_id', $row->product_id)->where('type', 'کاهش')->sum('quantity');
+            $in = Inventory_transactions::where('product_id', $row->product_id)->where('inventory_transaction_type', 'افزایش')->sum('quantity');
+            $out = Inventory_transactions::where('product_id', $row->product_id)->where('inventory_transaction_type', 'کاهش')->sum('quantity');
             $row->stock = $in - $out;
             $row->save();
         });
