@@ -85,7 +85,7 @@
                         <tr>
                             <td>{{ $row->invoice_no }}</td>
                             <td>{{ $row->customer_name ?? '---' }}</td>
-                            <td>{{ $row->items_list ?? '---' }}</td> <!-- New cell -->
+                            <td>{!! $row->items_list ?? '---' !!}</td> <!-- New cell -->
                             <td>{{ $row->purchase_date ?? $row->purchase_date_alt }}</td>
                             <td>{{ $row->case_number }}</td>
                             <td dir="ltr">{{ number_format($row->total_quantity ?? 0) }}</td>
