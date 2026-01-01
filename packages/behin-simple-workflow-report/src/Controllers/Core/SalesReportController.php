@@ -51,7 +51,7 @@ class SalesReportController extends Controller
     {
         return DB::table('wf_entity_purchases as p')
             ->leftJoin('wf_entity_customers as c', 'p.supplier_id', '=', 'c.id')
-            ->leftJoin('wf_entity_purchase_items as pi', 'pi.purchase_id', '=', 'p.id')
+            ->leftJoin('wf_entity_purchase_items as pi', 'pi.case_number', '=', 'p.case_number')
             ->select([
                 'p.id',
                 'p.invoice_no',
@@ -76,7 +76,7 @@ class SalesReportController extends Controller
     {
         return DB::table('wf_entity_purchases as p')
             ->leftJoin('wf_entity_customers as c', 'p.supplier_id', '=', 'c.id')
-            ->leftJoin('wf_entity_purchase_items as pi', 'pi.purchase_id', '=', 'p.id')
+            ->leftJoin('wf_entity_purchase_items as pi', 'pi.case_number', '=', 'p.case_number')
             ->select([
                 DB::raw('COALESCE(SUM(pi.quantity), 0) as total_quantity'),
                 DB::raw('COALESCE(SUM(pi.total), 0) as items_total'),
