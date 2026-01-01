@@ -44,7 +44,7 @@ return [
         'workflow-report' => [
             'icon' => 'report',
             'fa_name' => 'گزارشات',
-            'route-name' => 'simpleWorkflowReport.index',
+            'route-name' => 'simpleWorkflowReport.summary-report.index',
             'submenu' => [
                 'all-requests' => [ 'fa_name' => 'کل درخواست ها', 'route-name' => 'simpleWorkflowReport.all-requests.index' ],
                 'summary' => [ 'fa_name' => 'خلاصه', 'route-name' => 'simpleWorkflowReport.summary-report.index' ],
