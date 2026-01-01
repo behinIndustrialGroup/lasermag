@@ -191,6 +191,16 @@
                                             </td>
                                         </tr>
                                     @endif
+                                    
+                                    @if (access('گزارش انبار'))
+                                        <tr>
+                                            <td>گزارش انبار</td>
+                                            <td>
+                                                <a href="{{ route('simpleWorkflowReport.warehouses-report.index') }}"
+                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
+                                            </td>
+                                        </tr>
+                                    @endif
 
                                 </tbody>
                             </table>

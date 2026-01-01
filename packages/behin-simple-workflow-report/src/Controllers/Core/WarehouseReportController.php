@@ -1,0 +1,46 @@
+<?php
+
+namespace Behin\SimpleWorkflowReport\Controllers\Core;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Behin\SimpleWorkflow\Models\Entities\Products;
+use Behin\SimpleWorkflow\Models\Entities\Inventory_transactions;
+
+
+class WarehouseReportController extends Controller
+{
+    public function index(Request $request): View
+    {
+        $filters = $request->all();
+        $perPage = (int) ($filters['per_page'] ?? 25);
+        $perPage = $perPage > 0 ? $perPage : 25;
+
+        $query = $this->baseQuery();
+        
+
+        $rows = $query->get()->each(function ($row) {
+            // Process each row if needed
+            $row->in = Inventory_transactions::where('product_id', $row->product_id)->where('type', 'افزایش')->sum('quantity');
+            $row->out = Inventory_transactions::where('product_id', $row->product_id)->where('type', 'کاهش')->sum('quantity');
+            $row->stock = $row->in - $row->out;
+            $row->save();
+        });
+
+
+        return view('SimpleWorkflowReportView::Core.Warehouses.index', [
+            'rows' => $rows,
+        ]);
+    }
+
+    protected function baseQuery()
+    {
+        $products = Products::query();
+        return $products;
+    }
+
+
+    
+}

@@ -23,6 +23,7 @@ use Behin\SimpleWorkflowReport\Controllers\Core\SummaryReportController;
 use Behin\SimpleWorkflowReport\Controllers\Core\PersonelActivityController;
 use Behin\SimpleWorkflowReport\Controllers\Core\PhonebookController;
 use Behin\SimpleWorkflowReport\Controllers\Core\RecordingController;
+use Behin\SimpleWorkflowReport\Controllers\Core\WarehouseReportController;
 use Behin\SimpleWorkflowReport\Controllers\Scripts\TotalTimeoff;
 use Behin\SimpleWorkflowReport\Controllers\Scripts\UserTimeoffs;
 use BehinInit\App\Http\Middleware\Access;
@@ -51,6 +52,7 @@ Route::name('simpleWorkflowReport.')->prefix('workflow-report')->middleware(['we
     Route::post('financial-transactions/add-debit', [FinancialTransactionController::class, 'addDebit'])->name('financial-transactions.addDebit')->middleware('access:گزارش دفتر معین');
 
     Route::get('sales-report', [SalesReportController::class, 'index'])->name('sales-report.index');
+    Route::get('warehouse-report', [WarehouseReportController::class, 'index'])->name('warehouse-report.index');
 
 
 });
