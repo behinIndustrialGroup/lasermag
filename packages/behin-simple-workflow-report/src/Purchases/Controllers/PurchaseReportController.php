@@ -17,6 +17,6 @@ class PurchaseReportController
             $row->financialTransaction = Entities\Transactions::where('case_number', $row->number)->get();
             $row->inventoryTransaction = Entities\Inventory_transactions::where('case_number', $row->number)->get();
         });
-        return view('PurchasesReportView::purchases.index', compact('cases'));
+        return view('PurchasesReportView::index', compact('cases'));
     }
 }
