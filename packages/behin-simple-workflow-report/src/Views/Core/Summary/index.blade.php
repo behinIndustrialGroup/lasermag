@@ -212,6 +212,16 @@
                                         </tr>
                                     @endif
 
+                                    @if (access('گزارش فرایندهای فروش'))
+                                        <tr>
+                                            <td>گزارش فرایندهای فروش</td>
+                                            <td>
+                                                <a href="{{ route('simpleWorkflowReport.sales.index') }}"
+                                                    class="btn btn-primary btn-sm">مشاهده گزارش</a>
+                                            </td>
+                                        </tr>
+                                    @endif
+
                                 </tbody>
                             </table>
                         </div>
