@@ -23,19 +23,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($rows as $row)
+                    @forelse ($cases as $case)
                         <tr>
-                            <td>{{ $row->number }}</td>
-                            <td>{{ $row->creator->name ?? '' }}</td>
-                            <td>{{ $row->purchase->supplier->name ?? '' }}</td>
-                            <td>{{ number_format($row->purchase->total_amount ?? 0) }}</td>
+                            <td>{{ $case->number }}</td>
+                            <td>{{ $case->creator->name ?? '' }}</td>
+                            <td>{{ $case->purchase->supplier->name ?? '' }}</td>
+                            <td>{{ number_format($case->purchase->total_amount ?? 0) }}</td>
                             <td>
-                                @foreach($row->purchaseItems as $item)
+                                @foreach($case->purchaseItems as $item)
                                     {{ $item->product->name ?? '' }} ({{ $item->quantity }}x{{ number_format($item->price) }})<br>
                                 @endforeach
                             </td>
                             <td>
-                                @foreach($row->financialTransaction as $transaction)
+                                @foreach($case->financialTransaction as $transaction)
                                     {{ $transaction->account->name }} 
                                     {{ number_format($transaction->amount) }}
                                     {{ $transaction->type }}
@@ -43,7 +43,7 @@
                                 @endforeach
                             </td>
                             <td>
-                                @foreach ($row->inventoryTransaction as $inv)
+                                @foreach ($case->inventoryTransaction as $inv)
                                     {{ $inv->quantity }} * {{ $inv->inventory_transaction_type }} {{ $inv->type }}<br>
                                 @endforeach
                             </td>
