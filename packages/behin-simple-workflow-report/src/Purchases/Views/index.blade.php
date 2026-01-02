@@ -14,6 +14,7 @@
                 <thead class="table-light">
                     <tr>
                         <th>شماره پرونده</th>
+                        <th>وضعیت پرونده</th>
                         <th>ایجاد کننده</th>
                         <th>تامین کننده</th>
                         <th>مبلغ کل خرید</th>
@@ -26,6 +27,7 @@
                     @forelse ($cases as $case)
                         <tr>
                             <td>{{ $case->number }}</td>
+                            <td>{{ trans("fields.$case->status") }}</td>
                             <td>{{ $case->creator->name ?? '' }}</td>
                             <td>{{ $case->purchase->supplier->name ?? '' }}</td>
                             <td>{{ number_format($case->purchase->total_amount ?? 0) }}</td>
