@@ -1,6 +1,6 @@
 <?php
 
-namespace Behin\SimpleWorkflowReport\Sale\Controllers;
+namespace Behin\SimpleWorkflowReport\Sales\Controllers;
 
 use Behin\SimpleWorkflow\Models\Core\Cases;
 use Behin\SimpleWorkflow\Models\Entities;
