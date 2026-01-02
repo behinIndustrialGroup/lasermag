@@ -55,6 +55,7 @@ Route::name('simpleWorkflowReport.')->prefix('workflow-report')->middleware(['we
     Route::get('warehouse-report', [WarehouseReportController::class, 'index'])->name('warehouses-report.index');
 
     require __DIR__.'/../Purchases/web.php';
+    require __DIR__.'/../Sales/web.php';
 
 
 });
