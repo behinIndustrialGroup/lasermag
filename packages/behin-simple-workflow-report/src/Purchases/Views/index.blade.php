@@ -31,7 +31,7 @@
                             <td>{{ number_format($case->purchase->total_amount ?? 0) }}</td>
                             <td>
                                 @foreach($case->purchaseItems as $item)
-                                    {{ $item->quantity }} x {{ number_format($item->unit_price) }} {{ $item->currency_unit }} x {{ $item->product->name }}<br>
+                                    {{ $item->quantity }} * {{ number_format($item->unit_price) }} {{ $item->currency_unit }} * {{ $item->product->name }}<br>
                                 @endforeach
                             </td>
                             <td>
