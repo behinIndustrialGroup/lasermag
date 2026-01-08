@@ -1,5 +1,6 @@
 <h4>ویرایش تراکنش مالی</h4>
-<form action="{{ route('simpleWorkflowReport.financial-transactions.update', $financialTransaction) }}" method="POST">
+<form action="{{ route('simpleWorkflowReport.financial-transactions.update', $financialTransaction) }}" method="POST" 
+enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="row col-sm-12 p-0 m-0 dynamic-form" id="dfd41076-26ca-47e4-ab34-17bec3bd89db">
