@@ -216,7 +216,6 @@
                 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
                     <div>
                         <h2 class="h4 fw-bold text-dark mb-1">{{ trans('fields.Categorized Inbox') }}</h2>
-                        <p class="text-muted mb-0 small">{{ trans('fields.Categorized Inbox Hint') }}</p>
                     </div>
 
                 </div>
