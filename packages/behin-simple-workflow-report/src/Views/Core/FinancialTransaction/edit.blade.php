@@ -24,10 +24,10 @@
 
         <div class="col-sm-4">
             <div class="form-group"><label>طرف حساب</label>
-                <select name="counterparty_id" class="form-control select2" id="counterparty">
+                <select name="account_id" class="form-control select2" id="account_id">
                     <option value="">انتخاب کنید</option>
                     @foreach ($counterParties as $counterParty)
-                        <option value="{{ $counterParty->id }}" @selected($financialTransaction->counterparty_id == $counterParty->id)>
+                        <option value="{{ $counterParty->id }}" @selected($financialTransaction->account_id == $counterParty->id)>
                             {{ $counterParty->name }}
                         </option>
                     @endforeach
