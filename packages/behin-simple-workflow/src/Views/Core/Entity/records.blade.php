@@ -32,7 +32,7 @@
             <thead>
                 <tr>
                     @foreach ($columns as $column)
-                        <th class="text-left">{{ trans('fields.' . $column) }}</th>
+                        <th class="text-right">{{ trans('fields.' . $column) }}</th>
                     @endforeach
                     <th>{{ trans('fields.Actions') }}</th>
                 </tr>
@@ -41,16 +41,19 @@
                 @foreach ($records as $record)
                     <tr>
                         @foreach ($columns as $column)
-                            <td class="text-left">{{ $record->$column }}</td>
+                            <td class="text-right">{{ $record->$column }}</td>
                         @endforeach
                         <td>
-                            <a
-                                href="{{ route('simpleWorkflow.entities.editRecord', [$entity->id, $record->id]) }}">{{ trans('fields.Edit') }}</a>
+                            <a href="{{ route('simpleWorkflow.entities.editRecord', [$entity->id, $record->id]) }}"
+                                class="btn btn-sm btn-primary">
+                                {{ trans('fields.Edit') }}
+                            </a>
                             <form action="{{ route('simpleWorkflow.entities.deleteRecord', [$entity->id, $record->id]) }}"
-                                method="POST" class="d-inline">
+                                method="POST" class="d-inline"
+                                onsubmit="return confirm('{{ trans('fields.Are you sure you want to delete this record?') }}')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-link p-0 ms-2">{{ trans('fields.Delete') }}</button>
+                                <button type="submit" class="btn btn-danger p-0 ms-2">{{ trans('fields.Delete') }}</button>
                             </form>
                         </td>
                     </tr>
