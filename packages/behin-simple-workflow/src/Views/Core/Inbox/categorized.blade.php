@@ -238,7 +238,7 @@
                                 </button>
                             @endforeach
                         </div>
-                        <div class="task-category-select">
+                        {{-- <div class="task-category-select">
                             <label for="task-filter"
                                 class="form-label text-muted small mb-1">{{ trans('fields.Switch Task') }}</label>
                             <select id="task-filter" class="form-select rounded-pill">
@@ -251,13 +251,13 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                 @else
                     <div class="alert alert-info mb-0">{{ trans('fields.You have no items in your inbox') }}</div>
                 @endif
 
-                <div class="advanced-filter-card mb-4">
+                {{-- <div class="advanced-filter-card mb-4">
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-3">
                         <div>
                             <h3 class="h6 fw-bold mb-1">{{ trans('fields.Advanced Filter') }}</h3>
@@ -314,7 +314,7 @@
                             </button>
                         </div>
                     </div>
-                @endif
+                @endif --}}
 
                 @if ($rows->isEmpty())
                     <div class="alert alert-light border text-muted">{{ trans('fields.You have no items in your inbox') }}
