@@ -26,6 +26,7 @@ use MyFormBuilder\Fields\SimpleSelectField;
 use MyFormBuilder\Fields\SignatureField;
 use MyFormBuilder\Fields\TimeField;
 use MyFormBuilder\Fields\DateTimeField;
+use MyFormBuilder\Fields\NumberField;
 use MyFormBuilder\Fields\ViewModelField;
 use MyFormBuilder\Fields\SearchableInputField;
 
@@ -113,6 +114,13 @@ class FormBuilder
         // $field = $this->fieldFactory->create('text', $name, $attributes);
         return (new TextField($name, $attributes))->render();
         return $this;
+    }
+    public function number(string $name, array $attributes = null)
+    {
+
+        $attributes = $attributes ?? [];
+        // $field = $this->fieldFactory->create('text', $name, $attributes);
+        return (new NumberField($name, $attributes))->render();
     }
 
     public function signature(string $name, array $attributes = null)

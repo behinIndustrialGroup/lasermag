@@ -43,7 +43,6 @@
                         <th><input type="checkbox" id="select-all"></th>
                         <th>{{ trans('ID') }}</th>
                         <th class="text-left">{{ trans('fields.Name') }}</th>
-                        <th class="text-left">{{ trans('fields.Name') }}</th>
                         <th>{{ trans('fields.Actions') }}</th>
                     </tr>
                 </thead>
@@ -52,7 +51,6 @@
                         <tr>
                             <td><input type="checkbox" name="ids[]" value="{{ $entity->id }}"></td>
                             <td>{{ $loop->iteration }}</td>
-                            <td class="text-left">{{ trans("fields.".$entity->name) }}</td>
                             <td class="text-left">{{ $entity->name }}</td>
                             <td>
                                 <a href="{{ route('simpleWorkflow.entities.edit', $entity->id) }}">{{ trans('fields.Edit') }}</a> |
