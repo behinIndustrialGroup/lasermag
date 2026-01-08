@@ -317,7 +317,7 @@ class FinancialTransactionController extends Controller
 
     public function edit(Transactions $financialTransaction)
     {
-        $counterParties = CounterPartyController::getAll();
+        $counterParties = Customers::all();
 
         return view(
             'SimpleWorkflowReportView::Core.FinancialTransaction.edit',
