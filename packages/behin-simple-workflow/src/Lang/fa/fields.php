@@ -2,7 +2,14 @@
 
 return [
     'name' => 'نام',
+    'Name' => 'نام',
     'description' => 'توضیحات',
+    'Description' => 'توضیحات',
+    'Icon' => 'آیکون',
+    'Color' => 'رنگ',
+    'Url' => 'آدرس',
+    'Access' => 'دسترسی',
+    'Action' => 'عملیات',
     'status' => 'وضعیت',
     'created_at' => 'تاریخ ایجاد',
     'updated_at' => 'تاریخ ویرایش',

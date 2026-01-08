@@ -5,6 +5,17 @@
 @endphp
 
 @section('content')
+    @php
+        use Behin\SimpleWorkflow\Models\Core\DashboardItem;
+        use Illuminate\Support\Facades\Schema;
+
+        $dashboardItems = Schema::hasTable('wf_dashboard_items')
+            ? DashboardItem::query()
+                ->orderBy('sort_order')
+                ->orderBy('created_at')
+                ->get()
+            : collect();
+    @endphp
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         .mobile-tile {
@@ -65,6 +76,28 @@
         }
     </style>
     <div class="container py-4">
+        @if ($dashboardItems->isNotEmpty())
+            <div class="row mb-4">
+                @foreach ($dashboardItems as $item)
+                    @if (!$item->access_key || auth()->user()->access($item->access_key))
+                        <div class="col-sm-3 mb-3">
+                            <div class="small-box {{ $item->color }}">
+                                <div class="inner">
+                                    <h3>{{ $item->name }}</h3>
+                                    <p>{{ $item->description }}</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="{{ $item->icon }}"></i>
+                                </div>
+                                <a href="{{ $item->url }}" class="small-box-footer">
+                                    {{ __('مشاهده') }} <i class="fa fa-arrow-circle-left"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        @endif
 
         <!-- اضافه کردن Animate.css از CDN -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
