@@ -451,13 +451,7 @@ class FinancialTransactionController extends Controller
             'description' => ['nullable', 'string'],
         ]);
 
-        if ($request->hasFile('file')) {
-            $result = FileController::store($request->file('file'), 'simpleWorkflow');
-            if ($result['status'] == 200) {
-                $financialTransaction->file = $result['dir'];
-                $financialTransaction->save();
-            }
-        }
+        
 
         $amount = str_replace(',', '', $validated['amount']);
         if ($financialTransaction->auto_financial_transaction_id) {
@@ -469,6 +463,13 @@ class FinancialTransactionController extends Controller
             $this->addCredit($request);
         } else {
             $this->addDebit($request);
+        }
+        if ($request->hasFile('file')) {
+            $result = FileController::store($request->file('file'), 'simpleWorkflow');
+            if ($result['status'] == 200) {
+                $financialTransaction->file = $result['dir'];
+                $financialTransaction->save();
+            }
         }
 
         // $financialTransaction->update([
