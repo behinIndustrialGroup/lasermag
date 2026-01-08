@@ -339,13 +339,10 @@ class FinancialTransactionController extends Controller
             $validated = $request->validate([
                 'amount' => 'required',
                 'account_id' => 'required|exists:wf_entity_customers,id',
-                'destination_account_id' => 'required|exists:wf_entity_customers,id',
             ], [
                 'amount.required' => 'مبلغ الزامی است',
                 'account_id.required' => 'طرف حساب الزامی است',
                 'account_id.exists' => 'طرف حساب انتخاب شده معتبر نیست',
-                'destination_account_id.required' => 'طرف حساب مقصد الزامی است',
-                'destination_account_id.exists' => 'طرف حساب مقصد انتخاب شده معتبر نیست',
             ]);
             $destinationCounterparty = DB::table('wf_entity_customers')->where('id', $request->destination_account_id)->first();
         } else {
@@ -451,8 +448,6 @@ class FinancialTransactionController extends Controller
             'invoice_or_cheque_number' => ['nullable', 'string'],
             'transaction_or_cheque_due_date' => ['nullable', 'string'],
             'transaction_or_cheque_due_date_alt' => ['nullable', 'string'],
-            'destination_account_name' => ['nullable', 'string'],
-            'destination_account_number' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
         ]);
 
