@@ -53,7 +53,7 @@
                                 onsubmit="return confirm('{{ trans('fields.Are you sure you want to delete this record?') }}')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger p-0 ms-2">{{ trans('fields.Delete') }}</button>
+                                <button type="submit" class="btn btn-danger">{{ trans('fields.Delete') }}</button>
                             </form>
                         </td>
                     </tr>
