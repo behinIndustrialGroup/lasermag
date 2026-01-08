@@ -446,8 +446,8 @@ class FinancialTransactionController extends Controller
             'amount' => ['required', 'string'],
             'financial_method' => ['nullable', 'string'],
             'invoice_or_cheque_number' => ['nullable', 'string'],
-            'transaction_or_cheque_due_date' => ['nullable', 'string'],
-            'transaction_or_cheque_due_date_alt' => ['nullable', 'string'],
+            'date' => ['nullable', 'string'],
+            'date_alt' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
         ]);
 
@@ -457,13 +457,14 @@ class FinancialTransactionController extends Controller
         if ($financialTransaction->auto_financial_transaction_id) {
             Transactions::where('id', $financialTransaction->auto_financial_transaction_id)->delete();
         }
-        $financialTransaction->delete();
+        // $financialTransaction->delete();
+        $financialTransaction->update($validated);
 
-        if ($request->type == 'بستانکار') {
-            $this->addCredit($request);
-        } else {
-            $this->addDebit($request);
-        }
+        // if ($request->type == 'بستانکار') {
+        //     $this->addCredit($request);
+        // } else {
+        //     $this->addDebit($request);
+        // }
         if ($request->hasFile('file')) {
             $result = FileController::store($request->file('file'), 'simpleWorkflow');
             if ($result['status'] == 200) {
