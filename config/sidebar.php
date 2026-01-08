@@ -65,6 +65,7 @@ return [
                 'fields' => [ 'fa_name' => 'فیلدها', 'route-name' => 'simpleWorkflow.fields.index' ],
                 'entities' => [ 'fa_name' => 'موجودیت ها', 'route-name' => 'simpleWorkflow.entities.index' ],
                 'view-models' => [ 'fa_name' => 'ویو مدل ها', 'route-name' => 'simpleWorkflow.view-model.index' ],
+                'dashboard-items' => [ 'fa_name' => 'آیتم های داشبورد', 'route-name' => 'simpleWorkflow.dashboard-items.index' ],
                 'all-inbox' => [ 'fa_name' => 'کارتابل همه', 'route-name' => 'simpleWorkflow.inbox.cases.list' ],
             ]
         ],
