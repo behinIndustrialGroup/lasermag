@@ -68,19 +68,19 @@
 
         <div class="col-sm-4">
             <div class="form-group">
-                <label>{{ trans('fields.transaction_or_cheque_due_date') }}</label>
-                <input type="text" name="transaction_or_cheque_due_date" value="{{ $financialTransaction->transaction_or_cheque_due_date ?? ''}}"
-                    class="form-control pwt-datepicker-input-element" id="transaction_or_cheque_due_date" placeholder=""
+                <label>{{ trans('fields.date') }}</label>
+                <input type="text" name="date" value="{{ $financialTransaction->date ?? ''}}"
+                    class="form-control pwt-datepicker-input-element" id="date" placeholder=""
                     style="" script="">
-                <input type="hidden" name="transaction_or_cheque_due_date_alt" id="transaction_or_cheque_due_date_alt"
-                    value="{{ $financialTransaction->transaction_or_cheque_due_date_alt ?? '' }}">
+                <input type="hidden" name="date_alt" id="date_alt"
+                    value="{{ $financialTransaction->date_alt ?? '' }}">
                 <script>
-                    $('#transaction_or_cheque_due_date').persianDatepicker({
+                    $('#date').persianDatepicker({
                         viewMode: 'day',
                         initialValue: false,
                         format: 'YYYY-MM-DD',
                         initialValueType: 'persian',
-                        altField: '#transaction_or_cheque_due_date_alt',
+                        altField: '#date_alt',
                         calendar: {
                             persian: {
                                 leapYearMode: 'astronomical',
