@@ -122,6 +122,19 @@
         .show-more-btn:hover {
             text-decoration: underline;
         }
+
+        .select2-container .select2-selection--single {
+            height: 38px !important;
+            /* ارتفاع form-control */
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 38px !important;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 38px !important;
+        }
     </style>
     @yield('style')
 
