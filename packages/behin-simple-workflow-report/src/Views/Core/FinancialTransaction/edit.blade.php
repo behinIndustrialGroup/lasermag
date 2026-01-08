@@ -90,6 +90,16 @@
                     });
                 </script>
             </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group"><label>{{ trans('fields.file') }}</label>
+                @if($financialTransaction->file)
+                    <a href="{{ asset($financialTransaction->file) }}" target="_blank" download="{{ basename($financialTransaction->file) }}">دانلود فایل</a>
+                @endif
+                <input type="file"
+                    name="file" value="{{ $financialTransaction->file ?? ''}}"
+                    class="form-control" id="file" >
+                </div>
 
         </div>
 

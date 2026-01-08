@@ -27,6 +27,7 @@ use Morilog\Jalali\Jalalian;
 use Behin\SimpleWorkflow\Models\Entities\Transactions;
 use Behin\SimpleWorkflow\Models\Entities\Customers;
 use Behin\SimpleWorkflowReport\Exports\CounterpartyFinancialTransactionExport;
+use BehinFileControl\Controllers\FileController;
 use Illuminate\Validation\Rule;
 
 class FinancialTransactionController extends Controller
@@ -454,6 +455,14 @@ class FinancialTransactionController extends Controller
             'destination_account_number' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
         ]);
+
+        if ($request->hasFile('file')) {
+            $result = FileController::store($request->file('file'), 'simpleWorkflow');
+            if ($result['status'] == 200) {
+                $financialTransaction->file = $result['dir'];
+                $financialTransaction->save();
+            }
+        }
 
         $amount = str_replace(',', '', $validated['amount']);
         if ($financialTransaction->auto_financial_transaction_id) {
