@@ -450,7 +450,6 @@ class FinancialTransactionController extends Controller
             'transaction_or_cheque_due_date_alt' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
         ]);
-        dd($validated);
 
         if ($request->hasFile('file')) {
             $result = FileController::store($request->file('file'), 'simpleWorkflow');
