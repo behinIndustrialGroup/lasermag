@@ -41,18 +41,18 @@
                 <thead>
                     <tr>
                         <th><input type="checkbox" id="select-all"></th>
-                        <th>{{ trans('ID') }}</th>
-                        <th class="text-left">{{ trans('fields.Name') }}</th>
-                        <th>{{ trans('fields.Actions') }}</th>
+                        <th class="text-center">{{ trans('ID') }}</th>
+                        <th class="text-center">{{ trans('fields.Name') }}</th>
+                        <th class="text-center">{{ trans('fields.Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($entities as $entity)
                         <tr>
                             <td><input type="checkbox" name="ids[]" value="{{ $entity->id }}"></td>
-                            <td>{{ $loop->iteration }}</td>
-                            <td class="text-left">{{ $entity->name }}</td>
-                            <td>
+                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td class="text-center">{{ $entity->name }}</td>
+                            <td class="text-center">
                                 <a href="{{ route('simpleWorkflow.entities.edit', $entity->id) }}">{{ trans('fields.Edit') }}</a> |
                                 <a href="{{ route('simpleWorkflow.entities.records', $entity->id) }}">{{ trans('fields.Edit Records') }}</a> |
                                 <a href="{{ route('simpleWorkflow.entities.destroy', $entity->id) }}" onclick="return confirm('{{ trans('messages.confirmDelete') }}')">{{ trans('fields.Delete') }}</a>
