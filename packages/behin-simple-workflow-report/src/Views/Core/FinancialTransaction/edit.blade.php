@@ -14,7 +14,7 @@
         <div class="col-sm-4">
             <div class="form-group">
                 <label>نوع تراکنش</label>
-                <select name="financial_type" class="form-control select2" id="financial_type">
+                <select name="type" class="form-control select2" id="type">
                     <option value="">انتخاب کنید</option>
                     <option value="بستانکار" @selected($financialTransaction->type === 'بستانکار')>بستانکار</option>
                     <option value="بدهکار" @selected($financialTransaction->type === 'بدهکار')>بدهکار</option>
