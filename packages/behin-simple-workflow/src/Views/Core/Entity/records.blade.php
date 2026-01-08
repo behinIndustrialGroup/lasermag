@@ -13,15 +13,15 @@
             <div class="d-flex flex-wrap align-items-center gap-2">
 
                 {{-- عملیات اصلی --}}
-                <a href="{{ route('simpleWorkflow.entities.createRecord', $entity->id) }}" class="btn btn-primary">
+                <a href="{{ route('simpleWorkflow.entities.createRecord', $entity->id) }}" class="btn btn-primary ml-2">
                     <i class="bi bi-plus-lg me-1"></i>
                     {{ trans('fields.Add Record') }}
                 </a>
 
                 {{-- ابزارها --}}
                 <div class="dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        <i class="bi bi-gear me-1"></i>
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <i class="bi bi-gear me-1 ml-2"></i>
                         ابزارها
                     </button>
 
@@ -82,7 +82,7 @@
                                 onsubmit="return confirm('{{ trans('fields.Are you sure you want to delete this record?') }}')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">{{ trans('fields.Delete') }}</button>
+                                <button type="submit" class="btn btn-sm btn-danger">{{ trans('fields.Delete') }}</button>
                             </form>
                         </td>
                     </tr>
