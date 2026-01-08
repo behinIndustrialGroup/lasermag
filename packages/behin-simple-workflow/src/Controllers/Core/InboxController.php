@@ -352,6 +352,10 @@ class InboxController extends Controller
 
     public static function createCaseName(Task $task, $caseId)
     {
+        $case = CaseController::getById($caseId);
+        if($case->name){
+            return $case->name;
+        }
         // دریافت متغیرها از جدول variables
         $variables = VariableController::getVariablesByCaseId($caseId)
             ->pluck('value', 'key')
