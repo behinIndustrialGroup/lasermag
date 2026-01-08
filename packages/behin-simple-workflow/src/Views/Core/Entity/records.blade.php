@@ -10,23 +10,52 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <div class="mb-3 d-flex flex-wrap align-items-center">
-                <a href="{{ route('simpleWorkflow.entities.createRecord', $entity->id) }}"
-                    class="btn btn-primary me-2">{{ trans('fields.Add Record') }}</a>
-                <form action="{{ route('simpleWorkflow.entities.records.export', $entity->id) }}" method="POST"
-                    class="me-2">
-                    @csrf
-                    <button class="btn btn-default">{{ trans('fields.Export') }}</button>
-                </form>
-                <form action="{{ route('simpleWorkflow.entities.records.import', $entity->id) }}" method="POST"
-                    enctype="multipart/form-data" class="d-flex">
-                    @csrf
-                    <input type="file" name="file" class="form-control form-control-sm me-2" required>
-                    <button class="btn btn-default">{{ trans('fields.Import') }}</button>
-                </form>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+
+                {{-- عملیات اصلی --}}
+                <a href="{{ route('simpleWorkflow.entities.createRecord', $entity->id) }}" class="btn btn-primary">
+                    <i class="bi bi-plus-lg me-1"></i>
+                    {{ trans('fields.Add Record') }}
+                </a>
+
+                {{-- ابزارها --}}
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-gear me-1"></i>
+                        ابزارها
+                    </button>
+
+                    <div class="dropdown-menu p-3" style="min-width: 280px">
+
+                        {{-- Export --}}
+                        <form action="{{ route('simpleWorkflow.entities.records.export', $entity->id) }}" method="POST"
+                            class="mb-2">
+                            @csrf
+                            <button class="btn btn-light w-100 text-start">
+                                <i class="bi bi-download me-1"></i>
+                                {{ trans('fields.Export') }}
+                            </button>
+                        </form>
+
+                        {{-- Import --}}
+                        <form action="{{ route('simpleWorkflow.entities.records.import', $entity->id) }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="file" class="form-control form-control-sm mb-2" required>
+
+                            <button class="btn btn-light w-100 text-start">
+                                <i class="bi bi-upload me-1"></i>
+                                {{ trans('fields.Import') }}
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+
     <div class="container card p-3 table-responsive">
         <table class="table table-strpped" id="recordsTable">
             <thead>
