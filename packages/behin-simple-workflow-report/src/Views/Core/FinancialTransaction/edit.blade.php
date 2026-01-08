@@ -34,11 +34,10 @@
                 </select>
             </div>
         </div>
-        <div class="col-sm-8"></div>
         <div class="col-sm-4">
             <div class="form-group"><label>بابت پرونده</label>
                 <input type="text" name="case_number" list="case_number_list"
-                    class="form-control formatted-digit" inputmode="numeric" id="case_number" placeholder=""
+                    class="form-control" inputmode="numeric" id="case_number" placeholder=""
                     style="" value="{{ $financialTransaction->case_number ?? '' }}">
             </div>
         </div>
@@ -92,29 +91,6 @@
                 </script>
             </div>
 
-        </div>
-        <div class="col-sm-4">
-            <label for="">در ریز خرج کرد ثبت شود؟</label>
-            <select name="store_in_pretty_cash" id="store_in_pretty_cash" class="form-control">
-                <option value="0" @selected($financialTransaction->store_in_pretty_cash == 0)>خیر</option>
-                <option value="1" @selected($financialTransaction->store_in_pretty_cash == 1)>بله</option>
-            </select>
-        </div>
-        <div class="col-sm-4">
-            <label for="">طرف حساب مقصد دارد؟</label>
-            <select name="has_destination_account" id="has_destination_account" class="form-control">
-                <option value="1" @selected($financialTransaction->has_destination_account == 1)>بله</option>
-                <option value="0" @selected($financialTransaction->has_destination_account == 0)>خیر</option>
-            </select>
-        </div>
-        <div class="col-sm-4">
-            <label>طرف حساب مقصد</label>
-            <select name="destination_account_id" class="form-control select2" id="destination_account_id">
-                <option value="">انتخاب کنید</option>
-                @foreach ($counterParties as $counterParty)
-                    <option value="{{ $counterParty->id }}" @selected($financialTransaction->destination_account_id == $counterParty->id)>{{ $counterParty->name }}</option>
-                @endforeach
-            </select>
         </div>
 
     </div>
