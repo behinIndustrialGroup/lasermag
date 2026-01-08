@@ -454,6 +454,7 @@ class FinancialTransactionController extends Controller
         if ($request->hasFile('file')) {
             $result = FileController::store($request->file('file'), 'simpleWorkflow');
             if ($result['status'] == 200) {
+                return $result['dir'];
                 $financialTransaction->file = $result['dir'];
                 $financialTransaction->save();
             }
