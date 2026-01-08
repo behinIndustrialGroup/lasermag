@@ -456,7 +456,7 @@ class FinancialTransactionController extends Controller
             if ($result['status'] == 200) {
                 $financialTransaction->file = $result['dir'];
                 $financialTransaction->save();
-                retunr $financialTransaction;
+                return $financialTransaction;
             }
         }
 
