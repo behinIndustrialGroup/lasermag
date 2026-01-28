@@ -2,8 +2,10 @@
 
 namespace Behin\SimpleWorkflowReport\Sales\Controllers;
 
+use Behin\SimpleWorkflow\Controllers\Core\FormController;
 use Behin\SimpleWorkflow\Models\Core\Cases;
 use Behin\SimpleWorkflow\Models\Entities;
+use Exception;
 
 class SaleReportController
 {
@@ -18,5 +20,17 @@ class SaleReportController
             $row->inventoryTransaction = Entities\Inventory_transactions::where('case_number', $row->number)->get();
         });
         return view('SalesReportView::index', compact('cases'));
+    }
+
+    public function edit(Cases $case)
+    {
+        try {
+            $editFormId = "4a62fef9-bdc1-479d-bdb6-2606f7b0a815";
+            $form = FormController::getById($editFormId);
+            $formMode = null;
+            return view('SalesReportView::edit', compact('case', 'form', 'formMode'));
+        } catch (Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 }

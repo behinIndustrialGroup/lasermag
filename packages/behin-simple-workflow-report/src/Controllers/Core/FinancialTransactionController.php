@@ -9,11 +9,13 @@ use Behin\SimpleWorkflow\Controllers\Core\InboxController;
 use Behin\SimpleWorkflow\Controllers\Core\ProcessController;
 use Behin\SimpleWorkflow\Controllers\Core\TaskController;
 use Behin\SimpleWorkflow\Controllers\Core\VariableController;
+use Behin\SimpleWorkflow\Models\Core\Entity;
 use Behin\SimpleWorkflow\Models\Core\Process;
 use Behin\SimpleWorkflow\Models\Core\TaskActor;
 use Behin\SimpleWorkflow\Models\Core\Variable;
 use Behin\SimpleWorkflow\Models\Entities\Creditor;
 use Behin\SimpleWorkflow\Models\Entities\Financials;
+use Behin\SimpleWorkflow\Models\Entities;
 use Behin\SimpleWorkflowReport\Exports\UserFinancialTransactionExport;
 use Behin\SimpleWorkflowReport\Helper\ReportHelper;
 use Carbon\Carbon;
@@ -34,7 +36,7 @@ class FinancialTransactionController extends Controller
 {
     public function prepareData($request)
     {
-        $filter = $request->query('filter', 'negative');
+        $filter = $request->query('filter', 'all');
         $caseNumber = $request->query('case_number');
         $onlyAssignedUsers = $request->boolean('only_assigned', false);
 
@@ -77,7 +79,7 @@ class FinancialTransactionController extends Controller
     }
     public function index(Request $request)
     {
-        $filter = $request->query('filter', 'negative');
+        $filter = $request->query('filter', 'all');
         $caseNumber = $request->query('case_number');
         $onlyAssignedUsers = $request->boolean('only_assigned', false);
         $creditors = $this->prepareData($request);
@@ -460,11 +462,6 @@ class FinancialTransactionController extends Controller
         // $financialTransaction->delete();
         $financialTransaction->update($validated);
 
-        // if ($request->type == 'بستانکار') {
-        //     $this->addCredit($request);
-        // } else {
-        //     $this->addDebit($request);
-        // }
         if ($request->hasFile('file')) {
             $result = FileController::store($request->file('file'), 'simpleWorkflow');
             if ($result['status'] == 200) {
@@ -472,20 +469,6 @@ class FinancialTransactionController extends Controller
                 $financialTransaction->save();
             }
         }
-
-        // $financialTransaction->update([
-        //     'type' => $validated['type'],
-        //     'account_id' => $validated['account_id'],
-        //     'case_number' => $validated['case_number'] ?? null,
-        //     'amount' => (string) $amount,
-        //     'financial_method' => $validated['financial_method'] ?? null,
-        //     'invoice_or_cheque_number' => $validated['invoice_or_cheque_number'] ?? null,
-        //     'transaction_or_cheque_due_date' => $validated['transaction_or_cheque_due_date'] ?? null,
-        //     'transaction_or_cheque_due_date_alt' => $validated['transaction_or_cheque_due_date_alt'] ?? null,
-        //     'destination_account_name' => $validated['destination_account_name'] ?? null,
-        //     'destination_account_number' => $validated['destination_account_number'] ?? null,
-        //     'description' => $validated['description'] ?? null,
-        // ]);
 
         return redirect()
             ->back()

@@ -36,32 +36,25 @@
             </div>
         @endforeach
     @endif
-    <div class="card">
-        <div class="card-header">
-            راهنما<br>
-            افزودن طلبکاری: یعنی مشتری از مجله لیزر طلب دارد. مانند مشتری به مجله لیزر کالایی فروخته، خدماتی ارائه داده یا مبلغی به مجله لیزر پرداخت کرده<br>
-            افزودن بدهکاری: یعنی مشتری به مجله لیزر بدهکار است. مانند مشتری از مجله لیزر خدماتی دریافت کرده یا کالایی از مجله لیزر خریده یا مجله لیزر مبلغی به مشتری پرداخت کرده است.
-        </div>
-    </div>
     <div class="card mb-3">
         <div class="card-header">
-            <button class="btn btn-sm btn-success" onclick="showAddNewCredit()">افزودن
-                طلبکار <br>(مجله لیزر به مشتری بدهکار است)
+            <button class="btn btn-sm btn-success" onclick="showAddNewCredit()">
+                افزودن بستانکاری
             </button>
-            <button class="btn btn-sm btn-warning" onclick="showAddNewDebit()">افزودن
-                بدهکاری <br>(مجله لیزر از مشتری طلب دارد)
+            <button class="btn btn-sm btn-warning" onclick="showAddNewDebit()">
+                افزودن بدهکاری
             </button>
-            {{-- <a href="{{ route('simpleWorkflowReport.counter-party.create') }}" class="btn btn-sm btn-primary">
-                افزودن طرف حساب جدید
-            </a> --}}
+            <a href="{{ route('simpleWorkflowReport.draftTransaction.index') }}" class="btn btn-sm btn-primary">
+                افزودن سند حسابداری
+            </a>
+            <a href="{{ route('simpleWorkflowReport.draftTransaction.archive') }}" class="btn btn-sm btn-secondary">
+                آرشیو سندهای حسابداری
+            </a>
 
 
-            {{-- <button class="btn btn-sm btn-primary"
-                onclick="open_view_model_create_new_form(`{{ $addTasvieViewModelCreateNewForm }}`, `{{ $addTasvieViewModelId }}`, `{{ $addTasvieViewModelApikey }}`)">افزودن
-                سند</button> --}}
         </div>
     </div>
-    <div class="card mb-3">
+    {{-- <div class="card mb-3">
         <div class="card-body">
             <form action="{{ route('simpleWorkflowReport.financial-transactions.index') }}" method="GET"
                 class="row align-items-end">
@@ -82,7 +75,7 @@
                 @endif
             </form>
         </div>
-    </div>
+    </div> --}}
     <div class="card mb-3">
         <div class="card-body d-flex gap-2 flex-wrap">
             @php
@@ -133,7 +126,7 @@
                                 <button class="btn btn-sm btn-primary"
                                     onclick="showDetails(`{{ $creditor->account_id }}`)">جزئیات بیشتر</button>
                                 <button class="btn btn-sm btn-success"
-                                    onclick="showAddCredit(`{{ $creditor->account_id }}`)">افزودن طلبکاری
+                                    onclick="showAddCredit(`{{ $creditor->account_id }}`)">افزودن بستانکاری
                                     <button class="btn btn-sm btn-warning"
                                         onclick="showAddDebit(`{{ $creditor->account_id }}`)">افزودن بدهکاری</button>
                                     @if ($creditor->account_id)
@@ -285,5 +278,7 @@
             url = url.replace('counterparty', counterparty);
             open_admin_modal(url, 'افزودن بدهکاری');
         }
+
+        
     </script>
 @endsection

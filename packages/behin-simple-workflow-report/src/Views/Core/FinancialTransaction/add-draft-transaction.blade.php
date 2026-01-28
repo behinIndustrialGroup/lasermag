@@ -1,7 +1,12 @@
-<h4>فرم افزودن بستانکاری</h4>
-<form action="javascript:void(0)" method="POST" id="add-credit-form">
+@extends('behin-layouts.app')
+
+@section('title', 'افزودن سند حسابداری')
+
+@section('content')
+<h4>سند حسابداری </h4>
+<form action="{{ route('simpleWorkflowReport.financial-transactions.addDraftTransaction') }}" method="POST" id="add-credit-form">
     @csrf
-    <div class="row col-sm-12 p-0 m-0 dynamic-form" id="dfd41076-26ca-47e4-ab34-17bec3bd89db">
+    <div class="row col-sm-12 p-0 m-0 dynamic-form">
 
         <div class="col-sm-4">
             <div class="form-group"><label>طرف حساب</label>
@@ -85,7 +90,7 @@
     </div>
 </form>
 <div class="row">
-    <button class="btn btn-primary" onclick="submitForm()">
+    <button class="btn btn-sm btn-primary" onclick="submitForm()">
         ذخیره
     </button>
 </div>
@@ -96,63 +101,7 @@
 </script>
 
 <script>
-    let counterPartyDataMap = {};
-
-    function submitForm() {
-        var fd = new FormData($('#add-credit-form')[0]);
-        var url = "{{ route('simpleWorkflowReport.financial-transactions.addCredit') }}";
-        send_ajax_formdata_request(
-            url,
-            fd,
-            function(res) {
-                console.log(res);
-                show_message("ذخیره شد");
-                window.location.reload();
-            },
-            function(res) {
-                console.log(res)
-                show_error(res);
-            }
-        )
-    }
-
-    function getCounterParty(q, input_id) {
-        var scriptId = "0fa291ce-6b0a-4e0b-b9aa-e6b65337f97c";
-        var fd = new FormData();
-        fd.append('q', q);
-        runScript(scriptId, fd, function(response) {
-            console.log(response);
-            var list = $(`#${input_id}_list`);
-            counterPartyDataMap = {}; // ریست آبجکت
-
-            if (list.length) {
-                list.html('');
-                response.forEach(function(item) {
-                    counterPartyDataMap[item.name] = item; // ذخیره اطلاعات هر مشتری بر اساس fullname
-                    list.append(`<option value="${item.name}"></option>`);
-                });
-            } else {
-                $('#account_number').after(`<datalist id="${input_id}_list"></datalist>`);
-                list = $(`#${input_id}_list`);
-                response.forEach(function(item) {
-                    counterPartyDataMap[item.name] = item; // ذخیره اطلاعات هر مشتری بر اساس fullname
-                    list.append(`<option value="${item.name}"></option>`);
-                });
-            }
-        });
-    }
-
-    $('#destination_account_name').on('input', function() {
-        var q = $(this).val();
-        var selected = counterPartyDataMap[q];
-        if (selected) {
-            $('#destination_account_number').val(selected.account_number || '');
-        }
-    });
-
-    $('#destination_account_name').keyup(function() {
-        if ($(this).val().length >= 3) {
-            getCounterParty($(this).val(), $(this).attr('id'));
-        }
-    });
+    
 </script>
+@endsection
+

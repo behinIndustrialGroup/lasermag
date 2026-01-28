@@ -28,7 +28,7 @@ $notificationsUrl = Route::has('notifications.index')
         @if (access('send-sms'))
             <li class="nav-item">
                 <a href="{{ url('admin/send-sms') }}" class="btn btn-sm btn-outline-light ms-2">
-                    <i class="material-icons" style="font-size:18px;">sms</i>
+                    {{-- <i class="material-icons" style="font-size:18px;">sms</i> --}}
                     ارسال پیامک
                 </a>
             </li>
@@ -49,7 +49,7 @@ $notificationsUrl = Route::has('notifications.index')
         <!-- Refresh -->
         <li class="nav-item mr-2">
             <a href="{{ $notificationsUrl }}" class="btn btn-sm btn-outline-dark notification-button" style="color: black !important" title="{{ __('پیام‌ها') }}">
-                <i class="material-icons" style="font-size: 20px;">notifications</i>
+                {{-- <i class="material-icons" style="font-size: 20px;">notifications</i> --}}
                 <span class="sr-only">{{ __('پیام‌ها') }}</span>
                 @if($unreadNotificationsCount > 0)
                     <span class="notification-badge">
@@ -90,7 +90,7 @@ $notificationsUrl = Route::has('notifications.index')
 </nav>
 
 <!-- Material Icons -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
 
 <style>
     .navbar .btn {

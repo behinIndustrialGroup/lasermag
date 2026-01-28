@@ -17,10 +17,10 @@
                     <th>نوع</th>
                     <th>طرف حساب</th>
                     <th>مبلغ</th>
+                    <th>{{ trans('fields.date') }}</th>
                     <th>بابت پرونده</th>
                     <th>نوع پرداختی</th>
                     <th>{{ trans('fields.reference_id') }}</th>
-                    <th>{{ trans('fields.date') }}</th>
                     <th>{{ trans('fields.destination_account_name') }}</th>
                     <th>توضیحات</th>
                     <th>اقدامات</th>
@@ -36,6 +36,7 @@
                         <td dir="ltr">
                             {{ str_contains($creditor->amount, ',') ? $creditor->amount : number_format((int) $creditor->amount) }}
                         </td>
+                        <td>{{ $creditor->date }}</td>
                         <td>
                             {{-- @if (!empty($creditor->case_number))
                                 <a href="{{ route('simpleWorkflowReport.external-internal.show', ['external_internal' => $creditor->case_number]) }}"
@@ -47,7 +48,6 @@
                         </td>
                         <td>{{ $creditor->financial_method }}</td>
                         <td>{{ $creditor->reference_id }}</td>
-                        <td>{{ $creditor->date }}</td>
                         <td>{{ $creditor->destinationAccountName()?->name ?? '' }}</td>
                         <td>{{ $creditor->description }}</td>
                         <td>

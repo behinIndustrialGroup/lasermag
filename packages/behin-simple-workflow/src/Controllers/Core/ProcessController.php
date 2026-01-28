@@ -154,7 +154,7 @@ class ProcessController extends Controller
         return $hasError;
     }
 
-    public static function startFromScript($taskId, $creator, $caseNumber = null, $parentId){
+    public static function startFromScript($taskId, $creator, $caseNumber = null, $parentId = null){
         return self::start($taskId, true, false, false, $caseNumber, $creator, $parentId);
     }
 

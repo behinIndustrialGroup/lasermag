@@ -2,9 +2,9 @@
     font-family: Vazir;
     src: url('../fonts/Vazir.eot');
     src: url('../fonts/Vazir.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Vazir.woff2') format('woff2'),
-    url('../fonts/Vazir.woff') format('woff'),
-    url('../fonts/Vazir.ttf') format('truetype');
+        url('../fonts/Vazir.woff2') format('woff2'),
+        url('../fonts/Vazir.woff') format('woff'),
+        url('../fonts/Vazir.ttf') format('truetype');
     font-weight: normal;
 }
 
@@ -12,9 +12,9 @@
     font-family: Vazir-Bold;
     src: url('../fonts/Vazir-Bold.eot');
     src: url('../fonts/Vazir-Bold.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Vazir-Bold.woff2') format('woff2'),
-    url('../fonts/Vazir-Bold.woff') format('woff'),
-    url('../fonts/Vazir-Bold.ttf') format('truetype');
+        url('../fonts/Vazir-Bold.woff2') format('woff2'),
+        url('../fonts/Vazir-Bold.woff') format('woff'),
+        url('../fonts/Vazir-Bold.ttf') format('truetype');
     font-weight: bold;
 }
 
@@ -22,9 +22,9 @@
     font-family: Vazir-Light;
     src: url('../fonts/Vazir-Light.eot');
     src: url('../fonts/Vazir-Light.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Vazir-Light.woff2') format('woff2'),
-    url('../fonts/Vazir-Light.woff') format('woff'),
-    url('../fonts/Vazir-Light.ttf') format('truetype');
+        url('../fonts/Vazir-Light.woff2') format('woff2'),
+        url('../fonts/Vazir-Light.woff') format('woff'),
+        url('../fonts/Vazir-Light.ttf') format('truetype');
     font-weight: 300;
 }
 
@@ -32,9 +32,9 @@
     font-family: Vazir-Medium;
     src: url('../fonts/Vazir-Medium.eot');
     src: url('../fonts/Vazir-Medium.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Vazir-Medium.woff2') format('woff2'),
-    url('../fonts/Vazir-Medium.woff') format('woff'),
-    url('../fonts/Vazir-Medium.ttf') format('truetype');
+        url('../fonts/Vazir-Medium.woff2') format('woff2'),
+        url('../fonts/Vazir-Medium.woff') format('woff'),
+        url('../fonts/Vazir-Medium.ttf') format('truetype');
     font-weight: 500;
 }
 
@@ -42,9 +42,9 @@
     font-family: Vazir-Thin;
     src: url('../fonts/Vazir-Thin.eot');
     src: url('../fonts/Vazir-Thin.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Vazir-Thin.woff2') format('woff2'),
-    url('../fonts/Vazir-Thin.woff') format('woff'),
-    url('../fonts/Vazir-Thin.ttf') format('truetype');
+        url('../fonts/Vazir-Thin.woff2') format('woff2'),
+        url('../fonts/Vazir-Thin.woff') format('woff'),
+        url('../fonts/Vazir-Thin.ttf') format('truetype');
     font-weight: 100;
 }
 
@@ -52,9 +52,9 @@
     font-family: Vazir-Black;
     src: url('../fonts/Vazir-Black.eot');
     src: url('../fonts/Vazir-Black.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Vazir-Black.woff2') format('woff2'),
-    url('../fonts/Vazir-Black.woff') format('woff'),
-    url('../fonts/Vazir-Black.ttf') format('truetype');
+        url('../fonts/Vazir-Black.woff2') format('woff2'),
+        url('../fonts/Vazir-Black.woff') format('woff'),
+        url('../fonts/Vazir-Black.ttf') format('truetype');
     font-weight: 900;
 }
 
@@ -62,9 +62,9 @@
     font-family: Yekan;
     src: url('../fonts/Yekan.eot');
     src: url('../fonts/Yekan.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/Yekan.woff2') format('woff2'),
-    url('../fonts/Yekan.woff') format('woff'),
-    url('../fonts/Yekan.ttf') format('truetype');
+        url('../fonts/Yekan.woff2') format('woff2'),
+        url('../fonts/Yekan.woff') format('woff'),
+        url('../fonts/Yekan.ttf') format('truetype');
 }
 
 /*---------------------------------- End of fonts ---------------------------------- */
@@ -74,7 +74,7 @@ body {
 }
 
 .ltr {
-    direction:ltr;
+    direction: ltr;
 }
 
 
@@ -85,7 +85,9 @@ ul {
 .dropdown-item {
     text-align: right;
 }
-.dropdown-footer, .dropdown-header {
+
+.dropdown-footer,
+.dropdown-header {
     text-align: center;
 }
 
@@ -112,24 +114,26 @@ ul {
     direction: ltr;
 }
 
-.sidebar > div:first-child {
+.sidebar>div:first-child {
     direction: rtl;
 }
 
-.control-sidebar, .control-sidebar:before {
+.control-sidebar,
+.control-sidebar:before {
     left: -250px;
     right: auto;
     transition: left .3s ease-in-out;
 }
 
-.control-sidebar-slide-open .control-sidebar, .control-sidebar-slide-open .control-sidebar:before {
+.control-sidebar-slide-open .control-sidebar,
+.control-sidebar-slide-open .control-sidebar:before {
     left: 0;
     right: auto;
 }
 
 .small-box .icon {
-    right:auto;
-    left:10px;
+    right: auto;
+    left: 10px;
 }
 
 .nav-sidebar .nav-link>p>.right {
@@ -143,20 +147,27 @@ ul {
 }
 
 @media (min-width: 992px) {
-    .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
+
+    .sidebar-mini.sidebar-collapse .content-wrapper,
+    .sidebar-mini.sidebar-collapse .main-footer,
+    .sidebar-mini.sidebar-collapse .main-header {
         margin-right: 4.6rem;
         margin-left: 0;
     }
 }
 
 @media (min-width: 992px) {
-    .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
+
+    .sidebar-mini.sidebar-collapse .content-wrapper,
+    .sidebar-mini.sidebar-collapse .main-footer,
+    .sidebar-mini.sidebar-collapse .main-header {
         margin-left: 0rem !important;
         margin-right: 4.6rem !important;
-        z-index:100;
+        z-index: 100;
     }
 
-    .sidebar-mini.sidebar-collapse .main-sidebar, .sidebar-mini.sidebar-collapse .main-sidebar:before {
+    .sidebar-mini.sidebar-collapse .main-sidebar,
+    .sidebar-mini.sidebar-collapse .main-sidebar:before {
         margin-right: 0;
         width: 4.6rem;
     }
@@ -164,49 +175,66 @@ ul {
 
 
 @media (min-width: 768px) {
-    .content-wrapper, .main-footer, .main-header {
+
+    .content-wrapper,
+    .main-footer,
+    .main-header {
         transition: margin-right .3s ease-in-out;
         margin-right: 250px;
-        margin-left : 0;
+        margin-left: 0;
         /* z-index: 3000; */
     }
 }
 
 @media (max-width: 991.98px) {
-    .main-sidebar, .main-sidebar:before {
-        box-shadow: none!important;
+
+    .main-sidebar,
+    .main-sidebar:before {
+        box-shadow: none !important;
         margin-right: -250px;
         margin-left: 0;
     }
 
-    .content-wrapper, .content-wrapper:before, .main-footer, .main-footer:before, .main-header, .main-header:before {
+    .content-wrapper,
+    .content-wrapper:before,
+    .main-footer,
+    .main-footer:before,
+    .main-header,
+    .main-header:before {
         margin-right: 0;
     }
 
-    .sidebar-open .main-sidebar, .sidebar-open .main-sidebar:before {
+    .sidebar-open .main-sidebar,
+    .sidebar-open .main-sidebar:before {
         margin-right: 0;
         z-index: 4000;
     }
 }
 
-.sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar:before {
+.sidebar-collapse .main-sidebar,
+.sidebar-collapse .main-sidebar:before {
     margin-right: -250px;
 }
 
 .main-sidebar {
     left: auto;
-    right:0;
+    right: 0;
 }
 
 /* Cards */
 
+.card {
+    border-radius: 24px !important;
+    box-shadow: 0 30px 60px rgba(15, 76, 129, 0.18) !important;
+}
+
 .card-header>.card-tools {
-    right:auto;
-    left:1rem;
+    right: auto;
+    left: 1rem;
 }
 
 .user-block img {
-     float: right;
+    float: right;
 }
 
 .attachment-block .attachment-img {
@@ -218,7 +246,11 @@ ul {
     margin-right: 110px;
 }
 
-.card-comments .card-comment img, .img-lg, .img-md, .img-sm, .user-block.user-block-sm img {
+.card-comments .card-comment img,
+.img-lg,
+.img-md,
+.img-sm,
+.user-block.user-block-sm img {
     float: right;
 }
 
@@ -227,12 +259,16 @@ ul {
     margin-left: 0;
 }
 
-.card-comments .card-comment img+.img-push, .img-sm+.img-push, .user-block.user-block-sm img+.img-push {
+.card-comments .card-comment img+.img-push,
+.img-sm+.img-push,
+.user-block.user-block-sm img+.img-push {
     margin-left: 0px;
     margin-right: 40px;
 }
 
-.user-block .comment, .user-block .description, .user-block .username {
+.user-block .comment,
+.user-block .description,
+.user-block .username {
     margin-right: 50px;
     margin-left: 0px;
 }
@@ -263,7 +299,7 @@ ul {
 
 .lockscreen-image {
     left: auto;
-    right:-10px;
+    right: -10px;
 }
 
 .lockscreen-credentials {
@@ -280,48 +316,56 @@ ul {
 .datepicker-plot-area {
     font-family: 'Vazir', sans-serif;
 }
-.right .direct-chat-text{
+
+.right .direct-chat-text {
     background-color: #b1d0ac !important;
 }
 
-.direct-chat-text{
+.direct-chat-text {
     color: #000000 !important;
 }
 
-audio{
+audio {
     width: 100% !important;
     height: 25px !important;
-  }
+}
 
-  .direct-chat-timestamp{
+.direct-chat-timestamp {
     font-size: 15px !important;
     direction: ltr !important;
     color: rgb(0, 0, 0) !important;
-  }
+}
 
-  .direct-chat-name{
+.direct-chat-name {
     display: block !important;
     color: rgb(0, 0, 0) !important;
-  }
+}
 
-  .bg-new{
+.bg-new {
     background-color: #4670f8e8 !important;
-  }
-  .bg-inProgress{
+}
+
+.bg-inProgress {
     background-color: #f5d33c !important;
-  }
-  .bg-opened{
+}
+
+.bg-opened {
     background-color: #ffff00 !important;
-  }
-  .bg-done{
+}
+
+.bg-done {
     background-color: #059f00 !important;
-  }
-  .bg-canceled{
+}
+
+.bg-canceled {
     background-color: #ff0000 !important;
-  }
-  .bg-draft{
+}
+
+.bg-draft {
     background-color: #6f0080 !important;
-  }
-  .bg-doneByOther{
+}
+
+.bg-doneByOther {
     background-color: #059f00 !important;
-  }
+}
+

@@ -29,7 +29,7 @@
     <link rel="stylesheet"
         href="{{ url('behin/behin-dist/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') . '?' . config('app.version') }}">
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> --}}
     <!-- bootstrap rtl -->
     <link rel="stylesheet"
         href="{{ url('behin/behin-dist/dist/css/bootstrap-rtl.min.css') . '?' . config('app.version') }}">
@@ -55,7 +55,7 @@
         href="{{ url('behin/behin-dist/plugins/mapp/css/fa/style.css') . '?' . config('app.version') }}">
     <link rel="stylesheet" href="{{ url('behin/behin-dist/plugins/timepicker/jquery.timepicker.min.css') }}">
     <!-- Material Icons اضافه -->
-    <link href="{{ url('behin/behin-dist/css/all.min.css') . '?' . config('app.version') }}" rel="stylesheet">
+    {{-- <link href="{{ url('behin/behin-dist/css/all.min.css') . '?' . config('app.version') }}" rel="stylesheet"> --}}
 
     <!-- استایل سفارشی متریال -->
     <style>
@@ -175,15 +175,22 @@
         <div class="content-wrapper">
             <section class="content">
                 <div class="container-fluid">
-                    @php
-                        $disableBackBtn = true;
-                    @endphp
-                    @if (!isset($disableBackBtn))
+
+                    @if (isset($showBackBtn) and $showBackBtn)
                         <div class="card">
-                            <div class="card-header">
-                                <a href="javascript:history.back()" class="btn btn-outline-primary float-left">
-                                    <i class="fa fa-arrow-left"></i> {{ trans('fields.Back') }}
-                                </a>
+                            <div class="card-body">
+                                @isset($backBtnRouteName)
+                                    <a href="{{ route($backBtnRouteName) }}"
+                                        class="btn btn-sm btn-outline-primary float-left">
+                                        <i class="fa fa-arrow-left"></i>
+                                        {{ $backBtnName ? $backBtnName : trans('fields.Back') }}
+                                    </a>
+                                @else
+                                    <a href="javascript:history.back()" class="btn btn-sm btn-outline-primary float-left">
+                                        <i class="fa fa-arrow-left"></i> {{ trans('fields.Back') }}
+                                    </a>
+                                @endisset
+
                             </div>
                         </div>
                     @endisset
@@ -253,15 +260,15 @@
                 }
             }
         });
-        $('.timepicker').timepicker({
-            timeFormat: 'HH:mm', // فرمت 24 ساعته
-            interval: 1, // نمایش با فاصله 5 دقیقه‌ای
-            minTime: '00:00',
-            maxTime: '23:55',
-            dynamic: true,
-            dropdown: true,
-            scrollbar: true
-        });
+        //$('.timepicker').timepicker({
+        //    timeFormat: 'HH:mm', // فرمت 24 ساعته
+        //    interval: 1, // نمایش با فاصله 5 دقیقه‌ای
+        //    minTime: '00:00',
+        //    maxTime: '23:55',
+        //    dynamic: true,
+        //    dropdown: true,
+        //    scrollbar: true
+        //});
         AutoNumeric.multiple('.formatted-digit', {
             digitGroupSeparator: ',',
             decimalCharacter: '.',

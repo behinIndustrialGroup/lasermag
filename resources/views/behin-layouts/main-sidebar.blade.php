@@ -24,13 +24,13 @@
                                     <a href="{{ route($menu['route-name']) }}"
                                         class="nav-link d-flex align-items-center"
                                         style="color: #fff; padding: 10px 15px;">
-                                        <i class="material-icons me-2">
+                                        {{-- <i class="material-icons me-2">
                                             @isset($menu['icon'])
                                                 {{ $menu['icon'] }}
                                             @else
                                                 menu
                                             @endisset
-                                        </i>
+                                        </i> --}}
                                         <span>{{ $menu['fa_name'] }}</span>
                                     </a>
                                 </li>
@@ -38,15 +38,15 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link d-flex align-items-center"
                                         style="color: #fff; padding: 10px 15px;">
-                                        <i class="material-icons me-2">
+                                        {{-- <i class="material-icons me-2">
                                             @isset($menu['icon'])
                                                 {{ $menu['icon'] }}
                                             @else
                                                 menu
                                             @endisset
-                                        </i>
+                                        </i> --}}
                                         <span>{{ $menu['fa_name'] }}</span>
-                                        <i class="material-icons ms-auto" style="font-size: 18px;">expand_more</i>
+                                        {{-- <i class="material-icons ms-auto" style="font-size: 18px;">expand_more</i> --}}
                                     </a>
                                     <ul class="nav nav-treeview ms-3"
                                         style="border-left: 2px solid rgba(255,255,255,0.1); margin-left: 10px;">
@@ -61,8 +61,8 @@
                                                                 {{ isset($submenu['route-url']) ? url($submenu['route-url']) : '' }} @endif"
                                                         class="nav-link"
                                                         style="color: #cfd8dc; padding: 8px 15px; transition: all 0.3s ease;">
-                                                        <i class="material-icons"
-                                                            style="font-size: 16px;">chevron_left</i>
+                                                        {{-- <i class="material-icons"
+                                                            style="font-size: 16px;">chevron_left</i> --}}
                                                         <span>{{ $submenu['fa_name'] }}</span>
                                                     </a>
                                                 </li>
@@ -80,7 +80,7 @@
 </aside>
 
 <!-- Material Icons -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
 
 <style>
     .nav-link {

@@ -14,6 +14,7 @@ use Behin\SimpleWorkflowReport\Controllers\Core\ChequeReportController;
 use Behin\SimpleWorkflowReport\Controllers\Core\ExpiredController;
 use Behin\SimpleWorkflowReport\Controllers\Core\ExternalAndInternalReportController;
 use Behin\SimpleWorkflowReport\Controllers\Core\AllRequestsReportController;
+use Behin\SimpleWorkflowReport\Controllers\Core\DraftTransactionController;
 use Behin\SimpleWorkflowReport\Controllers\Core\FinancialTransactionController;
 use Behin\SimpleWorkflowReport\Controllers\Core\MyRequestController;
 use Behin\SimpleWorkflowReport\Controllers\Core\SalesReportController;
@@ -50,6 +51,20 @@ Route::name('simpleWorkflowReport.')->prefix('workflow-report')->middleware(['we
     Route::post('financial-transactions/add-credit', [FinancialTransactionController::class, 'addCredit'])->name('financial-transactions.addCredit')->middleware('access:گزارش دفتر معین');
     Route::get('financial-transactions/{counterparty}/show-add-debit/{onlyAssignedUsers?}', [FinancialTransactionController::class, 'showAddDebit'])->name('financial-transactions.showAddDebit')->middleware('access:گزارش دفتر معین');
     Route::post('financial-transactions/add-debit', [FinancialTransactionController::class, 'addDebit'])->name('financial-transactions.addDebit')->middleware('access:گزارش دفتر معین');
+
+    Route::name('draftTransaction.')->prefix('draft-transaction')->group(function(){
+        Route::get('index/{caseNumber?}', [DraftTransactionController::class,'index'])->name('index');
+        Route::get('create/{caseNumber}', [DraftTransactionController::class,'create'])->name('create');
+        Route::post('store', [DraftTransactionController::class,'store'])->name('store');
+        Route::get('edit/{draftTransaction}', [DraftTransactionController::class,'edit'])->name('edit');
+        Route::put('update/{draftTransaction}', [DraftTransactionController::class,'update'])->name('update');
+        Route::get('copy/{draftTransaction}', [DraftTransactionController::class,'copy'])->name('copy');
+        Route::delete('delete/{draftTransaction}', [DraftTransactionController::class,'destroy'])->name('delete');
+        Route::get('store-to-transaction/{caseNumber}', [DraftTransactionController::class,'storeToTransactions'])->name('storeToTransactions');
+
+        Route::get('archive', [DraftTransactionController::class,'archive'])->name('archive');
+
+    })->middleware('access:گزارش دفتر معین');
 
     Route::get('sales-report', [SalesReportController::class, 'index'])->name('sales-report.index');
     Route::get('warehouse-report', [WarehouseReportController::class, 'index'])->name('warehouses-report.index');
