@@ -178,35 +178,55 @@ function hide_loading(){
     $('#preloader').hide();
 }
 
-function open_admin_modal(url, title = ''){
-    var modal = $('<div class="modal fade" id="admin-modal"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
-                    '<div class="modal-dialog modal-lg">' +
-                    '<div class="modal-content">' +
-                    '<div class="modal-body" id="modal-body">' +
-                    '<h4 class="modal-title" id="myModalLabel">'+ title +'</h4>' +
-                    '<p>Modal content goes here.</p>' +
-                    '</div>' +
-                    '<div class="modal-footer">' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>');
-    
+function open_admin_modal(url, title = '') {
+
+    var modal = $(`
+        <div class="modal fade" id="admin-modal" tabindex="-1">
+            <div class="modal-dialog modal-lg" id="admin-modal-dialog">
+                <div class="modal-content">
+                    
+                    <div class="admin-modal-header">
+                        <h5 class="modal-title mb-0">${title}</h5>
+                        <div class="admin-modal-actions">
+                            <i class="fa fa-expand" id="modal-maximize" title="بزرگ‌نمایی"></i>
+                            <i class="fa fa-times" id="modal-close" title="بستن"></i>
+                        </div>
+                    </div>
+
+                    <div class="modal-body" id="modal-body">
+                        در حال بارگذاری...
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    `);
+
     $('body').append(modal);
-    
+
     $('#admin-modal').on('hidden.bs.modal', function () {
         $(this).remove();
-      });
-      
-      
-    send_ajax_get_request(
-        url,
-        function(data){
-            $('#admin-modal #modal-body').html(data);
-            $('#admin-modal').modal('show')
-        }
-    )
+    });
+
+    // بستن
+    $(document).on('click', '#modal-close', function () {
+        $('#admin-modal').modal('hide');
+    });
+
+    // بزرگ / کوچک
+    $(document).on('click', '#modal-maximize', function () {
+        $('#admin-modal-dialog').toggleClass('modal-fullscreen');
+
+        $(this).toggleClass('fa-expand fa-compress')
+               .attr('title', $(this).hasClass('fa-compress') ? 'کوچک‌نمایی' : 'بزرگ‌نمایی');
+    });
+
+    send_ajax_get_request(url, function (data) {
+        $('#modal-body').html(data);
+        $('#admin-modal').modal('show');
+    });
 }
+
 
 function open_admin_modal_with_data(data, title = '', customFun = null){
     var modal = $('<div class="modal fade" id="admin-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +

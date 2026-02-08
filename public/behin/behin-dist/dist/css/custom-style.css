@@ -369,3 +369,34 @@ audio {
     background-color: #059f00 !important;
 }
 
+/* FULLSCREEN MODAL  */
+.modal-fullscreen {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    height: 95vh !important;
+    margin: 2.5vh auto !important;
+}
+
+.modal-fullscreen .modal-content {
+    height: 100%;
+}
+
+.modal-fullscreen .modal-body {
+    overflow-y: auto;
+    height: calc(100% - 56px);
+}
+
+.admin-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 15px;
+}
+
+.admin-modal-actions i {
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 16px;
+}
+/* END OF FULLSCREEN MODAL  */
