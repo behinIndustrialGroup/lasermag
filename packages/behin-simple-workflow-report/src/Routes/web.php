@@ -58,7 +58,7 @@ Route::name('simpleWorkflowReport.')->prefix('workflow-report')->middleware(['we
         Route::post('store', [DraftTransactionController::class,'store'])->name('store');
         Route::get('edit/{draftTransaction}', [DraftTransactionController::class,'edit'])->name('edit');
         Route::put('update/{draftTransaction}', [DraftTransactionController::class,'update'])->name('update');
-        Route::get('copy/{draftTransaction}', [DraftTransactionController::class,'copy'])->name('copy');
+        Route::any('copy/{draftTransaction}', [DraftTransactionController::class,'copy'])->name('copy');
         Route::delete('delete/{draftTransaction}', [DraftTransactionController::class,'destroy'])->name('delete');
         Route::get('store-to-transaction/{caseNumber}', [DraftTransactionController::class,'storeToTransactions'])->name('storeToTransactions');
 
