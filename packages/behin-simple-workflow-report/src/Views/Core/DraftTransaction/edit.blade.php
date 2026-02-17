@@ -7,7 +7,24 @@
     <div class="row col-sm-12 p-0 m-0 dynamic-form">
 
         <div class="col-sm-4">
-            <div class="form-group"><label>طرف حساب</label>
+            @php
+                        $fieldName = 'account_id';
+                        $fieldDetails = getFieldDetailsByName($fieldName);
+                        $fieldValue = null;
+                        $fieldValueAlt = null;
+                    @endphp
+                    <div class="">
+                        @include('SimpleWorkflowView::Core.Form.field-generator', [
+                            'fieldName' => $fieldName,
+                            'fieldId' => $fieldName,
+                            'fieldClass' => 'col-sm-12',
+                            'readOnly' => true,
+                            'required' => false,
+                            'fieldValue' => $fieldValue,
+                            'fieldValueAlt' => $fieldValueAlt ?? '',
+                        ])
+                    </div>
+            {{-- <div class="form-group"><label>طرف حساب</label>
                 <select name="account_id" class="form-control select2" id="counterparty">
                     <option value="">انتخاب کنید</option>
                     @foreach ($counterParties as $counterParty)
@@ -16,7 +33,7 @@
                             {{ $counterParty->name }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
         </div>
 
         <div class="col-sm-8"></div>

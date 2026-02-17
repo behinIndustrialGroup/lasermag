@@ -178,17 +178,19 @@ function hide_loading(){
     $('#preloader').hide();
 }
 
-function open_admin_modal(url, title = '') {
+function open_admin_modal(url, title = '', fullscreen = false) {
 
     var modal = $(`
         <div class="modal fade" id="admin-modal" tabindex="-1">
-            <div class="modal-dialog modal-lg" id="admin-modal-dialog">
+            <div class="modal-dialog modal-lg ${fullscreen ? 'modal-fullscreen' : ''}" id="admin-modal-dialog">
                 <div class="modal-content">
                     
                     <div class="admin-modal-header">
                         <h5 class="modal-title mb-0">${title}</h5>
                         <div class="admin-modal-actions">
-                            <i class="fa fa-expand" id="modal-maximize" title="بزرگ‌نمایی"></i>
+                            <i class="fa ${fullscreen ? 'fa-compress' : 'fa-expand'}" 
+                               id="modal-maximize" 
+                               title="${fullscreen ? 'کوچک‌نمایی' : 'بزرگ‌نمایی'}"></i>
                             <i class="fa fa-times" id="modal-close" title="بستن"></i>
                         </div>
                     </div>

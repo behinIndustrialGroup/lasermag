@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ url('behin/logo.webp') . '?' . config('app.version') }}">
+    <link rel="icon" href="{{ url('behin/logo.ico') . '?' . config('app.version') }}">
     <link rel="manifest" href="{{ url('manifest.json') . '?' . config('app.version') }}">
 
     <title>@yield('title')</title>
@@ -18,7 +18,8 @@
     <!-- Ionicons -->
     {{-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> --}}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('behin/behin-dist/dist/css/adminlte.min.css') . '?' . config('app.version') }}">
+    <link rel="stylesheet"
+        href="{{ url('behin/behin-dist/dist/css/adminlte.min.css') . '?' . config('app.version') }}">
     <!-- Date Picker -->
     <link rel="stylesheet"
         href="{{ url('behin/behin-dist/plugins/datepicker/datepicker3.css') . '?' . config('app.version') }}">
@@ -29,14 +30,15 @@
     <link rel="stylesheet"
         href="{{ url('behin/behin-dist/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') . '?' . config('app.version') }}">
     <!-- Google Font: Source Sans Pro -->
-    {{-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> --}}
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- bootstrap rtl -->
     <link rel="stylesheet"
         href="{{ url('behin/behin-dist/dist/css/bootstrap-rtl.min.css') . '?' . config('app.version') }}">
     <!-- template rtl version -->
     <link rel="stylesheet"
         href="{{ url('behin/behin-dist/dist/css/custom-style.css') . '?' . config('app.version') }}">
-    <link rel="stylesheet" href="{{ url('behin/behin-dist/dist/css/custom.css') . '?' . config('app.version') }}">
+    <link rel="stylesheet"
+        href="{{ url('behin/behin-dist/dist/css/custom.css') . '?' . config('app.version') }}">
 
     {{-- <link rel="stylesheet" href="{{ url('behin/behin-dist/dist/css/custom.css')  . '?' . config('app.version') }}"> --}}
     <link rel="stylesheet" type="text/css"
@@ -53,9 +55,9 @@
         href="{{ url('behin/behin-dist/plugins/mapp/css/mapp.min.css') . '?' . config('app.version') }}">
     <link rel="stylesheet"
         href="{{ url('behin/behin-dist/plugins/mapp/css/fa/style.css') . '?' . config('app.version') }}">
-    <link rel="stylesheet" href="{{ url('behin/behin-dist/plugins/timepicker/jquery.timepicker.min.css') }}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     <!-- Material Icons اضافه -->
-    {{-- <link href="{{ url('behin/behin-dist/css/all.min.css') . '?' . config('app.version') }}" rel="stylesheet"> --}}
+    <link href="{{ url('behin/behin-dist/dist/css/icon.css') . '?' . config('app.version') }}" rel="stylesheet">
 
     <!-- استایل سفارشی متریال -->
     <style>
@@ -122,7 +124,6 @@
         .show-more-btn:hover {
             text-decoration: underline;
         }
-
         .select2-container .select2-selection--single {
             height: 38px !important;
             /* ارتفاع form-control */
@@ -135,16 +136,47 @@
         .select2-container--default .select2-selection--single .select2-selection__arrow {
             height: 38px !important;
         }
+
+        i::before {
+            font-family: "FontAwesome" !important;
+            /* یا نسخه‌ای که داری */
+            font-weight: 900;
+        }
+
+        i {
+            font-family: "Vazir", sans-serif !important;
+            /* فونت متن */
+            font-style: normal;
+            vertical-align: middle !important;
+        }
+
+        i::after {
+            font-family: "Vazirmatn", sans-serif;
+            margin-inline-start: 6px;
+            opacity: 0;
+            transition: opacity .2s ease;
+            white-space: nowrap;
+        }
+
+        /* hover موس */
+        i:hover::after {
+            opacity: 1;
+        }
     </style>
     @yield('style')
 
     <script src="{{ url('behin/behin-dist/plugins/jquery/jquery.min.js') . '?' . config('app.version') }}"></script>
-    <script src="{{ url('behin/behin-dist/plugins/datatables/jquery.dataTables.js') . '?' . config('app.version') }}">
+    {{-- <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/jquery-3.2.1.min.js"></script> --}}
+    <script
+        src="{{ url('behin/behin-dist/plugins/datatables/jquery.dataTables.js') . '?' . config('app.version') }}">
     </script>
-    <script src="{{ url('behin/behin-dist/plugins/datatables/dataTables.bootstrap4.js') . '?' . config('app.version') }}">
+    <script
+        src="{{ url('behin/behin-dist/plugins/datatables/dataTables.bootstrap4.js') . '?' . config('app.version') }}">
     </script>
-    <script src="{{ url('behin/behin-dist/persian-date-picker/persian-date.js') . '?' . config('app.version') }}"></script>
-    <script src="{{ url('behin/behin-dist/persian-date-picker/persian-datepicker.js') . '?' . config('app.version') }}">
+    <script src="{{ url('behin/behin-dist/persian-date-picker/persian-date.js') . '?' . config('app.version') }}">
+    </script>
+    <script
+        src="{{ url('behin/behin-dist/persian-date-picker/persian-datepicker.js') . '?' . config('app.version') }}">
     </script>
 
 
@@ -156,9 +188,16 @@
     <script src="{{ url('behin/behin-js/ajax.js') . '?' . config('app.version') }}"></script>
     <script src="{{ url('behin/behin-js/dataTable.js') . '?' . config('app.version') }}"></script>
     <script src="{{ url('behin/behin-js/dropzone.js') . '?' . config('app.version') }}"></script>
-    <script src="{{ url('behin/behin-dist/plugins/timepicker/jquery.timepicker.min.js') }}"></script>
-    <script src="{{ url('behin/behin-dist/plugins/autonumeric/autoNumeric.min.js') . '?' . config('app.version') }}">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script
+        src="{{ url('behin/behin-dist/plugins/autonumeric/autoNumeric.min.js') . '?' . config('app.version') }}">
     </script>
+
+    {{-- ACE Editor --}}
+    <script src={{ url('behin/behin-dist/plugins/ace/1.13.1/ace.js') }}></script>
+    <script src={{ url('behin/behin-dist/plugins/ace/1.13.1/mode-php.js') }}></script>
+    <script src={{ url('behin/behin-dist/plugins/ace/1.13.1/theme-monokai.js') }}></script>
+    <script src={{ url('behin/behin-dist/plugins/ace/1.13.1/ext-language_tools.min.js') }}></script>
 
 
 
@@ -175,22 +214,12 @@
         <div class="content-wrapper">
             <section class="content">
                 <div class="container-fluid">
-
-                    @if (isset($showBackBtn) and $showBackBtn)
+                    @if (!isset($disableBackBtn))
                         <div class="card">
-                            <div class="card-body">
-                                @isset($backBtnRouteName)
-                                    <a href="{{ route($backBtnRouteName) }}"
-                                        class="btn btn-sm btn-outline-primary float-left">
-                                        <i class="fa fa-arrow-left"></i>
-                                        {{ $backBtnName ? $backBtnName : trans('fields.Back') }}
-                                    </a>
-                                @else
-                                    <a href="javascript:history.back()" class="btn btn-sm btn-outline-primary float-left">
-                                        <i class="fa fa-arrow-left"></i> {{ trans('fields.Back') }}
-                                    </a>
-                                @endisset
-
+                            <div class="card-header">
+                                <a href="javascript:history.back()" class="btn btn-outline-primary float-left">
+                                    <i class="fa fa-arrow-left"></i> {{ trans('fields.Back') }}
+                                </a>
                             </div>
                         </div>
                     @endisset
@@ -198,14 +227,12 @@
             <div class="container-fluid p-2">
                 @yield('content')
             </div>
-
         </section>
     </div>
 
 
-    <footer class="main-footer">
-        @include('behin-layouts.mobile-navigation')
 
+    <footer class="main-footer">
         {{-- <strong> &copy; 2018 <a href="http://github.com/hesammousavi/">حسام موسوی</a>.</strong> --}}
     </footer>
 
@@ -213,27 +240,85 @@
     </aside>
 </div>
 
-<script src="{{ url('behin/behin-dist/plugins/bootstrap/js/bootstrap.bundle.min.js') . '?' . config('app.version') }}">
+<script
+    src="{{ url('behin/behin-dist/plugins/bootstrap/js/bootstrap.bundle.min.js') . '?' . config('app.version') }}">
 </script>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> --}}
 <script src="{{ url('behin/behin-dist/plugins/knob/jquery.knob.js') . '?' . config('app.version') }}"></script>
-<script src="{{ url('behin/behin-dist/plugins/daterangepicker/daterangepicker.js') . '?' . config('app.version') }}">
+<script
+    src="{{ url('behin/behin-dist/plugins/daterangepicker/daterangepicker.js') . '?' . config('app.version') }}">
 </script>
-<script src="{{ url('behin/behin-dist/plugins/datepicker/bootstrap-datepicker.js') . '?' . config('app.version') }}">
+<script
+    src="{{ url('behin/behin-dist/plugins/datepicker/bootstrap-datepicker.js') . '?' . config('app.version') }}">
 </script>
 <script
     src="{{ url('behin/behin-dist/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') . '?' . config('app.version') }}">
 </script>
 <script src="{{ url('behin/behin-dist/dist/js/adminlte.js') . '?' . config('app.version') }}"></script>
-<script src="{{ url('behin/behin-dist/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-<script src="{{ url('behin/behin-dist/plugins/datatables/jszip.min.js') }}"></script>
-<script src="{{ url('behin/behin-dist/plugins/datatables/buttons.html5.min.js') }}"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="{{ url('behin/behin-dist/plugins/select2/select2.full.min.js') }}"></script>
+{{-- <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+        <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script> --}}
 <script src="{{ url('behin/behin-dist/plugins/mapp/js/mapp.min.js') . '?' . config('app.version') }}"></script>
 <script src="{{ url('behin/behin-dist/plugins/toastr/toastr.min.js') . '?' . config('app.version') }}"></script>
+{{-- <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+    <script>
+        const beamsClient = new PusherPushNotifications.Client({
+            instanceId: "{{ config('broadcasting.pusher.instanceId') }}",
+        });
+        const beamsTokenProvider = new PusherPushNotifications.TokenProvider({
+            url: "{{ url('/pusher/beams-auth') }}"
+        });
 
+        beamsClient.getUserId()
+            .then(userId => {
+                if (!userId) {
+                    beamsClient.start().then(() => {
+                        const beamsTokenProvider = new PusherPushNotifications.TokenProvider({
+                            url: "{{ url('/pusher/beams-auth') }}"
+                        });
+                        beamsClient.setUserId(
+                            "{{ config('broadcasting.pusher.prefix_user') }}{{ Auth::id() }}",
+                            beamsTokenProvider)
+                    })
+                } else {
+                    console.log('User ID:', userId);
+                }
+            })
+            .catch(console.error);
+    </script>
+    <script>
+        function checkNotificationPermission() {
+            if (!('Notification' in window)) {
+                alert('این مرورگر از نوتیفیکیشن پشتیبانی نمی‌کند.');
+                return;
+            }
+
+            if (Notification.permission === 'granted') {
+                new Notification('نوتیفیکیشن فعال است', {
+                    body: 'شما قبلاً مجوز داده‌اید!',
+                    icon: '{{ url('behin/logo.ico') }}'
+                });
+            } else if (Notification.permission === 'denied') {
+                alert('شما مجوز نوتیفیکیشن را رد کرده‌اید. لطفاً از تنظیمات مرورگر آن را فعال کنید.');
+            } else {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        new Notification('متشکریم!', {
+                            body: 'شما نوتیفیکیشن را فعال کردید.'
+                        });
+                    }
+                });
+            }
+        }
+    </script> --}}
 <script>
     function logout() {
+        // beamsClient.stop().catch(console.error);
         window.location = "{{ route('logout') }}"
     }
 </script>
@@ -241,9 +326,7 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        initial_view()
-    });
+    initial_view()
 
     function initial_view() {
         $('.select2').select2();
@@ -260,15 +343,15 @@
                 }
             }
         });
-        //$('.timepicker').timepicker({
-        //    timeFormat: 'HH:mm', // فرمت 24 ساعته
-        //    interval: 1, // نمایش با فاصله 5 دقیقه‌ای
-        //    minTime: '00:00',
-        //    maxTime: '23:55',
-        //    dynamic: true,
-        //    dropdown: true,
-        //    scrollbar: true
-        //});
+        $('.timepicker').timepicker({
+            timeFormat: 'HH:mm', // فرمت 24 ساعته
+            interval: 1, // نمایش با فاصله 5 دقیقه‌ای
+            minTime: '00:00',
+            maxTime: '23:55',
+            dynamic: true,
+            dropdown: true,
+            scrollbar: true
+        });
         AutoNumeric.multiple('.formatted-digit', {
             digitGroupSeparator: ',',
             decimalCharacter: '.',
@@ -283,13 +366,12 @@
         //     let textOnly = $cell.text().trim();
 
         //     // اگر شامل دکمه یا اسپن بود، هیچی تغییر نده
-        //     if (originalHtml.includes('button') || originalHtml.includes('span') || originalHtml.includes(
-        //             'a')) {
+        //     if (originalHtml.includes('button') || originalHtml.includes('span') || originalHtml.includes('a')) {
         //         return;
         //     }
 
         //     if (textOnly.length > 25) {
-        //         let shortText = textOnly.substr(0, 25);
+        //         let shortText = textOnly.substr(0, 25) ;
 
         //         $cell.html(`
         //     <span class="short-text">${shortText}</span>

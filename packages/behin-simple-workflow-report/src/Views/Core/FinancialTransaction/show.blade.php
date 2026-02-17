@@ -21,7 +21,7 @@
                     <th>بابت پرونده</th>
                     <th>نوع پرداختی</th>
                     <th>{{ trans('fields.reference_id') }}</th>
-                    <th>{{ trans('fields.destination_account_name') }}</th>
+                    {{-- <th>{{ trans('fields.destination_account_name') }}</th> --}}
                     <th>توضیحات</th>
                     <th>اقدامات</th>
                 </tr>
@@ -48,7 +48,7 @@
                         </td>
                         <td>{{ $creditor->financial_method }}</td>
                         <td>{{ $creditor->reference_id }}</td>
-                        <td>{{ $creditor->destinationAccountName()?->name ?? '' }}</td>
+                        {{-- <td>{{ $creditor->destinationAccountName()?->name ?? '' }}</td> --}}
                         <td>{{ $creditor->description }}</td>
                         <td>
                             @if (access('اصلاح یا حذف تراکنش مالی'))
@@ -92,7 +92,7 @@
                 "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Persian.json"
             },
             "order": [
-                [6, "desc"]
+                [3, "desc"]
             ],
             "footerCallback": function(row, data, start, end, display) {
                 var api = this.api();

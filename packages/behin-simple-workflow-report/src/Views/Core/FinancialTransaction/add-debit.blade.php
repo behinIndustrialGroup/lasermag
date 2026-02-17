@@ -11,12 +11,29 @@
                     <input type="hidden" name="account_id" value="{{ $account_id->id }}" class="form-control"
                         id="account_id" readonly>
                 @else
-                    <select name="account_id" class="form-control select2" id="account_id">
+                    @php
+                        $fieldName = 'account_id';
+                        $fieldDetails = getFieldDetailsByName($fieldName);
+                        $fieldValue = null;
+                        $fieldValueAlt = null;
+                    @endphp
+                    <div class="">
+                        @include('SimpleWorkflowView::Core.Form.field-generator', [
+                            'fieldName' => $fieldName,
+                            'fieldId' => $fieldName,
+                            'fieldClass' => 'col-sm-12',
+                            'readOnly' => true,
+                            'required' => false,
+                            'fieldValue' => $fieldValue,
+                            'fieldValueAlt' => $fieldValueAlt ?? '',
+                        ])
+                    </div>
+                    {{-- <select name="account_id" class="form-control select2" id="account_id">
                         <option value="">انتخاب کنید</option>
                         @foreach ($counterParties as $counterParty)
                             <option value="{{ $counterParty->id }}">{{ $counterParty->name }}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
                 @endif
             </div>
         </div>
@@ -70,10 +87,10 @@
                     inputmode="numeric" id="case_number" placeholder="" style="">
             </div>
         </div>
-        
 
 
-        
+
+
         <div class="col-sm-12">
             <div class="form-group"><label>توضیحات</label>
                 <textarea name="description" class="form-control" rows="5"></textarea>
